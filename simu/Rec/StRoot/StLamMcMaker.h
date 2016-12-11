@@ -110,6 +110,7 @@ class StLamMcMaker : public StMaker{
 		long    g_pv_generatorProc;
 		long    g_pv_key;
 		long    g_nJets;
+                int     g_idParton1;
 
 		int     g_nL;
                 long    g_pid_Lp[kMax];
