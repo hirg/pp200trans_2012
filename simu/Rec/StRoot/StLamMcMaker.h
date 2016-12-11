@@ -110,7 +110,19 @@ class StLamMcMaker : public StMaker{
 		long    g_pv_generatorProc;
 		long    g_pv_key;
 		long    g_nJets;
+
                 int     g_idParton1;
+                double  g_pxParton1;
+                double  g_pyParton1;
+                double  g_pzParton1;
+                double  g_mParton1;
+                double  g_eParton1;
+                int     g_idParton2;
+                double  g_pxParton2;
+                double  g_pyParton2;
+                double  g_pzParton2;
+                double  g_mParton2;
+                double  g_eParton2;
 
 		int     g_nL;
                 long    g_pid_Lp[kMax];
@@ -150,9 +162,6 @@ class StLamMcMaker : public StMaker{
                 long    g_pid_parent_L[kMax];
                 long    g_gid_parent_L[kMax];
                 long    g_key_parent_L[kMax];
-                long    g_pid_mmom_L[kMax];
-                long    g_gid_mmom_L[kMax];
-                long    g_key_mmom_L[kMax];
 
                 int     g_nA;
                 long    g_pid_Ap[kMax];
@@ -192,9 +201,6 @@ class StLamMcMaker : public StMaker{
                 long    g_pid_parent_A[kMax];
                 long    g_gid_parent_A[kMax];
                 long    g_key_parent_A[kMax];
-                long    g_pid_mmom_A[kMax];
-                long    g_gid_mmom_A[kMax];
-                long    g_key_mmom_A[kMax];
 
                 int     g_nK;
                 long    g_pid_Kp[kMax];
@@ -234,9 +240,6 @@ class StLamMcMaker : public StMaker{
                 long    g_pid_parent_K[kMax];
                 long    g_gid_parent_K[kMax];
                 long    g_key_parent_K[kMax];
-                long    g_pid_mmom_K[kMax];
-                long    g_gid_mmom_K[kMax];
-                long    g_key_mmom_K[kMax];
 
 		int     a_nL;
                 long    a_pid_Lp[kMax];
@@ -275,9 +278,6 @@ class StLamMcMaker : public StMaker{
                 long    a_pid_parent_L[kMax];
                 long    a_gid_parent_L[kMax];
                 long    a_key_parent_L[kMax];
-                long    a_pid_mmom_L[kMax];
-                long    a_gid_mmom_L[kMax];
-                long    a_key_mmom_L[kMax];
 
                 int     a_nA;
                 long    a_pid_Ap[kMax];
@@ -316,9 +316,6 @@ class StLamMcMaker : public StMaker{
                 long    a_pid_parent_A[kMax];
                 long    a_gid_parent_A[kMax];
                 long    a_key_parent_A[kMax];
-                long    a_pid_mmom_A[kMax];
-                long    a_gid_mmom_A[kMax];
-                long    a_key_mmom_A[kMax];
 
                 int     a_nK;
                 long    a_pid_Kp[kMax];
@@ -357,9 +354,6 @@ class StLamMcMaker : public StMaker{
                 long    a_pid_parent_K[kMax];
                 long    a_gid_parent_K[kMax];
                 long    a_key_parent_K[kMax];
-                long    a_pid_mmom_K[kMax];
-                long    a_gid_mmom_K[kMax];
-                long    a_key_mmom_K[kMax];
 
 		int     m_runN;
 		int     m_evtN;
@@ -472,7 +466,6 @@ class StLamMcMaker : public StMaker{
 		double  m_pt_K[kMax];
 		double  m_eta_K[kMax];
 		double  m_phi_K[kMax];
-		
 
 		ClassDef(StLamMcMaker,4);
 };

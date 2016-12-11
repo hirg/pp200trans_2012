@@ -137,6 +137,19 @@ void StLamMcMaker::InitOutTree() {
 	fOutTree->Branch("g_pv_key", &g_pv_key, "g_pv_key/I");
         fOutTree->Branch("g_nJets", &g_nJets, "g_nJets/I");
 
+        fOutTree->Branch("g_idParton1", &g_idParton1, "g_idParton1/I");
+        fOutTree->Branch("g_pxParton1", &g_pxParton1, "g_pxParton1/D");
+        fOutTree->Branch("g_pyParton1", &g_pyParton1, "g_pyParton1/D");
+        fOutTree->Branch("g_pzParton1", &g_pzParton1, "g_pzParton1/D");
+        fOutTree->Branch("g_mParton1", &g_mParton1, "g_mParton1/D");
+        fOutTree->Branch("g_eParton1", &g_eParton1, "g_eParton1/D");
+        fOutTree->Branch("g_idParton2", &g_idParton2, "g_idParton2/I");
+        fOutTree->Branch("g_pxParton2", &g_pxParton2, "g_pxParton2/D");
+        fOutTree->Branch("g_pyParton2", &g_pyParton2, "g_pyParton2/D");
+        fOutTree->Branch("g_pzParton2", &g_pzParton2, "g_pzParton2/D");
+        fOutTree->Branch("g_mParton2", &g_mParton2, "g_mParton2/D");
+        fOutTree->Branch("g_eParton2", &g_eParton2, "g_eParton2/D");
+
 	fOutTree->Branch("g_nL", &g_nL, "g_nL/I");
         fOutTree->Branch("g_pid_Lp", g_pid_Lp, "g_pid_Lp[g_nL]/I");
         fOutTree->Branch("g_gid_Lp", g_gid_Lp, "g_gid_Lp[g_nL]/I");
@@ -175,9 +188,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("g_pid_parent_L", g_pid_parent_L, "g_pid_parent_L[g_nL]/I");
         fOutTree->Branch("g_gid_parent_L", g_gid_parent_L, "g_gid_parent_L[g_nL]/I");
         fOutTree->Branch("g_key_parent_L", g_key_parent_L, "g_key_parent_L[g_nL]/I");
-        fOutTree->Branch("g_pid_mmom_L", g_pid_mmom_L, "g_pid_mmom_L[g_nL]/I");
-        fOutTree->Branch("g_gid_mmom_L", g_gid_mmom_L, "g_gid_mmom_L[g_nL]/I");
-        fOutTree->Branch("g_key_mmom_L", g_key_mmom_L, "g_key_mmom_L[g_nL]/I");
 
 	fOutTree->Branch("g_nA", &g_nA, "g_nA/I");
         fOutTree->Branch("g_pid_Ap", g_pid_Ap, "g_pid_Ap[g_nA]/I");
@@ -217,9 +227,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("g_pid_parent_A", g_pid_parent_A, "g_pid_parent_A[g_nA]/I");
         fOutTree->Branch("g_gid_parent_A", g_gid_parent_A, "g_gid_parent_A[g_nA]/I");
         fOutTree->Branch("g_key_parent_A", g_key_parent_A, "g_key_parent_A[g_nA]/I");
-        fOutTree->Branch("g_pid_mmom_A", g_pid_mmom_A, "g_pid_mmom_A[g_nA]/I");
-        fOutTree->Branch("g_gid_mmom_A", g_gid_mmom_A, "g_gid_mmom_A[g_nA]/I");
-        fOutTree->Branch("g_key_mmom_A", g_key_mmom_A, "g_key_mmom_A[g_nA]/I");
 
 	fOutTree->Branch("g_nK", &g_nK, "g_nK/I");
         fOutTree->Branch("g_pid_Kp", g_pid_Kp, "g_pid_Kp[g_nK]/I");
@@ -259,9 +266,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("g_pid_parent_K", g_pid_parent_K, "g_pid_parent_K[g_nK]/I");
         fOutTree->Branch("g_gid_parent_K", g_gid_parent_K, "g_gid_parent_K[g_nK]/I");
         fOutTree->Branch("g_key_parent_K", g_key_parent_K, "g_key_parent_K[g_nK]/I");
-        fOutTree->Branch("g_pid_mmom_K", g_pid_mmom_K, "g_pid_mmom_K[g_nK]/I");
-        fOutTree->Branch("g_gid_mmom_K", g_gid_mmom_K, "g_gid_mmom_K[g_nK]/I");
-        fOutTree->Branch("g_key_mmom_K", g_key_mmom_K, "g_key_mmom_K[g_nK]/I");
 
 	fOutTree->Branch("a_nL", &a_nL, "a_nL/I");
         fOutTree->Branch("a_pid_Lp", a_pid_Lp, "a_pid_Lp[a_nL]/I");
@@ -300,9 +304,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("a_pid_parent_L", a_pid_parent_L, "a_pid_mom_L[a_nL]/I");
         fOutTree->Branch("a_gid_parent_L", a_gid_parent_L, "a_gid_mom_L[a_nL]/I");
         fOutTree->Branch("a_key_parent_L", a_key_parent_L, "a_key_mom_L[a_nL]/I");
-        fOutTree->Branch("a_pid_mmom_L", a_pid_mmom_L, "a_pid_mom_L[a_nL]/I");
-        fOutTree->Branch("a_gid_mmom_L", a_gid_mmom_L, "a_gid_mom_L[a_nL]/I");
-        fOutTree->Branch("a_key_mmom_L", a_key_mmom_L, "a_key_mom_L[a_nL]/I");
 	
 	fOutTree->Branch("a_nA", &a_nA, "a_nA/I");
         fOutTree->Branch("a_pid_Ap", a_pid_Ap, "a_pid_Ap[a_nA]/I");
@@ -341,9 +342,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("a_pid_parent_A", a_pid_parent_A, "a_pid_mom_A[a_nA]/I");
         fOutTree->Branch("a_gid_parent_A", a_gid_parent_A, "a_gid_mom_A[a_nA]/I");
         fOutTree->Branch("a_key_parent_A", a_key_parent_A, "a_key_mom_A[a_nA]/I");
-        fOutTree->Branch("a_pid_mmom_A", a_pid_mmom_A, "a_pid_mom_A[a_nA]/I");
-        fOutTree->Branch("a_gid_mmom_A", a_gid_mmom_A, "a_gid_mom_A[a_nA]/I");
-        fOutTree->Branch("a_key_mmom_A", a_key_mmom_A, "a_key_mom_A[a_nA]/I");
 
 	fOutTree->Branch("a_nK", &a_nK, "a_nK/I");
         fOutTree->Branch("a_pid_Kp", a_pid_Kp, "a_pid_Kp[a_nK]/I");
@@ -382,9 +380,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("a_pid_parent_K", a_pid_parent_K, "a_pid_mom_K[a_nK]/I");
         fOutTree->Branch("a_gid_parent_K", a_gid_parent_K, "a_gid_mom_K[a_nK]/I");
         fOutTree->Branch("a_key_parent_K", a_key_parent_K, "a_key_mom_K[a_nK]/I");
-        fOutTree->Branch("a_pid_mmom_K", a_pid_mmom_K, "a_pid_mom_K[a_nK]/I");
-        fOutTree->Branch("a_gid_mmom_K", a_gid_mmom_K, "a_gid_mom_K[a_nK]/I");
-        fOutTree->Branch("a_key_mmom_K", a_key_mmom_K, "a_key_mom_K[a_nK]/I");
 	
         fOutTree->Branch("trig",   trig, "trig[8]/I");
         fOutTree->Branch("trig_sub",   trig_sub, "trig_sub[5]/I");
@@ -647,6 +642,20 @@ int StLamMcMaker::Make() {
         StSPtrVecMcTrack  & tracks = fmcEvent->tracks();
         StMcTrackIterator   tIter;
 
+        StMcTrack *tParton1 = tracks[6];
+        StMcTrack *tParton2 = tracks[7];
+        g_idParton1 = tParton1->pdgId();
+        g_pxParton1 = tParton1->fourMomentum().px();
+        g_pyParton1 = tParton1->fourMomentum().py();
+        g_pzParton1 = tParton1->fourMomentum().pz();
+        g_mParton1 = tParton1->fourMomentum().m();
+        g_eParton1 = tParton1->fourMomentum().e();
+        g_idParton2 = tParton2->pdgId();
+        g_pxParton2 = tParton2->fourMomentum().px();
+        g_pyParton2 = tParton2->fourMomentum().py();
+        g_pzParton2 = tParton2->fourMomentum().pz();
+        g_mParton2 = tParton2->fourMomentum().m();
+        g_eParton2 = tParton2->fourMomentum().e();
 
         //LOG_INFO << "Loop all tracks" << endm;
         int i=0;
@@ -655,6 +664,7 @@ int StLamMcMaker::Make() {
              const long gId = track->geantId();
              const long pId = track->pdgId();
              i++;
+
                  //LOG_INFO << i << " ~~pId:  " << pId << " ~~gId:  " << gId << endm;
                  //if( track->parent() ) LOG_INFO << " | mother pId: " << track->parent()->pdgId() << " ~~ mother gId: " << track->parent()->geantId() << endm;
                  LOG_INFO << "\t" << i<< "\t" << gId << "\t" << gId << "\t" << track->fourMomentum().px() << "\t" << track->fourMomentum().py() << "\t" << track->fourMomentum().pz() << "\t" << track->fourMomentum().e() << "\t" << track->fourMomentum().m() << endm;
@@ -734,11 +744,6 @@ int StLamMcMaker::Make() {
                  long pId_parent = tra_parent->pdgId();
                  long gId_parent = tra_parent->geantId();
                  long key_parent = tra_parent->key();
-                 //LOG_INFO << "L MMOM Info starting : " << tra_parent->parent() << endm;
-                 long pId_mmom = tra_parent->parent()->pdgId();
-                 long gId_mmom = tra_parent->parent()->geantId();
-                 long key_mmom = tra_parent->parent()->key();
-                 //LOG_INFO << "L MMOM Info ending: " << tra_parent->parent() << endm;
 
                  StThreeVectorD pos_stop = ver_stop->position();
                  tra_dau0 = ver_stop->daughter(0);
@@ -799,12 +804,6 @@ int StLamMcMaker::Make() {
                  g_pid_parent_L[g_nL]           = pId_parent;
                  g_gid_parent_L[g_nL]           = gId_parent;
                  g_key_parent_L[g_nL]           = key_parent;
-                 g_pid_mmom_L[g_nL]           = pId_mmom;
-                 g_gid_mmom_L[g_nL]           = gId_mmom;
-                 g_key_mmom_L[g_nL]           = key_mmom;
-
-                 //LOG_INFO << "Lambda mother key: " << key_parent << " | pId: " << pId_parent << " | gId: " << gId_parent << endm;
-                 //if( pId_parent==92 ) LOG_INFO << "mmom  pId: " << track->parent()->parent()->pdgId() << " | gId: " << track->parent()->parent()->geantId() << endm;
 
                  g_nL++;
 
@@ -921,9 +920,6 @@ int StLamMcMaker::Make() {
                  a_pid_parent_L[a_nL]           = pId_parent;
                  a_gid_parent_L[a_nL]           = gId_parent;
                  a_key_parent_L[a_nL]           = key_parent;;
-                 a_pid_mmom_L[a_nL]           = pId_mmom;
-                 a_gid_mmom_L[a_nL]           = gId_mmom;
-                 a_key_mmom_L[a_nL]           = key_mmom;;
 
                  a_nL++;
              }
@@ -963,11 +959,6 @@ int StLamMcMaker::Make() {
                  long pId_parent = tra_parent->pdgId();
                  long gId_parent = tra_parent->geantId();
                  long key_parent = tra_parent->key();
-                 //LOG_INFO << "A MMOM Info starting : " << tra_parent->parent() << endm;
-                 long pId_mmom = tra_parent->parent()->pdgId();
-                 long gId_mmom = tra_parent->parent()->geantId();
-                 long key_mmom = tra_parent->parent()->key();
-                 //LOG_INFO << "A MMOM Info ending : " << tra_parent->parent() << endm;
 
                  StThreeVectorD pos_stop = ver_stop->position();
                  tra_dau0 = ver_stop->daughter(0);
@@ -1028,12 +1019,6 @@ int StLamMcMaker::Make() {
                  g_pid_parent_A[g_nA]           = pId_parent;
                  g_gid_parent_A[g_nA]           = gId_parent;
                  g_key_parent_A[g_nA]           = key_parent;
-                 g_pid_mmom_A[g_nA]           = pId_mmom;
-                 g_gid_mmom_A[g_nA]           = gId_mmom;
-                 g_key_mmom_A[g_nA]           = key_mmom;
-
-                 //LOG_INFO << "Lambda mother key: " << key_parent << " | pId: " << pId_parent << " | gId: " << gId_parent << endm;
-                 //if( pId_parent==92 ) LOG_INFO << "mmom  pId: " << track->parent()->parent()->pdgId() << " | gId: " << track->parent()->parent()->geantId() << endm;
 
                  g_nA++;
 
@@ -1149,10 +1134,7 @@ int StLamMcMaker::Make() {
             
                  a_pid_parent_A[a_nA]           = pId_parent;
                  a_gid_parent_A[a_nA]           = gId_parent;
-                 a_key_parent_A[a_nA]           = key_parent;;
-                 a_pid_mmom_A[a_nA]           = pId_mmom;
-                 a_gid_mmom_A[a_nA]           = gId_mmom;
-                 a_key_mmom_A[a_nA]           = key_mmom;;
+                 a_key_parent_A[a_nA]           = key_parent;
 
                  a_nA++;
              }
@@ -1192,11 +1174,6 @@ int StLamMcMaker::Make() {
                  long pId_parent = tra_parent->pdgId();
                  long gId_parent = tra_parent->geantId();
                  long key_parent = tra_parent->key();
-                 //LOG_INFO << "K MMOM Info starting : " << tra_parent->parent() << endm;
-                 long pId_mmom = tra_parent->parent()->pdgId();
-                 long gId_mmom = tra_parent->parent()->geantId();
-                 long key_mmom = tra_parent->parent()->key();
-                 //LOG_INFO << "K MMOM Info ending : " << tra_parent->parent() << endm;
 
                  StThreeVectorD pos_stop = ver_stop->position();
                  tra_dau0 = ver_stop->daughter(0);
@@ -1257,12 +1234,6 @@ int StLamMcMaker::Make() {
                  g_pid_parent_K[g_nK]           = pId_parent;
                  g_gid_parent_K[g_nK]           = gId_parent;
                  g_key_parent_K[g_nK]           = key_parent;
-                 g_pid_mmom_K[g_nK]           = pId_mmom;
-                 g_gid_mmom_K[g_nK]           = gId_mmom;
-                 g_key_mmom_K[g_nK]           = key_mmom;
-
-                 //LOG_INFO << "Lambda mother key: " << key_parent << " | pId: " << pId_parent << " | gId: " << gId_parent << endm;
-                 //if( pId_parent==92 ) LOG_INFO << "mmom  pId: " << track->parent()->parent()->pdgId() << " | gId: " << track->parent()->parent()->geantId() << endm;
 
                  g_nK++;
 
@@ -1378,10 +1349,7 @@ int StLamMcMaker::Make() {
             
                  a_pid_parent_K[a_nK]           = pId_parent;
                  a_gid_parent_K[a_nK]           = gId_parent;
-                 a_key_parent_K[a_nK]           = key_parent;;
-                 a_pid_mmom_K[a_nK]           = pId_mmom;
-                 a_gid_mmom_K[a_nK]           = gId_mmom;
-                 a_key_mmom_K[a_nK]           = key_mmom;;
+                 a_key_parent_K[a_nK]           = key_parent;
 
                  a_nK++;
              }
@@ -1594,9 +1562,8 @@ int StLamMcMaker::Make() {
                                 } 
                             }
                         }
-                  }
-              }
-
+                }
+        }
 	
 	fOutTree->Fill();
 	//LOG_INFO << "Fill Tree. OK" << endm;
