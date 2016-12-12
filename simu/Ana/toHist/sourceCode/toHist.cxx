@@ -975,8 +975,6 @@ Bool_t toHist::Process(Long64_t entry)
          if(m_pt_L[i]<ptVmin ||m_pt_L[i]>=ptVmax ) {
              Abort("Err:m_L pt range out !!!");
          }
-                  //cout << "===--> m_L Filling " << endl;
-         if(m_ratio_Lp[i]<0.51 ||m_ratio_Lpi[i]<0.51 ) continue;
          //___Ldd_selection_cut_here____
          if(m_dca_Lp[i] > 200.0 ) continue;
          if(m_dca_Lpi[i] > 200.0 ) continue;
@@ -996,44 +994,39 @@ Bool_t toHist::Process(Long64_t entry)
             if(m_index_L[i]<0 ) continue;
             if(m_dr_L[i]<0 ||m_dr_L[i]>0.6 ) continue;
             int iJ =m_index_L[i];
-            h_m_fz_L[ptVmin-1]->Fill(a_pt_L[i]/J_pt[iJ], weight_fill);
+            h_m_fz_L[ptVmin-1]->Fill(m_pt_L[i]/J_pt[iJ], weight_fill);
          }
 
-         h_m_pt_Lp[kJ][ptVmin-1]->Fill(a_pt_Lp[i], weight_fill);   
-         h_m_eta_Lp[kJ][ptVmin-1]->Fill(a_eta_Lp[i], weight_fill);   
-         h_m_phi_Lp[kJ][ptVmin-1]->Fill(a_phi_Lp[i], weight_fill);   
-         h_m_pt_Lpi[kJ][ptVmin-1]->Fill(a_pt_Lpi[i], weight_fill);   
-         h_m_eta_Lpi[kJ][ptVmin-1]->Fill(a_eta_Lpi[i], weight_fill);   
-         h_m_phi_Lpi[kJ][ptVmin-1]->Fill(a_phi_Lpi[i], weight_fill);     
-         h_m_pt_L[kJ][ptVmin-1]->Fill(a_pt_L[i], weight_fill);   
-         h_m_eta_L[kJ][ptVmin-1]->Fill(a_eta_L[i], weight_fill);   
-         h_m_phi_L[kJ][ptVmin-1]->Fill(a_phi_L[i], weight_fill);   
-         h_m_im_L[kJ][ptVmin-1]->Fill(a_im_L[i], weight_fill);   
+         h_m_pt_Lp[kJ][ptVmin-1]->Fill(m_pt_Lp[i], weight_fill);   
+         h_m_eta_Lp[kJ][ptVmin-1]->Fill(m_eta_Lp[i], weight_fill);   
+         h_m_phi_Lp[kJ][ptVmin-1]->Fill(m_phi_Lp[i], weight_fill);   
+         h_m_pt_Lpi[kJ][ptVmin-1]->Fill(m_pt_Lpi[i], weight_fill);   
+         h_m_eta_Lpi[kJ][ptVmin-1]->Fill(m_eta_Lpi[i], weight_fill);   
+         h_m_phi_Lpi[kJ][ptVmin-1]->Fill(m_phi_Lpi[i], weight_fill);     
+         h_m_pt_L[kJ][ptVmin-1]->Fill(m_pt_L[i], weight_fill);   
+         h_m_eta_L[kJ][ptVmin-1]->Fill(m_eta_L[i], weight_fill);   
+         h_m_phi_L[kJ][ptVmin-1]->Fill(m_phi_L[i], weight_fill);   
+         h_m_im_L[kJ][ptVmin-1]->Fill(m_im_L[i], weight_fill);   
          h_m_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
-         if(m_gid_parent_L[i]!=0 )m_pid_parent_L[i] = findPid(m_gid_parent_L[i] );
-         h_m_pid_parent_L[kJ][ptVmin-1]->Fill(a_pid_parent_L[i], weight_fill);   
+         h_m_dr_L[kJ][ptVmin-1]->Fill(m_dr_L[i], weight_fill); 
+         h_m_drParton_L[kJ][ptVmin-1]->Fill(m_drParton1_L[i],a_drParton2_L[i], weight_fill);
+         //h_m_deta_L[kJ][ptVmin-1]->Fill(m_deta_L[i], weight_fill);   
+         //h_m_dphi_L[kJ][ptVmin-1]->Fill(m_dphi_L[i], weight_fill);
 
-         h_m_dr_L[kJ][ptVmin-1]->Fill(a_dr_L[i], weight_fill); 
-         h_m_drParton_L[kJ][ptVmin-1]->Fill(a_drParton1_L[i],a_drParton2_L[i], weight_fill);
-         //h_m_deta_L[kJ][ptVmin-1]->Fill(a_deta_L[i], weight_fill);   
-         //h_m_dphi_L[kJ][ptVmin-1]->Fill(a_dphi_L[i], weight_fill);
-
-         h_m_dca_Lp[kJ][ptVmin-1]->Fill(a_dca_Lp[i], weight_fill);
-         h_m_nSig_Lp[kJ][ptVmin-1]->Fill(a_nSigP_Lp[i], weight_fill);
-         h_m_dca_Lpi[kJ][ptVmin-1]->Fill(a_dca_Lpi[i], weight_fill);
-         h_m_nSig_Lpi[kJ][ptVmin-1]->Fill(a_nSigPi_Lpi[i], weight_fill);
-         h_m_dl_L[kJ][ptVmin-1]->Fill(a_dl_L[i], weight_fill);
-         h_m_dca2_L[kJ][ptVmin-1]->Fill(a_dca2_L[i], weight_fill);
-         h_m_dcaV0_L[kJ][ptVmin-1]->Fill(a_dcaV0_L[i], weight_fill);
+         h_m_dca_Lp[kJ][ptVmin-1]->Fill(m_dca_Lp[i], weight_fill);
+         h_m_nSig_Lp[kJ][ptVmin-1]->Fill(m_nSigP_Lp[i], weight_fill);
+         h_m_dca_Lpi[kJ][ptVmin-1]->Fill(m_dca_Lpi[i], weight_fill);
+         h_m_nSig_Lpi[kJ][ptVmin-1]->Fill(m_nSigPi_Lpi[i], weight_fill);
+         h_m_dl_L[kJ][ptVmin-1]->Fill(m_dl_L[i], weight_fill);
+         h_m_dca2_L[kJ][ptVmin-1]->Fill(m_dca2_L[i], weight_fill);
+         h_m_dcaV0_L[kJ][ptVmin-1]->Fill(m_dcaV0_L[i], weight_fill);
       }
 
       for( int i=0; i<m_nA; ++i ){
          if(m_pt_A[i]<ptVmin ||m_pt_A[i]>=ptVmax ) {
              Abort("Err:m_A pt range out !!!");
          }
-                  //cout << "===--> m_A Filling " << endl;
-         if(m_ratio_Ap[i]<0.51 ||m_ratio_Api[i]<0.51 ) continue;
          //___Add_selection_cut_here____
          if(m_dca_Ap[i] > 200.0 ) continue;
          if(m_dca_Api[i] > 200.0 ) continue;
@@ -1053,36 +1046,33 @@ Bool_t toHist::Process(Long64_t entry)
             if(m_index_A[i]<0 ) continue;
             if(m_dr_A[i]<0 ||m_dr_A[i]>0.6 ) continue;
             int iJ =m_index_A[i];
-            h_m_fz_A[ptVmin-1]->Fill(a_pt_A[i]/J_pt[iJ], weight_fill);
+            h_m_fz_A[ptVmin-1]->Fill(m_pt_A[i]/J_pt[iJ], weight_fill);
          }
 
-         h_m_pt_Ap[kJ][ptVmin-1]->Fill(a_pt_Ap[i], weight_fill);   
-         h_m_eta_Ap[kJ][ptVmin-1]->Fill(a_eta_Ap[i], weight_fill);   
-         h_m_phi_Ap[kJ][ptVmin-1]->Fill(a_phi_Ap[i], weight_fill);   
-         h_m_pt_Api[kJ][ptVmin-1]->Fill(a_pt_Api[i], weight_fill);   
-         h_m_eta_Api[kJ][ptVmin-1]->Fill(a_eta_Api[i], weight_fill);   
-         h_m_phi_Api[kJ][ptVmin-1]->Fill(a_phi_Api[i], weight_fill);     
-         h_m_pt_A[kJ][ptVmin-1]->Fill(a_pt_A[i], weight_fill);   
-         h_m_eta_A[kJ][ptVmin-1]->Fill(a_eta_A[i], weight_fill);   
-         h_m_phi_A[kJ][ptVmin-1]->Fill(a_phi_A[i], weight_fill);   
-         h_m_im_A[kJ][ptVmin-1]->Fill(a_im_A[i], weight_fill);   
+         h_m_pt_Ap[kJ][ptVmin-1]->Fill(m_pt_Ap[i], weight_fill);   
+         h_m_eta_Ap[kJ][ptVmin-1]->Fill(m_eta_Ap[i], weight_fill);   
+         h_m_phi_Ap[kJ][ptVmin-1]->Fill(m_phi_Ap[i], weight_fill);   
+         h_m_pt_Api[kJ][ptVmin-1]->Fill(m_pt_Api[i], weight_fill);   
+         h_m_eta_Api[kJ][ptVmin-1]->Fill(m_eta_Api[i], weight_fill);   
+         h_m_phi_Api[kJ][ptVmin-1]->Fill(m_phi_Api[i], weight_fill);     
+         h_m_pt_A[kJ][ptVmin-1]->Fill(m_pt_A[i], weight_fill);   
+         h_m_eta_A[kJ][ptVmin-1]->Fill(m_eta_A[i], weight_fill);   
+         h_m_phi_A[kJ][ptVmin-1]->Fill(m_phi_A[i], weight_fill);   
+         h_m_im_A[kJ][ptVmin-1]->Fill(m_im_A[i], weight_fill);   
          h_m_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
-         if(m_gid_parent_A[i]!=0 )m_pid_parent_A[i] = findPid(m_gid_parent_A[i] );
-         h_m_pid_parent_A[kJ][ptVmin-1]->Fill(a_pid_parent_A[i], weight_fill);   
+         h_m_dr_A[kJ][ptVmin-1]->Fill(m_dr_A[i], weight_fill); 
+         h_m_drParton_A[kJ][ptVmin-1]->Fill(m_drParton1_A[i],a_drParton2_A[i], weight_fill);
+         //h_m_deta_A[kJ][ptVmin-1]->Fill(m_deta_A[i], weight_fill);   
+         //h_m_dphi_A[kJ][ptVmin-1]->Fill(m_dphi_A[i], weight_fill);
 
-         h_m_dr_A[kJ][ptVmin-1]->Fill(a_dr_A[i], weight_fill); 
-         h_m_drParton_A[kJ][ptVmin-1]->Fill(a_drParton1_A[i],a_drParton2_A[i], weight_fill);
-         //h_m_deta_A[kJ][ptVmin-1]->Fill(a_deta_A[i], weight_fill);   
-         //h_m_dphi_A[kJ][ptVmin-1]->Fill(a_dphi_A[i], weight_fill);
-
-         h_m_dca_Ap[kJ][ptVmin-1]->Fill(a_dca_Ap[i], weight_fill);
-         h_m_nSig_Ap[kJ][ptVmin-1]->Fill(a_nSigP_Ap[i], weight_fill);
-         h_m_dca_Api[kJ][ptVmin-1]->Fill(a_dca_Api[i], weight_fill);
-         h_m_nSig_Api[kJ][ptVmin-1]->Fill(a_nSigPi_Api[i], weight_fill);
-         h_m_dl_A[kJ][ptVmin-1]->Fill(a_dl_A[i], weight_fill);
-         h_m_dca2_A[kJ][ptVmin-1]->Fill(a_dca2_A[i], weight_fill);
-         h_m_dcaV0_A[kJ][ptVmin-1]->Fill(a_dcaV0_A[i], weight_fill);
+         h_m_dca_Ap[kJ][ptVmin-1]->Fill(m_dca_Ap[i], weight_fill);
+         h_m_nSig_Ap[kJ][ptVmin-1]->Fill(m_nSigP_Ap[i], weight_fill);
+         h_m_dca_Api[kJ][ptVmin-1]->Fill(m_dca_Api[i], weight_fill);
+         h_m_nSig_Api[kJ][ptVmin-1]->Fill(m_nSigPi_Api[i], weight_fill);
+         h_m_dl_A[kJ][ptVmin-1]->Fill(m_dl_A[i], weight_fill);
+         h_m_dca2_A[kJ][ptVmin-1]->Fill(m_dca2_A[i], weight_fill);
+         h_m_dcaV0_A[kJ][ptVmin-1]->Fill(m_dcaV0_A[i], weight_fill);
       }
 
       for( int i=0; i<m_nL; ++i ){
@@ -1096,9 +1086,6 @@ Bool_t toHist::Process(Long64_t entry)
             if (m_idT_Lpi[i] == g_key_Lpi[i]) Pi_tag=1;
          }
          if (!(P_tag*Pi_tag)) continue;
-
-         //cout << "===--> m_L Filling " << endl;
-         if(m_ratio_Lp[i]<0.51 ||m_ratio_Lpi[i]<0.51 ) continue;
          //___Ldd_selection_cut_here____
          if(m_dca_Lp[i] > 200.0 ) continue;
          if(m_dca_Lpi[i] > 200.0 ) continue;
@@ -1118,36 +1105,33 @@ Bool_t toHist::Process(Long64_t entry)
             if(m_index_L[i]<0 ) continue;
             if(m_dr_L[i]<0 ||m_dr_L[i]>0.6 ) continue;
             int iJ =m_index_L[i];
-            h_t_fz_L[ptVmin-1]->Fill(a_pt_L[i]/J_pt[iJ], weight_fill);
+            h_t_fz_L[ptVmin-1]->Fill(m_pt_L[i]/J_pt[iJ], weight_fill);
          }
 
-         h_t_pt_Lp[kJ][ptVmin-1]->Fill(a_pt_Lp[i], weight_fill);   
-         h_t_eta_Lp[kJ][ptVmin-1]->Fill(a_eta_Lp[i], weight_fill);   
-         h_t_phi_Lp[kJ][ptVmin-1]->Fill(a_phi_Lp[i], weight_fill);   
-         h_t_pt_Lpi[kJ][ptVmin-1]->Fill(a_pt_Lpi[i], weight_fill);   
-         h_t_eta_Lpi[kJ][ptVmin-1]->Fill(a_eta_Lpi[i], weight_fill);   
-         h_t_phi_Lpi[kJ][ptVmin-1]->Fill(a_phi_Lpi[i], weight_fill);     
-         h_t_pt_L[kJ][ptVmin-1]->Fill(a_pt_L[i], weight_fill);   
-         h_t_eta_L[kJ][ptVmin-1]->Fill(a_eta_L[i], weight_fill);   
-         h_t_phi_L[kJ][ptVmin-1]->Fill(a_phi_L[i], weight_fill);   
-         h_t_im_L[kJ][ptVmin-1]->Fill(a_im_L[i], weight_fill);   
-         h_t_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
+         h_t_pt_Lp[kJ][ptVmin-1]->Fill(m_pt_Lp[i], weight_fill);   
+         h_t_eta_Lp[kJ][ptVmin-1]->Fill(m_eta_Lp[i], weight_fill);   
+         h_t_phi_Lp[kJ][ptVmin-1]->Fill(m_phi_Lp[i], weight_fill);   
+         h_t_pt_Lpi[kJ][ptVmin-1]->Fill(m_pt_Lpi[i], weight_fill);   
+         h_t_eta_Lpi[kJ][ptVmin-1]->Fill(m_eta_Lpi[i], weight_fill);   
+         h_t_phi_Lpi[kJ][ptVmin-1]->Fill(m_phi_Lpi[i], weight_fill);     
+         h_t_pt_L[kJ][ptVmin-1]->Fill(m_pt_L[i], weight_fill);   
+         h_t_eta_L[kJ][ptVmin-1]->Fill(m_eta_L[i], weight_fill);   
+         h_t_phi_L[kJ][ptVmin-1]->Fill(m_phi_L[i], weight_fill);   
+         h_t_im_L[kJ][ptVmin-1]->Fill(m_im_L[i], weight_fill);   
+         h_t_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);  
 
-         if(m_gid_parent_L[i]!=0 )m_pid_parent_L[i] = findPid(m_gid_parent_L[i] );
-         h_t_pid_parent_L[kJ][ptVmin-1]->Fill(a_pid_parent_L[i], weight_fill);   
+         h_t_dr_L[kJ][ptVmin-1]->Fill(m_dr_L[i], weight_fill); 
+         h_t_drParton_L[kJ][ptVmin-1]->Fill(m_drParton1_L[i],a_drParton2_L[i], weight_fill);
+         //h_t_deta_L[kJ][ptVmin-1]->Fill(m_deta_L[i], weight_fill);   
+         //h_t_dphi_L[kJ][ptVmin-1]->Fill(m_dphi_L[i], weight_fill);
 
-         h_t_dr_L[kJ][ptVmin-1]->Fill(a_dr_L[i], weight_fill); 
-         h_t_drParton_L[kJ][ptVmin-1]->Fill(a_drParton1_L[i],a_drParton2_L[i], weight_fill);
-         //h_t_deta_L[kJ][ptVmin-1]->Fill(a_deta_L[i], weight_fill);   
-         //h_t_dphi_L[kJ][ptVmin-1]->Fill(a_dphi_L[i], weight_fill);
-
-         h_t_dca_Lp[kJ][ptVmin-1]->Fill(a_dca_Lp[i], weight_fill);
-         h_t_nSig_Lp[kJ][ptVmin-1]->Fill(a_nSigP_Lp[i], weight_fill);
-         h_t_dca_Lpi[kJ][ptVmin-1]->Fill(a_dca_Lpi[i], weight_fill);
-         h_t_nSig_Lpi[kJ][ptVmin-1]->Fill(a_nSigPi_Lpi[i], weight_fill);
-         h_t_dl_L[kJ][ptVmin-1]->Fill(a_dl_L[i], weight_fill);
-         h_t_dca2_L[kJ][ptVmin-1]->Fill(a_dca2_L[i], weight_fill);
-         h_t_dcaV0_L[kJ][ptVmin-1]->Fill(a_dcaV0_L[i], weight_fill);
+         h_t_dca_Lp[kJ][ptVmin-1]->Fill(m_dca_Lp[i], weight_fill);
+         h_t_nSig_Lp[kJ][ptVmin-1]->Fill(m_nSigP_Lp[i], weight_fill);
+         h_t_dca_Lpi[kJ][ptVmin-1]->Fill(m_dca_Lpi[i], weight_fill);
+         h_t_nSig_Lpi[kJ][ptVmin-1]->Fill(m_nSigPi_Lpi[i], weight_fill);
+         h_t_dl_L[kJ][ptVmin-1]->Fill(m_dl_L[i], weight_fill);
+         h_t_dca2_L[kJ][ptVmin-1]->Fill(m_dca2_L[i], weight_fill);
+         h_t_dcaV0_L[kJ][ptVmin-1]->Fill(m_dcaV0_L[i], weight_fill);
       }
 
       for( int i=0; i<m_nA; ++i ){
@@ -1161,9 +1145,6 @@ Bool_t toHist::Process(Long64_t entry)
             if (m_idT_Api[i] == g_key_Api[i]) Pi_tag=1;
          }
          if (!(P_tag*Pi_tag)) continue;
-
-         //cout << "===--> m_A Filling " << endl;
-         if(m_ratio_Ap[i]<0.51 ||m_ratio_Api[i]<0.51 ) continue;
          //___Add_selection_cut_here____
          if(m_dca_Ap[i] > 200.0 ) continue;
          if(m_dca_Api[i] > 200.0 ) continue;
@@ -1183,36 +1164,33 @@ Bool_t toHist::Process(Long64_t entry)
             if(m_index_A[i]<0 ) continue;
             if(m_dr_A[i]<0 ||m_dr_A[i]>0.6 ) continue;
             int iJ =m_index_A[i];
-            h_t_fz_A[ptVmin-1]->Fill(a_pt_A[i]/J_pt[iJ], weight_fill);
+            h_t_fz_A[ptVmin-1]->Fill(m_pt_A[i]/J_pt[iJ], weight_fill);
          }
 
-         h_t_pt_Ap[kJ][ptVmin-1]->Fill(a_pt_Ap[i], weight_fill);   
-         h_t_eta_Ap[kJ][ptVmin-1]->Fill(a_eta_Ap[i], weight_fill);   
-         h_t_phi_Ap[kJ][ptVmin-1]->Fill(a_phi_Ap[i], weight_fill);   
-         h_t_pt_Api[kJ][ptVmin-1]->Fill(a_pt_Api[i], weight_fill);   
-         h_t_eta_Api[kJ][ptVmin-1]->Fill(a_eta_Api[i], weight_fill);   
-         h_t_phi_Api[kJ][ptVmin-1]->Fill(a_phi_Api[i], weight_fill);     
-         h_t_pt_A[kJ][ptVmin-1]->Fill(a_pt_A[i], weight_fill);   
-         h_t_eta_A[kJ][ptVmin-1]->Fill(a_eta_A[i], weight_fill);   
-         h_t_phi_A[kJ][ptVmin-1]->Fill(a_phi_A[i], weight_fill);   
-         h_t_im_A[kJ][ptVmin-1]->Fill(a_im_A[i], weight_fill);   
+         h_t_pt_Ap[kJ][ptVmin-1]->Fill(m_pt_Ap[i], weight_fill);   
+         h_t_eta_Ap[kJ][ptVmin-1]->Fill(m_eta_Ap[i], weight_fill);   
+         h_t_phi_Ap[kJ][ptVmin-1]->Fill(m_phi_Ap[i], weight_fill);   
+         h_t_pt_Api[kJ][ptVmin-1]->Fill(m_pt_Api[i], weight_fill);   
+         h_t_eta_Api[kJ][ptVmin-1]->Fill(m_eta_Api[i], weight_fill);   
+         h_t_phi_Api[kJ][ptVmin-1]->Fill(m_phi_Api[i], weight_fill);     
+         h_t_pt_A[kJ][ptVmin-1]->Fill(m_pt_A[i], weight_fill);   
+         h_t_eta_A[kJ][ptVmin-1]->Fill(m_eta_A[i], weight_fill);   
+         h_t_phi_A[kJ][ptVmin-1]->Fill(m_phi_A[i], weight_fill);   
+         h_t_im_A[kJ][ptVmin-1]->Fill(m_im_A[i], weight_fill);   
          h_t_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
-         if(m_gid_parent_A[i]!=0 )m_pid_parent_A[i] = findPid(m_gid_parent_A[i] );
-         h_t_pid_parent_A[kJ][ptVmin-1]->Fill(a_pid_parent_A[i], weight_fill);   
+         h_t_dr_A[kJ][ptVmin-1]->Fill(m_dr_A[i], weight_fill); 
+         h_t_drParton_A[kJ][ptVmin-1]->Fill(m_drParton1_A[i],a_drParton2_A[i], weight_fill);
+         //h_t_deta_A[kJ][ptVmin-1]->Fill(m_deta_A[i], weight_fill);   
+         //h_t_dphi_A[kJ][ptVmin-1]->Fill(m_dphi_A[i], weight_fill);
 
-         h_t_dr_A[kJ][ptVmin-1]->Fill(a_dr_A[i], weight_fill); 
-         h_t_drParton_A[kJ][ptVmin-1]->Fill(a_drParton1_A[i],a_drParton2_A[i], weight_fill);
-         //h_t_deta_A[kJ][ptVmin-1]->Fill(a_deta_A[i], weight_fill);   
-         //h_t_dphi_A[kJ][ptVmin-1]->Fill(a_dphi_A[i], weight_fill);
-
-         h_t_dca_Ap[kJ][ptVmin-1]->Fill(a_dca_Ap[i], weight_fill);
-         h_t_nSig_Ap[kJ][ptVmin-1]->Fill(a_nSigP_Ap[i], weight_fill);
-         h_t_dca_Api[kJ][ptVmin-1]->Fill(a_dca_Api[i], weight_fill);
-         h_t_nSig_Api[kJ][ptVmin-1]->Fill(a_nSigPi_Api[i], weight_fill);
-         h_t_dl_A[kJ][ptVmin-1]->Fill(a_dl_A[i], weight_fill);
-         h_t_dca2_A[kJ][ptVmin-1]->Fill(a_dca2_A[i], weight_fill);
-         h_t_dcaV0_A[kJ][ptVmin-1]->Fill(a_dcaV0_A[i], weight_fill);
+         h_t_dca_Ap[kJ][ptVmin-1]->Fill(m_dca_Ap[i], weight_fill);
+         h_t_nSig_Ap[kJ][ptVmin-1]->Fill(m_nSigP_Ap[i], weight_fill);
+         h_t_dca_Api[kJ][ptVmin-1]->Fill(m_dca_Api[i], weight_fill);
+         h_t_nSig_Api[kJ][ptVmin-1]->Fill(m_nSigPi_Api[i], weight_fill);
+         h_t_dl_A[kJ][ptVmin-1]->Fill(m_dl_A[i], weight_fill);
+         h_t_dca2_A[kJ][ptVmin-1]->Fill(m_dca2_A[i], weight_fill);
+         h_t_dcaV0_A[kJ][ptVmin-1]->Fill(m_dcaV0_A[i], weight_fill);
       }
    }
    return kTRUE;

@@ -1198,6 +1198,7 @@ public:
    TH1D           *h_m_dr_L[2][6];   //!
    TH1D           *h_m_deta_L[2][6];   //!
    TH1D           *h_m_dphi_L[2][6];   //!
+   TH1D           *h_m_idSubproc_L[2][6];
    TH2D           *h_m_drParton_L[2][6];
 
    TH1D           *h_m_pt_Ap[2][6];   //!
@@ -1221,6 +1222,7 @@ public:
    TH1D           *h_m_dr_A[2][6];   //!
    TH1D           *h_m_deta_A[2][6];   //!
    TH1D           *h_m_dphi_A[2][6];   //!
+   TH1D           *h_m_idSubproc_A[2][6];
    TH2D           *h_m_drParton_A[2][6];
    /*
    TH1D           *h_m_pid_parent_L[2][6];   //!
@@ -1250,6 +1252,7 @@ public:
    TH1D           *h_t_dr_L[2][6];   //!
    TH1D           *h_t_deta_L[2][6];   //!
    TH1D           *h_t_dphi_L[2][6];   //!
+   TH1D           *h_t_idSubproc_L[2][6];
    TH2D           *h_t_drParton_L[2][6];
 
    TH1D           *h_t_pt_Ap[2][6];   //!
@@ -1273,6 +1276,7 @@ public:
    TH1D           *h_t_dr_A[2][6];   //!
    TH1D           *h_t_deta_A[2][6];   //!
    TH1D           *h_t_dphi_A[2][6];   //!
+   TH1D           *h_t_idSubproc_A[2][6];
    TH2D           *h_t_drParton_A[2][6];
 
    TH1D           *h_g_fz_L[6];
