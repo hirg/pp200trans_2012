@@ -436,7 +436,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_dca_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_m_nSig_Lp_J%d_PT%d", kJ, kPT);
          h_m_nSig_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_m_nFit_Lp_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_m_pt_Lpi_J%d_PT%d", kJ, kPT);
          h_m_pt_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -448,7 +447,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_dca_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_m_nSig_Lpi_J%d_PT%d", kJ, kPT);
          h_m_nSig_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_m_nFit_Lpi_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_m_pt_L_J%d_PT%d", kJ, kPT);
          h_m_pt_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -503,7 +501,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_dca_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_m_nSig_Ap_J%d_PT%d", kJ, kPT);
          h_m_nSig_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_m_nFit_Ap_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_m_pt_Api_J%d_PT%d", kJ, kPT);
          h_m_pt_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -515,7 +512,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_dca_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_m_nSig_Api_J%d_PT%d", kJ, kPT);
          h_m_nSig_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_m_nFit_Api_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_m_pt_A_J%d_PT%d", kJ, kPT);
          h_m_pt_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -570,7 +566,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_dca_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_t_nSig_Lp_J%d_PT%d", kJ, kPT);
          h_t_nSig_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_t_nFit_Lp_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_t_pt_Lpi_J%d_PT%d", kJ, kPT);
          h_t_pt_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -582,7 +577,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_dca_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_t_nSig_Lpi_J%d_PT%d", kJ, kPT);
          h_t_nSig_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_t_nFit_Lpi_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_t_pt_L_J%d_PT%d", kJ, kPT);
          h_t_pt_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -637,7 +631,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_dca_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_t_nSig_Ap_J%d_PT%d", kJ, kPT);
          h_t_nSig_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_t_nFit_Ap_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_t_pt_Api_J%d_PT%d", kJ, kPT);
          h_t_pt_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -649,7 +642,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_dca_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_t_nSig_Api_J%d_PT%d", kJ, kPT);
          h_t_nSig_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
-         hn = Form("h_t_nFit_Api_J%d_PT%d", kJ, kPT);
 
          hn = Form("h_t_pt_A_J%d_PT%d", kJ, kPT);
          h_t_pt_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
