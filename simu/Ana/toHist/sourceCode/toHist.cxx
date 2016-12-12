@@ -69,11 +69,11 @@ void toHist::Begin(TTree * /*tree*/)
    h_g_pv_geantProc     = new TH1D("h_g_pv_geantProc","h_g_pv_geantProc",100,0,100);   
    h_g_pv_geantMedium   = new TH1D("h_g_pv_geantMedium","h_g_pv_geantMedium",100,0,100);   
    h_g_pv_generatorProc = new TH1D("h_g_pv_generatorProc","h_g_pv_generatorProc",100,0,100);
-   h_g_idSubproc       ->Sumw2();   
-   h_g_pvz             ->Sumw2();
-   h_m_pvz             ->Sumw2();
-   h_g_pv_geantProc    ->Sumw2();
-   h_g_pv_geantMedium  ->Sumw2();
+   h_g_idSubproc->Sumw2();   
+   h_g_pvz->Sumw2();
+   h_m_pvz->Sumw2();
+   h_g_pv_geantProc->Sumw2();
+   h_g_pv_geantMedium->Sumw2();
    h_g_pv_generatorProc->Sumw2();
 
    h_nJet     = new TH1D("h_nJet","h_nJet",10,0,10);
@@ -83,13 +83,15 @@ void toHist::Begin(TTree * /*tree*/)
    h_phi_J    = new TH1D("h_phi_J","h_phi_J",340,-3.2,3.2);
    h_rt_J     = new TH1D("h_rt_J","h_rt_J",100,0.,1.);
    h_charge_J = new TH1D("h_charge_J","h_charge_J",100,0.,1);
-   h_nJet    ->Sumw2();
+   j_drParton_J = new TH2D("h_drParton_J","h_drParton_J",200,0,10,200,0,10);
+   h_nJet->Sumw2();
    h_deteta_J->Sumw2();
-   h_eta_J   ->Sumw2();
-   h_pt_J    ->Sumw2();
-   h_phi_J   ->Sumw2();
-   h_rt_J    ->Sumw2();
+   h_eta_J->Sumw2();
+   h_pt_J->Sumw2();
+   h_phi_J->Sumw2();
+   h_rt_J->Sumw2();
    h_charge_J->Sumw2();
+   h_drParton_J->Sumw2();
 
    TString hn;
    for(int kPT=0; kPT<6; ++kPT) {
@@ -164,12 +166,14 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_generatorProc_start_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_pid_parent_L_J%d_PT%d", kJ, kPT);
          h_g_pid_parent_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
-         hn = Form("h_g_pid_mmom_L_J%d_PT%d", kJ, kPT);
-         h_g_pid_mmom_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
          hn = Form("h_g_dr_L_J%d_PT%d", kJ, kPT);
          h_g_dr_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
          hn = Form("h_g_idSubproc_L_J%d_PT%d", kJ, kPT);
          h_g_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_g_drParton_L_J%d_PT%d", kJ, kPT);
+         h_g_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+
+
          h_g_e_L[kJ][kPT]->Sumw2();
          h_g_pt_L[kJ][kPT]->Sumw2();
          h_g_eta_L[kJ][kPT]->Sumw2();
@@ -179,9 +183,9 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_geantMedium_start_L[kJ][kPT]->Sumw2();
          h_g_generatorProc_start_L[kJ][kPT]->Sumw2();
          h_g_pid_parent_L[kJ][kPT]->Sumw2();
-         h_g_pid_mmom_L[kJ][kPT]->Sumw2();
          h_g_dr_L[kJ][kPT]->Sumw2();
          h_g_idSubproc_L[kJ][kPT]->Sumw2();
+         h_g_drParton_L[kJ][kPT]->Sumw2();
 
          hn = Form("h_g_e_Ap_J%d_PT%d", kJ, kPT);
          h_g_e_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -219,12 +223,12 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_generatorProc_start_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_pid_parent_A_J%d_PT%d", kJ, kPT);
          h_g_pid_parent_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
-         hn = Form("h_g_pid_mmom_A_J%d_PT%d", kJ, kPT);
-         h_g_pid_mmom_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
          hn = Form("h_g_dr_A_J%d_PT%d", kJ, kPT);
          h_g_dr_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
          hn = Form("h_g_idSubproc_A_J%d_PT%d", kJ, kPT);
          h_g_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_g_drParton_A_J%d_PT%d", kJ, kPT);
+         h_g_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
 
          h_g_e_Ap[kJ][kPT]->Sumw2();
          h_g_pt_Ap[kJ][kPT]->Sumw2();
@@ -243,9 +247,9 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_geantMedium_start_A[kJ][kPT]->Sumw2();
          h_g_generatorProc_start_A[kJ][kPT]->Sumw2();
          h_g_pid_parent_A[kJ][kPT]->Sumw2();
-         h_g_pid_mmom_A[kJ][kPT]->Sumw2();
          h_g_dr_A[kJ][kPT]->Sumw2();
          h_g_idSubproc_A[kJ][kPT]->Sumw2();
+         h_g_drParton_A[kJ][kPT]->Sumw2();
 
          hn = Form("h_a_e_Lp_J%d_PT%d", kJ, kPT);
          h_a_e_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -315,8 +319,6 @@ void toHist::Begin(TTree * /*tree*/)
 
          hn = Form("h_a_pid_parent_L_J%d_PT%d", kJ, kPT);
          h_a_pid_parent_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
-         hn = Form("h_a_pid_mmom_L_J%d_PT%d", kJ, kPT);
-         h_a_pid_mmom_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
          hn = Form("h_a_dr_L_J%d_PT%d", kJ, kPT);
          h_a_dr_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
          hn = Form("h_a_dl_L_J%d_PT%d", kJ, kPT);
@@ -327,14 +329,16 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_dcaV0_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
          hn = Form("h_a_idSubproc_L_J%d_PT%d", kJ, kPT);
          h_a_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_a_drParton_L_J%d_PT%d", kJ, kPT);
+         h_a_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
 
          h_a_pid_parent_L[kJ][kPT]->Sumw2();
-         h_a_pid_mmom_L[kJ][kPT]->Sumw2();
          h_a_dr_L[kJ][kPT]->Sumw2();
          h_a_dl_L[kJ][kPT]->Sumw2();
          h_a_dca2_L[kJ][kPT]->Sumw2();
          h_a_dcaV0_L[kJ][kPT]->Sumw2();
          h_a_idSubproc_L[kJ][kPT]->Sumw2();
+         h_a_drParton_L[kJ][kPT]->Sumw2();
 
          hn = Form("h_a_e_Ap_J%d_PT%d", kJ, kPT);
          h_a_e_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -381,8 +385,6 @@ void toHist::Begin(TTree * /*tree*/)
 
          hn = Form("h_a_pid_parent_A_J%d_PT%d", kJ, kPT);
          h_a_pid_parent_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
-         hn = Form("h_a_pid_mmom_A_J%d_PT%d", kJ, kPT);
-         h_a_pid_mmom_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
          hn = Form("h_a_dr_A_J%d_PT%d", kJ, kPT);
          h_a_dr_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
          hn = Form("h_a_dl_A_J%d_PT%d", kJ, kPT);
@@ -393,6 +395,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_dcaV0_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
          hn = Form("h_a_idSubproc_A_J%d_PT%d", kJ, kPT);
          h_a_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_a_drParton_A_J%d_PT%d", kJ, kPT);
+         h_a_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
 
          h_a_e_Ap[kJ][kPT]->Sumw2();
          h_a_pt_Ap[kJ][kPT]->Sumw2();
@@ -415,13 +419,280 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_phi_A[kJ][kPT]->Sumw2();
          h_a_im_A[kJ][kPT]->Sumw2();
          h_a_pid_parent_A[kJ][kPT]->Sumw2();
-         h_a_pid_mmom_A[kJ][kPT]->Sumw2();
          h_a_dr_A[kJ][kPT]->Sumw2();
          h_a_dl_A[kJ][kPT]->Sumw2();
          h_a_dca2_A[kJ][kPT]->Sumw2();
          h_a_dcaV0_A[kJ][kPT]->Sumw2();
          h_a_idSubproc_A[kJ][kPT]->Sumw2();
+         h_a_drParton_A[kJ][kPT]->Sumw2();
 
+         hn = Form("h_m_pt_Lp_J%d_PT%d", kJ, kPT);
+         h_m_pt_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_m_eta_Lp_J%d_PT%d", kJ, kPT);
+         h_m_eta_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_m_phi_Lp_J%d_PT%d", kJ, kPT);
+         h_m_phi_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_m_dca_Lp_J%d_PT%d", kJ, kPT);
+         h_m_dca_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_m_nSig_Lp_J%d_PT%d", kJ, kPT);
+         h_m_nSig_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_m_nFit_Lp_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_m_pt_Lpi_J%d_PT%d", kJ, kPT);
+         h_m_pt_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_m_eta_Lpi_J%d_PT%d", kJ, kPT);
+         h_m_eta_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_m_phi_Lpi_J%d_PT%d", kJ, kPT);
+         h_m_phi_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_m_dca_Lpi_J%d_PT%d", kJ, kPT);
+         h_m_dca_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_m_nSig_Lpi_J%d_PT%d", kJ, kPT);
+         h_m_nSig_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_m_nFit_Lpi_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_m_pt_L_J%d_PT%d", kJ, kPT);
+         h_m_pt_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_m_eta_L_J%d_PT%d", kJ, kPT);
+         h_m_eta_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_m_phi_L_J%d_PT%d", kJ, kPT);
+         h_m_phi_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_m_im_L_J%d_PT%d", kJ, kPT);
+         h_m_im_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),80,1.08,1.16);
+
+         hn = Form("h_m_dr_L_J%d_PT%d", kJ, kPT);
+         h_m_dr_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
+         hn = Form("h_m_dl_L_J%d_PT%d", kJ, kPT);
+         h_m_dl_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),250,0,50);
+         hn = Form("h_m_dca2_L_J%d_PT%d", kJ, kPT);
+         h_m_dca2_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_m_dcaV0_L_J%d_PT%d", kJ, kPT);
+         h_m_dcaV0_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_m_idSubproc_L_J%d_PT%d", kJ, kPT);
+         h_m_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_m_drParton_L_J%d_PT%d", kJ, kPT);
+         h_m_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+
+         h_m_pt_Lp[kJ][kPT]->Sumw2();
+         h_m_eta_Lp[kJ][kPT]->Sumw2();
+         h_m_phi_Lp[kJ][kPT]->Sumw2();
+         h_m_dca_Lp[kJ][kPT]->Sumw2();
+         h_m_nSig_Lp[kJ][kPT]->Sumw2();
+         h_m_pt_Lpi[kJ][kPT]->Sumw2();
+         h_m_eta_Lpi[kJ][kPT]->Sumw2();
+         h_m_phi_Lpi[kJ][kPT]->Sumw2();
+         h_m_dca_Lpi[kJ][kPT]->Sumw2();
+         h_m_nSig_Lpi[kJ][kPT]->Sumw2();
+         h_m_pt_L[kJ][kPT]->Sumw2();
+         h_m_eta_L[kJ][kPT]->Sumw2();
+         h_m_phi_L[kJ][kPT]->Sumw2();
+         h_m_im_L[kJ][kPT]->Sumw2();
+         h_m_dr_L[kJ][kPT]->Sumw2();
+         h_m_dl_L[kJ][kPT]->Sumw2();
+         h_m_dca2_L[kJ][kPT]->Sumw2();
+         h_m_dcaV0_L[kJ][kPT]->Sumw2();
+         h_m_idSubproc_L[kJ][kPT]->Sumw2();
+         h_m_drParton_L[kJ][kPT]->Sumw2();
+
+         hn = Form("h_m_pt_Ap_J%d_PT%d", kJ, kPT);
+         h_m_pt_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_m_eta_Ap_J%d_PT%d", kJ, kPT);
+         h_m_eta_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_m_phi_Ap_J%d_PT%d", kJ, kPT);
+         h_m_phi_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_m_dca_Ap_J%d_PT%d", kJ, kPT);
+         h_m_dca_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_m_nSig_Ap_J%d_PT%d", kJ, kPT);
+         h_m_nSig_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_m_nFit_Ap_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_m_pt_Api_J%d_PT%d", kJ, kPT);
+         h_m_pt_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_m_eta_Api_J%d_PT%d", kJ, kPT);
+         h_m_eta_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_m_phi_Api_J%d_PT%d", kJ, kPT);
+         h_m_phi_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_m_dca_Api_J%d_PT%d", kJ, kPT);
+         h_m_dca_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_m_nSig_Api_J%d_PT%d", kJ, kPT);
+         h_m_nSig_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_m_nFit_Api_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_m_pt_A_J%d_PT%d", kJ, kPT);
+         h_m_pt_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_m_eta_A_J%d_PT%d", kJ, kPT);
+         h_m_eta_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_m_phi_A_J%d_PT%d", kJ, kPT);
+         h_m_phi_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_m_im_A_J%d_PT%d", kJ, kPT);
+         h_m_im_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),80,1.08,1.16);
+
+         hn = Form("h_m_dr_A_J%d_PT%d", kJ, kPT);
+         h_m_dr_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
+         hn = Form("h_m_dl_A_J%d_PT%d", kJ, kPT);
+         h_m_dl_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),250,0,50);
+         hn = Form("h_m_dca2_A_J%d_PT%d", kJ, kPT);
+         h_m_dca2_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_m_dcaV0_A_J%d_PT%d", kJ, kPT);
+         h_m_dcaV0_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_m_idSubproc_A_J%d_PT%d", kJ, kPT);
+         h_m_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_m_drParton_A_J%d_PT%d", kJ, kPT);
+         h_m_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+
+         h_m_pt_Ap[kJ][kPT]->Sumw2();
+         h_m_eta_Ap[kJ][kPT]->Sumw2();
+         h_m_phi_Ap[kJ][kPT]->Sumw2();
+         h_m_dca_Ap[kJ][kPT]->Sumw2();
+         h_m_nSig_Ap[kJ][kPT]->Sumw2();
+         h_m_pt_Api[kJ][kPT]->Sumw2();
+         h_m_eta_Api[kJ][kPT]->Sumw2();
+         h_m_phi_Api[kJ][kPT]->Sumw2();
+         h_m_dca_Api[kJ][kPT]->Sumw2();
+         h_m_nSig_Api[kJ][kPT]->Sumw2();
+         h_m_pt_A[kJ][kPT]->Sumw2();
+         h_m_eta_A[kJ][kPT]->Sumw2();
+         h_m_phi_A[kJ][kPT]->Sumw2();
+         h_m_im_A[kJ][kPT]->Sumw2();
+         h_m_dr_A[kJ][kPT]->Sumw2();
+         h_m_dl_A[kJ][kPT]->Sumw2();
+         h_m_dca2_A[kJ][kPT]->Sumw2();
+         h_m_dcaV0_A[kJ][kPT]->Sumw2();
+         h_m_idSubproc_A[kJ][kPT]->Sumw2();
+         h_m_drParton_A[kJ][kPT]->Sumw2();
+
+         hn = Form("h_t_pt_Lp_J%d_PT%d", kJ, kPT);
+         h_t_pt_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_t_eta_Lp_J%d_PT%d", kJ, kPT);
+         h_t_eta_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_t_phi_Lp_J%d_PT%d", kJ, kPT);
+         h_t_phi_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_t_dca_Lp_J%d_PT%d", kJ, kPT);
+         h_t_dca_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_t_nSig_Lp_J%d_PT%d", kJ, kPT);
+         h_t_nSig_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_t_nFit_Lp_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_t_pt_Lpi_J%d_PT%d", kJ, kPT);
+         h_t_pt_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_t_eta_Lpi_J%d_PT%d", kJ, kPT);
+         h_t_eta_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_t_phi_Lpi_J%d_PT%d", kJ, kPT);
+         h_t_phi_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_t_dca_Lpi_J%d_PT%d", kJ, kPT);
+         h_t_dca_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_t_nSig_Lpi_J%d_PT%d", kJ, kPT);
+         h_t_nSig_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_t_nFit_Lpi_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_t_pt_L_J%d_PT%d", kJ, kPT);
+         h_t_pt_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_t_eta_L_J%d_PT%d", kJ, kPT);
+         h_t_eta_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_t_phi_L_J%d_PT%d", kJ, kPT);
+         h_t_phi_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_t_im_L_J%d_PT%d", kJ, kPT);
+         h_t_im_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),80,1.08,1.16);
+
+         hn = Form("h_t_dr_L_J%d_PT%d", kJ, kPT);
+         h_t_dr_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
+         hn = Form("h_t_dl_L_J%d_PT%d", kJ, kPT);
+         h_t_dl_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),250,0,50);
+         hn = Form("h_t_dca2_L_J%d_PT%d", kJ, kPT);
+         h_t_dca2_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_t_dcaV0_L_J%d_PT%d", kJ, kPT);
+         h_t_dcaV0_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_t_idSubproc_L_J%d_PT%d", kJ, kPT);
+         h_t_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_t_drParton_L_J%d_PT%d", kJ, kPT);
+         h_t_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+
+         h_t_pt_Lp[kJ][kPT]->Sumw2();
+         h_t_eta_Lp[kJ][kPT]->Sumw2();
+         h_t_phi_Lp[kJ][kPT]->Sumw2();
+         h_t_dca_Lp[kJ][kPT]->Sumw2();
+         h_t_nSig_Lp[kJ][kPT]->Sumw2();
+         h_t_pt_Lpi[kJ][kPT]->Sumw2();
+         h_t_eta_Lpi[kJ][kPT]->Sumw2();
+         h_t_phi_Lpi[kJ][kPT]->Sumw2();
+         h_t_dca_Lpi[kJ][kPT]->Sumw2();
+         h_t_nSig_Lpi[kJ][kPT]->Sumw2();
+         h_t_pt_L[kJ][kPT]->Sumw2();
+         h_t_eta_L[kJ][kPT]->Sumw2();
+         h_t_phi_L[kJ][kPT]->Sumw2();
+         h_t_im_L[kJ][kPT]->Sumw2();
+         h_t_dr_L[kJ][kPT]->Sumw2();
+         h_t_dl_L[kJ][kPT]->Sumw2();
+         h_t_dca2_L[kJ][kPT]->Sumw2();
+         h_t_dcaV0_L[kJ][kPT]->Sumw2();
+         h_t_idSubproc_L[kJ][kPT]->Sumw2();
+         h_t_drParton_L[kJ][kPT]->Sumw2();
+
+         hn = Form("h_t_pt_Ap_J%d_PT%d", kJ, kPT);
+         h_t_pt_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_t_eta_Ap_J%d_PT%d", kJ, kPT);
+         h_t_eta_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_t_phi_Ap_J%d_PT%d", kJ, kPT);
+         h_t_phi_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_t_dca_Ap_J%d_PT%d", kJ, kPT);
+         h_t_dca_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_t_nSig_Ap_J%d_PT%d", kJ, kPT);
+         h_t_nSig_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_t_nFit_Ap_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_t_pt_Api_J%d_PT%d", kJ, kPT);
+         h_t_pt_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_t_eta_Api_J%d_PT%d", kJ, kPT);
+         h_t_eta_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_t_phi_Api_J%d_PT%d", kJ, kPT);
+         h_t_phi_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_t_dca_Api_J%d_PT%d", kJ, kPT);
+         h_t_dca_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_t_nSig_Api_J%d_PT%d", kJ, kPT);
+         h_t_nSig_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_t_nFit_Api_J%d_PT%d", kJ, kPT);
+
+         hn = Form("h_t_pt_A_J%d_PT%d", kJ, kPT);
+         h_t_pt_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
+         hn = Form("h_t_eta_A_J%d_PT%d", kJ, kPT);
+         h_t_eta_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),300,-1.5,1.5);
+         hn = Form("h_t_phi_A_J%d_PT%d", kJ, kPT);
+         h_t_phi_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
+         hn = Form("h_t_im_A_J%d_PT%d", kJ, kPT);
+         h_t_im_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),80,1.08,1.16);
+
+         hn = Form("h_t_dr_A_J%d_PT%d", kJ, kPT);
+         h_t_dr_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,5.);
+         hn = Form("h_t_dl_A_J%d_PT%d", kJ, kPT);
+         h_t_dl_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),250,0,50);
+         hn = Form("h_t_dca2_A_J%d_PT%d", kJ, kPT);
+         h_t_dca2_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_t_dcaV0_A_J%d_PT%d", kJ, kPT);
+         h_t_dcaV0_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),200,0,2);
+         hn = Form("h_t_idSubproc_A_J%d_PT%d", kJ, kPT);
+         h_t_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
+         hn = Form("h_t_drParton_A_J%d_PT%d", kJ, kPT);
+         h_t_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+
+         h_t_pt_Ap[kJ][kPT]->Sumw2();
+         h_t_eta_Ap[kJ][kPT]->Sumw2();
+         h_t_phi_Ap[kJ][kPT]->Sumw2();
+         h_t_dca_Ap[kJ][kPT]->Sumw2();
+         h_t_nSig_Ap[kJ][kPT]->Sumw2();
+         h_t_pt_Api[kJ][kPT]->Sumw2();
+         h_t_eta_Api[kJ][kPT]->Sumw2();
+         h_t_phi_Api[kJ][kPT]->Sumw2();
+         h_t_dca_Api[kJ][kPT]->Sumw2();
+         h_t_nSig_Api[kJ][kPT]->Sumw2();
+         h_t_pt_A[kJ][kPT]->Sumw2();
+         h_t_eta_A[kJ][kPT]->Sumw2();
+         h_t_phi_A[kJ][kPT]->Sumw2();
+         h_t_im_A[kJ][kPT]->Sumw2();
+         h_t_dr_A[kJ][kPT]->Sumw2();
+         h_t_dl_A[kJ][kPT]->Sumw2();
+         h_t_dca2_A[kJ][kPT]->Sumw2();
+         h_t_dcaV0_A[kJ][kPT]->Sumw2();
+         h_t_idSubproc_A[kJ][kPT]->Sumw2();
+         h_t_drParton_A[kJ][kPT]->Sumw2();
       }
    }
 }
@@ -483,14 +754,14 @@ Bool_t toHist::Process(Long64_t entry)
    h_g_pv_generatorProc->Fill(g_pv_generatorProc, weight_fill);
    //cout << "===-->  Event Filled " << endl;
 
-   for (int i = 0; i < njet; ++i)
-   {
+   for (int i = 0; i < njet; ++i)  {
       h_deteta_J->Fill(J_deteta[i], weight_fill);
       h_eta_J->Fill(J_eta[i], weight_fill);
       h_pt_J->Fill(J_pt[i], weight_fill);
       h_phi_J->Fill(J_phi[i], weight_fill); 
       h_rt_J->Fill(J_rt[i], weight_fill);
       h_charge_J->Fill(J_charge[i], weight_fill);
+      h_drParton_J->Fill(J_drParton1[i],J_drParton2[i], weight_fill);
    }
 
    ReadCutTable(ptVmin-1);
@@ -529,15 +800,10 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
          if( g_gid_parent_L[i]!=0 ) g_pid_parent_L[i] = findPid( g_gid_parent_L[i] );
-         if( g_gid_mmom_L[i]!=0 ) g_pid_mmom_L[i] = findPid( g_gid_mmom_L[i] );
-
          h_g_pid_parent_L[kJ][ptVmin-1]->Fill(g_pid_parent_L[i], weight_fill);   
 
-         if( g_pid_parent_L[i]==92 ) {
-             h_g_pid_mmom_L[kJ][ptVmin-1]->Fill(g_pid_mmom_L[i], weight_fill);   
-         }
-
-         h_g_dr_L[kJ][ptVmin-1]->Fill(g_dr_L[i], weight_fill);   
+         h_g_dr_L[kJ][ptVmin-1]->Fill(g_dr_L[i], weight_fill);
+         h_g_drParton_L[kJ][ptVmin-1]->Fill(g_drParton1_L[i],g_drParton2_L[i], weight_fill); 
          //h_g_deta_L[kJ][ptVmin-1]->Fill(g_deta_L[i], weight_fill);   
          //h_g_dphi_L[kJ][ptVmin-1]->Fill(g_dphi_L[i], weight_fill);   
       }
@@ -576,15 +842,10 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill); 
 
          if( g_gid_parent_A[i]!=0 ) g_pid_parent_A[i] = findPid( g_gid_parent_A[i] );
-         if( g_gid_mmom_A[i]!=0 ) g_pid_mmom_A[i] = findPid( g_gid_parent_A[i] );
-
          h_g_pid_parent_A[kJ][ptVmin-1]->Fill(g_pid_parent_A[i], weight_fill);   
 
-         if( g_pid_parent_A[i]==92 ) {
-             h_g_pid_mmom_A[kJ][ptVmin-1]->Fill(g_pid_mmom_A[i], weight_fill);   
-         }
-         //cout << "===-->  g_A Filling " << ptVmin << "\t======\t" << g_dr_A[i] << endl;
          h_g_dr_A[kJ][ptVmin-1]->Fill(g_dr_A[i], weight_fill);
+         h_g_drParton_A[kJ][ptVmin-1]->Fill(g_drParton1_A[i],g_drParton2_A[i], weight_fill); 
          //cout << "===-->  g_A Filled " << endl;
       }
 
@@ -592,13 +853,7 @@ Bool_t toHist::Process(Long64_t entry)
          if( a_pt_L[i]<ptVmin || a_pt_L[i]>=ptVmax ) {
              Abort("Err: a_L pt range out !!!");
          }
-         if( kJ ) {
-            if( a_index_L[i]<0 ) continue;
-            if( a_dr_L[i]<0 || a_dr_L[i]>0.6 ) continue;
-            int iJ = a_index_L[i];
-            h_a_fz_L[ptVmin-1]->Fill(a_pt_L[i]/J_pt[iJ], weight_fill);
-         }
-         //cout << "===-->  a_L Filling " << endl;
+                  //cout << "===-->  a_L Filling " << endl;
          h_a_ratio_Lp[kJ][ptVmin-1]->Fill(a_ratio_Lp[i], weight_fill);
          h_a_ratio_Lpi[kJ][ptVmin-1]->Fill(a_ratio_Lpi[i], weight_fill);
          if( a_ratio_Lp[i]<0.51 || a_ratio_Lpi[i]<0.51 ) continue;
@@ -617,6 +872,13 @@ Bool_t toHist::Process(Long64_t entry)
          tPi.SetPtEtaPhi( a_pt_Lpi[i], a_eta_Lpi[i], a_phi_Lpi[i] );
          if( tPi.Mag() < c_P_min_pion ) continue;
 
+         if( kJ ) {
+            if( a_index_L[i]<0 ) continue;
+            if( a_dr_L[i]<0 || a_dr_L[i]>0.6 ) continue;
+            int iJ = a_index_L[i];
+            h_a_fz_L[ptVmin-1]->Fill(a_pt_L[i]/J_pt[iJ], weight_fill);
+         }
+
          h_a_e_Lp[kJ][ptVmin-1]->Fill(a_e_Lp[i], weight_fill);   
          h_a_pt_Lp[kJ][ptVmin-1]->Fill(a_pt_Lp[i], weight_fill);   
          h_a_eta_Lp[kJ][ptVmin-1]->Fill(a_eta_Lp[i], weight_fill);   
@@ -632,14 +894,10 @@ Bool_t toHist::Process(Long64_t entry)
          h_a_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
          if( a_gid_parent_L[i]!=0 ) a_pid_parent_L[i] = findPid( a_gid_parent_L[i] );
-         if( a_gid_mmom_L[i]!=0 ) a_pid_mmom_L[i] = findPid( a_gid_mmom_L[i] );
-
          h_a_pid_parent_L[kJ][ptVmin-1]->Fill(a_pid_parent_L[i], weight_fill);   
 
-         if( a_pid_parent_L[i]==92 ) {
-             h_a_pid_mmom_L[kJ][ptVmin-1]->Fill(a_pid_mmom_L[i], weight_fill);   
-         }
-         h_a_dr_L[kJ][ptVmin-1]->Fill(a_dr_L[i], weight_fill);   
+         h_a_dr_L[kJ][ptVmin-1]->Fill(a_dr_L[i], weight_fill); 
+         h_a_drParton_L[kJ][ptVmin-1]->Fill(a_drParton1_L[i],a_drParton2_L[i], weight_fill);
          //h_a_deta_L[kJ][ptVmin-1]->Fill(a_deta_L[i], weight_fill);   
          //h_a_dphi_L[kJ][ptVmin-1]->Fill(a_dphi_L[i], weight_fill);
 
@@ -656,13 +914,7 @@ Bool_t toHist::Process(Long64_t entry)
          if( a_pt_A[i]<ptVmin || a_pt_A[i]>=ptVmax ) {
              Abort("Err: a_A pt range out !!!");
          }
-         if( kJ ) {
-            if( a_index_A[i]<0 ) continue;
-            if( a_dr_A[i]<0 || a_dr_A[i]>0.6 ) continue;
-            int iJ = a_index_A[i];
-            h_a_fz_A[ptVmin-1]->Fill(a_pt_A[i]/J_pt[iJ], weight_fill);
-         }
-         //cout << "===-->  a_A Filling " << endl;
+                  //cout << "===-->  a_A Filling " << endl;
          h_a_ratio_Ap[kJ][ptVmin-1]->Fill(a_ratio_Ap[i], weight_fill);
          h_a_ratio_Api[kJ][ptVmin-1]->Fill(a_ratio_Api[i], weight_fill);
          if( a_ratio_Ap[i]<0.51 || a_ratio_Api[i]<0.51 ) continue;
@@ -681,6 +933,13 @@ Bool_t toHist::Process(Long64_t entry)
          tPi.SetPtEtaPhi( a_pt_Api[i], a_eta_Api[i], a_phi_Api[i] );
          if( tPi.Mag()   < c_P_min_pion ) continue;
 
+         if( kJ ) {
+            if( a_index_A[i]<0 ) continue;
+            if( a_dr_A[i]<0 || a_dr_A[i]>0.6 ) continue;
+            int iJ = a_index_A[i];
+            h_a_fz_A[ptVmin-1]->Fill(a_pt_A[i]/J_pt[iJ], weight_fill);
+         }
+
          h_a_e_Ap[kJ][ptVmin-1]->Fill(a_e_Ap[i], weight_fill);   
          h_a_pt_Ap[kJ][ptVmin-1]->Fill(a_pt_Ap[i], weight_fill);   
          h_a_eta_Ap[kJ][ptVmin-1]->Fill(a_eta_Ap[i], weight_fill);   
@@ -696,14 +955,10 @@ Bool_t toHist::Process(Long64_t entry)
          h_a_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
          if( a_gid_parent_A[i]!=0 ) a_pid_parent_A[i] = findPid( a_gid_parent_A[i] );
-         if( a_gid_mmom_A[i]!=0 ) a_pid_mmom_A[i] = findPid( a_gid_mmom_A[i] );
-
          h_a_pid_parent_A[kJ][ptVmin-1]->Fill(a_pid_parent_A[i], weight_fill);   
 
-         if( a_pid_parent_A[i]==92 ) {
-             h_a_pid_mmom_A[kJ][ptVmin-1]->Fill(a_pid_mmom_A[i], weight_fill);   
-         }
-         h_a_dr_A[kJ][ptVmin-1]->Fill(a_dr_A[i], weight_fill);   
+         h_a_dr_A[kJ][ptVmin-1]->Fill(a_dr_A[i], weight_fill);
+         h_a_drParton_A[kJ][ptVmin-1]->Fill(a_drParton1_A[i],a_drParton2_A[i], weight_fill);
          //h_a_deta_A[kJ][ptVmin-1]->Fill(a_deta_A[i], weight_fill);   
          //h_a_dphi_A[kJ][ptVmin-1]->Fill(a_dphi_A[i], weight_fill);
 
@@ -714,6 +969,250 @@ Bool_t toHist::Process(Long64_t entry)
          h_a_dl_A[kJ][ptVmin-1]->Fill(a_dl_A[i], weight_fill);
          h_a_dca2_A[kJ][ptVmin-1]->Fill(a_dca2_A[i], weight_fill);
          h_a_dcaV0_A[kJ][ptVmin-1]->Fill(a_dcaV0_A[i], weight_fill);
+      }
+
+      for( int i=0; i<m_nL; ++i ){
+         if(m_pt_L[i]<ptVmin ||m_pt_L[i]>=ptVmax ) {
+             Abort("Err:m_L pt range out !!!");
+         }
+                  //cout << "===--> m_L Filling " << endl;
+         if(m_ratio_Lp[i]<0.51 ||m_ratio_Lpi[i]<0.51 ) continue;
+         //___Ldd_selection_cut_here____
+         if(m_dca_Lp[i] > 200.0 ) continue;
+         if(m_dca_Lpi[i] > 200.0 ) continue;
+         if(m_dca_Lpi[i]>16 &&m_dca_Lp[i]<0.8 ) continue;
+         if(m_dca_Lpi[i]>45 ) continue;
+         if(m_crp_L[i]   < c_crp_min ) continue;
+         if(m_dca_Lp[i]  < c_dca_min_proton ) continue;
+         if(m_dca_Lpi[i] < c_dca_min_pion ) continue;
+         if(m_dca2_L[i]  > c_dca2_max ) continue;
+         if(m_dcaV0_L[i] > c_dcaV0_max ) continue;
+         if(m_dl_L[i] < c_dl_min ) continue;
+         TVector3 tPi;
+         tPi.SetPtEtaPhi(m_pt_Lpi[i],m_eta_Lpi[i],m_phi_Lpi[i] );
+         if( tPi.Mag() < c_P_min_pion ) continue;
+
+         if( kJ ) {
+            if(m_index_L[i]<0 ) continue;
+            if(m_dr_L[i]<0 ||m_dr_L[i]>0.6 ) continue;
+            int iJ =m_index_L[i];
+            h_m_fz_L[ptVmin-1]->Fill(a_pt_L[i]/J_pt[iJ], weight_fill);
+         }
+
+         h_m_pt_Lp[kJ][ptVmin-1]->Fill(a_pt_Lp[i], weight_fill);   
+         h_m_eta_Lp[kJ][ptVmin-1]->Fill(a_eta_Lp[i], weight_fill);   
+         h_m_phi_Lp[kJ][ptVmin-1]->Fill(a_phi_Lp[i], weight_fill);   
+         h_m_pt_Lpi[kJ][ptVmin-1]->Fill(a_pt_Lpi[i], weight_fill);   
+         h_m_eta_Lpi[kJ][ptVmin-1]->Fill(a_eta_Lpi[i], weight_fill);   
+         h_m_phi_Lpi[kJ][ptVmin-1]->Fill(a_phi_Lpi[i], weight_fill);     
+         h_m_pt_L[kJ][ptVmin-1]->Fill(a_pt_L[i], weight_fill);   
+         h_m_eta_L[kJ][ptVmin-1]->Fill(a_eta_L[i], weight_fill);   
+         h_m_phi_L[kJ][ptVmin-1]->Fill(a_phi_L[i], weight_fill);   
+         h_m_im_L[kJ][ptVmin-1]->Fill(a_im_L[i], weight_fill);   
+         h_m_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
+
+         if(m_gid_parent_L[i]!=0 )m_pid_parent_L[i] = findPid(m_gid_parent_L[i] );
+         h_m_pid_parent_L[kJ][ptVmin-1]->Fill(a_pid_parent_L[i], weight_fill);   
+
+         h_m_dr_L[kJ][ptVmin-1]->Fill(a_dr_L[i], weight_fill); 
+         h_m_drParton_L[kJ][ptVmin-1]->Fill(a_drParton1_L[i],a_drParton2_L[i], weight_fill);
+         //h_m_deta_L[kJ][ptVmin-1]->Fill(a_deta_L[i], weight_fill);   
+         //h_m_dphi_L[kJ][ptVmin-1]->Fill(a_dphi_L[i], weight_fill);
+
+         h_m_dca_Lp[kJ][ptVmin-1]->Fill(a_dca_Lp[i], weight_fill);
+         h_m_nSig_Lp[kJ][ptVmin-1]->Fill(a_nSigP_Lp[i], weight_fill);
+         h_m_dca_Lpi[kJ][ptVmin-1]->Fill(a_dca_Lpi[i], weight_fill);
+         h_m_nSig_Lpi[kJ][ptVmin-1]->Fill(a_nSigPi_Lpi[i], weight_fill);
+         h_m_dl_L[kJ][ptVmin-1]->Fill(a_dl_L[i], weight_fill);
+         h_m_dca2_L[kJ][ptVmin-1]->Fill(a_dca2_L[i], weight_fill);
+         h_m_dcaV0_L[kJ][ptVmin-1]->Fill(a_dcaV0_L[i], weight_fill);
+      }
+
+      for( int i=0; i<m_nA; ++i ){
+         if(m_pt_A[i]<ptVmin ||m_pt_A[i]>=ptVmax ) {
+             Abort("Err:m_A pt range out !!!");
+         }
+                  //cout << "===--> m_A Filling " << endl;
+         if(m_ratio_Ap[i]<0.51 ||m_ratio_Api[i]<0.51 ) continue;
+         //___Add_selection_cut_here____
+         if(m_dca_Ap[i] > 200.0 ) continue;
+         if(m_dca_Api[i] > 200.0 ) continue;
+         if(m_dca_Ap[i]>20 ) continue;
+         if(m_dca_Api[i]>20 && m_dca_Ap[i]<0.8 ) continue;
+         if(m_crp_A[i]   < c_crp_min ) continue;
+         if(m_dca_Ap[i]  < c_dca_min_proton ) continue;
+         if(m_dca_Api[i] < c_dca_min_pion ) continue;
+         if(m_dca2_A[i]  > c_dca2_max ) continue;
+         if(m_dcaV0_A[i] > c_dcaV0_max ) continue;
+         if(m_dl_A[i] < c_dl_min ) continue;
+         TVector3 tPi;
+         tPi.SetPtEtaPhi(m_pt_Api[i],m_eta_Api[i],m_phi_Api[i] );
+         if( tPi.Mag() < c_P_min_pion ) continue;
+
+         if( kJ ) {
+            if(m_index_A[i]<0 ) continue;
+            if(m_dr_A[i]<0 ||m_dr_A[i]>0.6 ) continue;
+            int iJ =m_index_A[i];
+            h_m_fz_A[ptVmin-1]->Fill(a_pt_A[i]/J_pt[iJ], weight_fill);
+         }
+
+         h_m_pt_Ap[kJ][ptVmin-1]->Fill(a_pt_Ap[i], weight_fill);   
+         h_m_eta_Ap[kJ][ptVmin-1]->Fill(a_eta_Ap[i], weight_fill);   
+         h_m_phi_Ap[kJ][ptVmin-1]->Fill(a_phi_Ap[i], weight_fill);   
+         h_m_pt_Api[kJ][ptVmin-1]->Fill(a_pt_Api[i], weight_fill);   
+         h_m_eta_Api[kJ][ptVmin-1]->Fill(a_eta_Api[i], weight_fill);   
+         h_m_phi_Api[kJ][ptVmin-1]->Fill(a_phi_Api[i], weight_fill);     
+         h_m_pt_A[kJ][ptVmin-1]->Fill(a_pt_A[i], weight_fill);   
+         h_m_eta_A[kJ][ptVmin-1]->Fill(a_eta_A[i], weight_fill);   
+         h_m_phi_A[kJ][ptVmin-1]->Fill(a_phi_A[i], weight_fill);   
+         h_m_im_A[kJ][ptVmin-1]->Fill(a_im_A[i], weight_fill);   
+         h_m_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
+
+         if(m_gid_parent_A[i]!=0 )m_pid_parent_A[i] = findPid(m_gid_parent_A[i] );
+         h_m_pid_parent_A[kJ][ptVmin-1]->Fill(a_pid_parent_A[i], weight_fill);   
+
+         h_m_dr_A[kJ][ptVmin-1]->Fill(a_dr_A[i], weight_fill); 
+         h_m_drParton_A[kJ][ptVmin-1]->Fill(a_drParton1_A[i],a_drParton2_A[i], weight_fill);
+         //h_m_deta_A[kJ][ptVmin-1]->Fill(a_deta_A[i], weight_fill);   
+         //h_m_dphi_A[kJ][ptVmin-1]->Fill(a_dphi_A[i], weight_fill);
+
+         h_m_dca_Ap[kJ][ptVmin-1]->Fill(a_dca_Ap[i], weight_fill);
+         h_m_nSig_Ap[kJ][ptVmin-1]->Fill(a_nSigP_Ap[i], weight_fill);
+         h_m_dca_Api[kJ][ptVmin-1]->Fill(a_dca_Api[i], weight_fill);
+         h_m_nSig_Api[kJ][ptVmin-1]->Fill(a_nSigPi_Api[i], weight_fill);
+         h_m_dl_A[kJ][ptVmin-1]->Fill(a_dl_A[i], weight_fill);
+         h_m_dca2_A[kJ][ptVmin-1]->Fill(a_dca2_A[i], weight_fill);
+         h_m_dcaV0_A[kJ][ptVmin-1]->Fill(a_dcaV0_A[i], weight_fill);
+      }
+
+      for( int i=0; i<m_nL; ++i ){
+         if(m_pt_L[i]<ptVmin ||m_pt_L[i]>=ptVmax ) {
+             Abort("Err:m_L pt range out !!!");
+         }
+         int P_tag=0;
+         int Pi_tag=0;
+         for (int j = 0; j < g_nL; ++j) {
+            if (m_idT_Lp[i] == g_key_Lp[j]) P_tag=1;
+            if (m_idT_Lpi[i] == g_key_Lpi[i]) Pi_tag=1;
+         }
+         if (!(P_tag*Pi_tag)) continue;
+
+         //cout << "===--> m_L Filling " << endl;
+         if(m_ratio_Lp[i]<0.51 ||m_ratio_Lpi[i]<0.51 ) continue;
+         //___Ldd_selection_cut_here____
+         if(m_dca_Lp[i] > 200.0 ) continue;
+         if(m_dca_Lpi[i] > 200.0 ) continue;
+         if(m_dca_Lpi[i]>16 &&m_dca_Lp[i]<0.8 ) continue;
+         if(m_dca_Lpi[i]>45 ) continue;
+         if(m_crp_L[i]   < c_crp_min ) continue;
+         if(m_dca_Lp[i]  < c_dca_min_proton ) continue;
+         if(m_dca_Lpi[i] < c_dca_min_pion ) continue;
+         if(m_dca2_L[i]  > c_dca2_max ) continue;
+         if(m_dcaV0_L[i] > c_dcaV0_max ) continue;
+         if(m_dl_L[i] < c_dl_min ) continue;
+         TVector3 tPi;
+         tPi.SetPtEtaPhi(m_pt_Lpi[i],m_eta_Lpi[i],m_phi_Lpi[i] );
+         if( tPi.Mag() < c_P_min_pion ) continue;
+
+         if( kJ ) {
+            if(m_index_L[i]<0 ) continue;
+            if(m_dr_L[i]<0 ||m_dr_L[i]>0.6 ) continue;
+            int iJ =m_index_L[i];
+            h_t_fz_L[ptVmin-1]->Fill(a_pt_L[i]/J_pt[iJ], weight_fill);
+         }
+
+         h_t_pt_Lp[kJ][ptVmin-1]->Fill(a_pt_Lp[i], weight_fill);   
+         h_t_eta_Lp[kJ][ptVmin-1]->Fill(a_eta_Lp[i], weight_fill);   
+         h_t_phi_Lp[kJ][ptVmin-1]->Fill(a_phi_Lp[i], weight_fill);   
+         h_t_pt_Lpi[kJ][ptVmin-1]->Fill(a_pt_Lpi[i], weight_fill);   
+         h_t_eta_Lpi[kJ][ptVmin-1]->Fill(a_eta_Lpi[i], weight_fill);   
+         h_t_phi_Lpi[kJ][ptVmin-1]->Fill(a_phi_Lpi[i], weight_fill);     
+         h_t_pt_L[kJ][ptVmin-1]->Fill(a_pt_L[i], weight_fill);   
+         h_t_eta_L[kJ][ptVmin-1]->Fill(a_eta_L[i], weight_fill);   
+         h_t_phi_L[kJ][ptVmin-1]->Fill(a_phi_L[i], weight_fill);   
+         h_t_im_L[kJ][ptVmin-1]->Fill(a_im_L[i], weight_fill);   
+         h_t_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
+
+         if(m_gid_parent_L[i]!=0 )m_pid_parent_L[i] = findPid(m_gid_parent_L[i] );
+         h_t_pid_parent_L[kJ][ptVmin-1]->Fill(a_pid_parent_L[i], weight_fill);   
+
+         h_t_dr_L[kJ][ptVmin-1]->Fill(a_dr_L[i], weight_fill); 
+         h_t_drParton_L[kJ][ptVmin-1]->Fill(a_drParton1_L[i],a_drParton2_L[i], weight_fill);
+         //h_t_deta_L[kJ][ptVmin-1]->Fill(a_deta_L[i], weight_fill);   
+         //h_t_dphi_L[kJ][ptVmin-1]->Fill(a_dphi_L[i], weight_fill);
+
+         h_t_dca_Lp[kJ][ptVmin-1]->Fill(a_dca_Lp[i], weight_fill);
+         h_t_nSig_Lp[kJ][ptVmin-1]->Fill(a_nSigP_Lp[i], weight_fill);
+         h_t_dca_Lpi[kJ][ptVmin-1]->Fill(a_dca_Lpi[i], weight_fill);
+         h_t_nSig_Lpi[kJ][ptVmin-1]->Fill(a_nSigPi_Lpi[i], weight_fill);
+         h_t_dl_L[kJ][ptVmin-1]->Fill(a_dl_L[i], weight_fill);
+         h_t_dca2_L[kJ][ptVmin-1]->Fill(a_dca2_L[i], weight_fill);
+         h_t_dcaV0_L[kJ][ptVmin-1]->Fill(a_dcaV0_L[i], weight_fill);
+      }
+
+      for( int i=0; i<m_nA; ++i ){
+         if(m_pt_A[i]<ptVmin ||m_pt_A[i]>=ptVmax ) {
+             Abort("Err:m_A pt range out !!!");
+         }
+         int P_tag=0;
+         int Pi_tag=0;
+         for (int j = 0; j < g_nL; ++j) {
+            if (m_idT_Ap[i] == g_key_Ap[j]) P_tag=1;
+            if (m_idT_Api[i] == g_key_Api[i]) Pi_tag=1;
+         }
+         if (!(P_tag*Pi_tag)) continue;
+
+         //cout << "===--> m_A Filling " << endl;
+         if(m_ratio_Ap[i]<0.51 ||m_ratio_Api[i]<0.51 ) continue;
+         //___Add_selection_cut_here____
+         if(m_dca_Ap[i] > 200.0 ) continue;
+         if(m_dca_Api[i] > 200.0 ) continue;
+         if(m_dca_Ap[i]>20 ) continue;
+         if(m_dca_Api[i]>20 && m_dca_Ap[i]<0.8 ) continue;
+         if(m_crp_A[i]   < c_crp_min ) continue;
+         if(m_dca_Ap[i]  < c_dca_min_proton ) continue;
+         if(m_dca_Api[i] < c_dca_min_pion ) continue;
+         if(m_dca2_A[i]  > c_dca2_max ) continue;
+         if(m_dcaV0_A[i] > c_dcaV0_max ) continue;
+         if(m_dl_A[i] < c_dl_min ) continue;
+         TVector3 tPi;
+         tPi.SetPtEtaPhi(m_pt_Api[i],m_eta_Api[i],m_phi_Api[i] );
+         if( tPi.Mag() < c_P_min_pion ) continue;
+
+         if( kJ ) {
+            if(m_index_A[i]<0 ) continue;
+            if(m_dr_A[i]<0 ||m_dr_A[i]>0.6 ) continue;
+            int iJ =m_index_A[i];
+            h_t_fz_A[ptVmin-1]->Fill(a_pt_A[i]/J_pt[iJ], weight_fill);
+         }
+
+         h_t_pt_Ap[kJ][ptVmin-1]->Fill(a_pt_Ap[i], weight_fill);   
+         h_t_eta_Ap[kJ][ptVmin-1]->Fill(a_eta_Ap[i], weight_fill);   
+         h_t_phi_Ap[kJ][ptVmin-1]->Fill(a_phi_Ap[i], weight_fill);   
+         h_t_pt_Api[kJ][ptVmin-1]->Fill(a_pt_Api[i], weight_fill);   
+         h_t_eta_Api[kJ][ptVmin-1]->Fill(a_eta_Api[i], weight_fill);   
+         h_t_phi_Api[kJ][ptVmin-1]->Fill(a_phi_Api[i], weight_fill);     
+         h_t_pt_A[kJ][ptVmin-1]->Fill(a_pt_A[i], weight_fill);   
+         h_t_eta_A[kJ][ptVmin-1]->Fill(a_eta_A[i], weight_fill);   
+         h_t_phi_A[kJ][ptVmin-1]->Fill(a_phi_A[i], weight_fill);   
+         h_t_im_A[kJ][ptVmin-1]->Fill(a_im_A[i], weight_fill);   
+         h_t_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
+
+         if(m_gid_parent_A[i]!=0 )m_pid_parent_A[i] = findPid(m_gid_parent_A[i] );
+         h_t_pid_parent_A[kJ][ptVmin-1]->Fill(a_pid_parent_A[i], weight_fill);   
+
+         h_t_dr_A[kJ][ptVmin-1]->Fill(a_dr_A[i], weight_fill); 
+         h_t_drParton_A[kJ][ptVmin-1]->Fill(a_drParton1_A[i],a_drParton2_A[i], weight_fill);
+         //h_t_deta_A[kJ][ptVmin-1]->Fill(a_deta_A[i], weight_fill);   
+         //h_t_dphi_A[kJ][ptVmin-1]->Fill(a_dphi_A[i], weight_fill);
+
+         h_t_dca_Ap[kJ][ptVmin-1]->Fill(a_dca_Ap[i], weight_fill);
+         h_t_nSig_Ap[kJ][ptVmin-1]->Fill(a_nSigP_Ap[i], weight_fill);
+         h_t_dca_Api[kJ][ptVmin-1]->Fill(a_dca_Api[i], weight_fill);
+         h_t_nSig_Api[kJ][ptVmin-1]->Fill(a_nSigPi_Api[i], weight_fill);
+         h_t_dl_A[kJ][ptVmin-1]->Fill(a_dl_A[i], weight_fill);
+         h_t_dca2_A[kJ][ptVmin-1]->Fill(a_dca2_A[i], weight_fill);
+         h_t_dcaV0_A[kJ][ptVmin-1]->Fill(a_dcaV0_A[i], weight_fill);
       }
    }
    return kTRUE;
