@@ -750,7 +750,7 @@ void matchTree(const char* inFn_V0)
                 }
             }
         }
-        for( int i=0; i<m_nL; ++i ) {
+        for( int i=0; i<m_nA; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(m_pt_A[i],m_eta_A[i],m_phi_A[i]);
             TLorentzVector aV4;
@@ -771,7 +771,7 @@ void matchTree(const char* inFn_V0)
                 }
             }
         }
-        for( int i=0; i<m_nL; ++i ) {
+        for( int i=0; i<m_nK; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(m_pt_K[i],m_eta_K[i],m_phi_K[i]);
             TLorentzVector aV4;
