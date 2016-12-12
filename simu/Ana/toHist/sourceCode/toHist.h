@@ -15,6 +15,7 @@
 
 // Header file for the classes stored in the TTree if any.
 class TH1D;
+class TH2D;
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 const int kMax = 10;
