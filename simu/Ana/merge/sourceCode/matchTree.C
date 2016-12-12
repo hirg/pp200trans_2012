@@ -11,7 +11,7 @@
  */
 
 #include <TVector3.h>
-#include <TLorenzVector.h>
+#include <TLorentzVector.h>
 #include "v0Tree_reader.h"
 #include "jetTree_reader.h"
 #include "matchTree.h"
@@ -129,9 +129,9 @@ void matchTree(const char* inFn_V0)
         g_mParton2 = v0Tree->g_mParton2;
         g_eParton2 = v0Tree->g_eParton2;
 
-        TLorenzVector V4_Parton1;
+        TLorentzVector V4_Parton1;
         V4_Parton1.SetPxPyPzE( g_pxParton1, g_pyParton1, g_pzParton1, g_eParton1);
-        TLorenzVector V4_Parton2;
+        TLorentzVector V4_Parton2;
         V4_Parton2.SetPxPyPzE( g_pxParton2, g_pyParton2, g_pzParton2, g_eParton2);
 
         for (int i=0; i<4; ++i)
@@ -604,7 +604,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<g_nL; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(g_pt_L[i],g_eta_L[i],g_phi_L[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, g_im_L[i]);
             g_drParton1_L[i] = aV4.DeltaR(V4_Parton1);
             g_drParton2_L[i] = aV4.DeltaR(V4_Parton2);
@@ -625,7 +625,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<g_nA; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(g_pt_A[i],g_eta_A[i],g_phi_A[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, g_im_A[i]);
             g_drParton1_A[i] = aV4.DeltaR(V4_Parton1);
             g_drParton2_A[i] = aV4.DeltaR(V4_Parton2);
@@ -646,7 +646,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<g_nK; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(g_pt_K[i],g_eta_K[i],g_phi_K[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, g_im_K[i]);
             g_drParton1_K[i] = aV4.DeltaR(V4_Parton1);
             g_drParton2_K[i] = aV4.DeltaR(V4_Parton2);
@@ -668,7 +668,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<a_nL; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(a_pt_L[i],a_eta_L[i],a_phi_L[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, a_im_L[i]);
             a_drParton1_L[i] = aV4.DeltaR(V4_Parton1);
             a_drParton2_L[i] = aV4.DeltaR(V4_Parton2);
@@ -689,7 +689,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<a_nA; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(a_pt_A[i],a_eta_A[i],a_phi_A[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, a_im_A[i]);
             a_drParton1_A[i] = aV4.DeltaR(V4_Parton1);
             a_drParton2_A[i] = aV4.DeltaR(V4_Parton2);
@@ -710,7 +710,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<a_nK; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(a_pt_K[i],a_eta_K[i],a_phi_K[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, a_im_K[i]);
             a_drParton1_K[i] = aV4.DeltaR(V4_Parton1);
             a_drParton2_K[i] = aV4.DeltaR(V4_Parton2);
@@ -732,7 +732,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<m_nL; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(m_pt_L[i],m_eta_L[i],m_phi_L[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, m_im_L[i]);
             m_drParton1_L[i] = aV4.DeltaR(V4_Parton1);
             m_drParton2_L[i] = aV4.DeltaR(V4_Parton2);
@@ -753,7 +753,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<m_nL; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(m_pt_A[i],m_eta_A[i],m_phi_A[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, m_im_A[i]);
             m_drParton1_A[i] = aV4.DeltaR(V4_Parton1);
             m_drParton2_A[i] = aV4.DeltaR(V4_Parton2);
@@ -774,7 +774,7 @@ void matchTree(const char* inFn_V0)
         for( int i=0; i<m_nL; ++i ) {
         	TVector3 aV;
         	aV.SetPtEtaPhi(m_pt_K[i],m_eta_K[i],m_phi_K[i]);
-            TLorenzVector aV4;
+            TLorentzVector aV4;
             aV4.SetVectM(aV, m_im_K[i]);
             m_drParton1_K[i] = aV4.DeltaR(V4_Parton1);
             m_drParton2_K[i] = aV4.DeltaR(V4_Parton2);
