@@ -405,6 +405,20 @@ public :
    TBranch        *b_g_nJets;   //!
    TBranch        *b_g_impactPar;
    TBranch        *b_g_phiRP;
+
+   TBranch        *b_g_idParton1;
+   TBranch        *b_g_pxParton1;
+   TBranch        *b_g_pyParton1;
+   TBranch        *b_g_pzParton1;
+   TBranch        *b_g_mParton1;
+   TBranch        *b_g_eParton1;
+   TBranch        *b_g_idParton2;
+   TBranch        *b_g_pxParton2;
+   TBranch        *b_g_pyParton2;
+   TBranch        *b_g_pzParton2;
+   TBranch        *b_g_mParton2;
+   TBranch        *b_g_eParton2;
+
    TBranch        *b_g_nL;   //!
    TBranch        *b_g_pid_Lp;   //!
    TBranch        *b_g_gid_Lp;   //!
@@ -841,6 +855,20 @@ void v0Tree_reader::Init(TTree *tree)
    fChain->SetBranchAddress("g_nJets", &g_nJets, &b_g_nJets);
    fChain->SetBranchAddress("g_impactPar", &g_impactPar, &b_g_impactPar);
    fChain->SetBranchAddress("g_phiRP", &g_phiRP, &b_g_phiRP);
+
+   fChain->SetBranchAddress("g_idParton1",& g_idParton1, &b_g_idParton1);
+   fChain->SetBranchAddress("g_pxParton1",& g_pxParton1, &b_g_pxParton1);
+   fChain->SetBranchAddress("g_pyParton1",& g_pyParton1, &b_g_pyParton1);
+   fChain->SetBranchAddress("g_pzParton1",& g_pzParton1, &b_g_pzParton1);
+   fChain->SetBranchAddress("g_mParton1", &g_mParton1, &b_g_mParton1);
+   fChain->SetBranchAddress("g_eParton1", &g_eParton1, &b_g_eParton1);
+   fChain->SetBranchAddress("g_idParton2",& g_idParton2, &b_g_idParton2);
+   fChain->SetBranchAddress("g_pxParton2",& g_pxParton2, &b_g_pxParton2);
+   fChain->SetBranchAddress("g_pyParton2",& g_pyParton2, &b_g_pyParton2);
+   fChain->SetBranchAddress("g_pzParton2",& g_pzParton2, &b_g_pzParton2);
+   fChain->SetBranchAddress("g_mParton2", &g_mParton2, &b_g_mParton2);
+   fChain->SetBranchAddress("g_eParton2", &g_eParton2, &b_g_eParton2);
+
    fChain->SetBranchAddress("g_nL", &g_nL, &b_g_nL);
    fChain->SetBranchAddress("g_pid_Lp", g_pid_Lp, &b_g_pid_Lp);
    fChain->SetBranchAddress("g_gid_Lp", g_gid_Lp, &b_g_gid_Lp);
