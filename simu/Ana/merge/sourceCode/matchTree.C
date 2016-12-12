@@ -11,6 +11,7 @@
  */
 
 #include <TVector3.h>
+#include <TLorenzVector.h>
 #include "v0Tree_reader.h"
 #include "jetTree_reader.h"
 #include "matchTree.h"
