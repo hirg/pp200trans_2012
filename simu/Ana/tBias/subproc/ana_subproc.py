@@ -37,11 +37,11 @@ for i in xrange(3,4):
                         for k in particle_List:
                                 tc=TCanvas('c','c',700,500)
                                 print k
-                                h_ZB=fin_ZB.Get('h_%s_Subproc_%s_J%d_PT%d'%(j,k,m,i-1))
-                                h_JP0=fin_JP0.Get('h_%s_Subproc_%s_J%d_PT%d'%(j,k,m,i-1))
-                                h_JP1=fin_JP1.Get('h_%s_Subproc_%s_J%d_PT%d'%(j,k,m,i-1))
-                                h_JP2=fin_JP2.Get('h_%s_Subproc_%s_J%d_PT%d'%(j,k,m,i-1))
-                                h_AJP=fin_AJP.Get('h_%s_Subproc_%s_J%d_PT%d'%(j,k,m,i-1))
+                                h_ZB=fin_ZB.Get('h_%s_idSubproc_%s_J%d_PT%d'%(j,k,m,i-1))
+                                h_JP0=fin_JP0.Get('h_%s_idSubproc_%s_J%d_PT%d'%(j,k,m,i-1))
+                                h_JP1=fin_JP1.Get('h_%s_idSubproc_%s_J%d_PT%d'%(j,k,m,i-1))
+                                h_JP2=fin_JP2.Get('h_%s_idSubproc_%s_J%d_PT%d'%(j,k,m,i-1))
+                                h_AJP=fin_AJP.Get('h_%s_idSubproc_%s_J%d_PT%d'%(j,k,m,i-1))
 
                                 h_ZB.Scale(1.0000/(h_ZB.Integral()))
                                 h_JP0.Scale(1.0000/(h_JP0.Integral()))
