@@ -54,7 +54,7 @@ for i in xrange(3,4):
                         h_ZB.SetMarkerColor(1)
                         h_JP0.SetMarkerColor(2)
                         h_JP1.SetMarkerColor(4)
-                        h_JP2.SetMarkerColor(8)
+                        h_JP2.SetMarkerColor(6)
                         h_AJP.SetMarkerColor(9)
 
                         h_ZB.SetXTitle('z(=L_pt/J_pt)')
@@ -87,8 +87,12 @@ for i in xrange(3,4):
                         shift_error_JP1=cal_shift_error(m_JP1,m_ZB,em_JP1,em_ZB)
                         shift_error_JP2=cal_shift_error(m_JP2,m_ZB,em_JP2,em_ZB)
                         shift_error_AJP=cal_shift_error(m_AJP,m_ZB,em_AJP,em_ZB)
+                        print shift_error_JP0
+                        print shift_error_JP1
+                        print shift_error_JP2
+                        print shift_error_AJP
 
-                        lg=TLegend(0.65,0.7,0.9,0.9)
+                        lg=TLegend(0.6,0.65,0.9,0.9)
 
                         lg.AddEntry(h_ZB,'MB','lep')
                         tchar='JP0: %.4f#pm%.4f'%(shift_JP0,shift_error_JP0)
