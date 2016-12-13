@@ -55,9 +55,8 @@ for i in xrange(3,4):
                                         if nEvts>0:
                                                 lout='%d\t%d\t%.2e'%(ppid,ppid-5001,nEvts)
                                                 print lout
-                                                
-                                                pass
-                                        pass
+                                                #pass
+                                        #pass
 '''
                                 h_ZB.SetMarkerStyle(20)
                                 h_JP0.SetMarkerStyle(20)
@@ -132,7 +131,7 @@ for i in xrange(3,4):
                                 cn = 'Pic/fz_%s_%s_J%d_PT%d.eps' %(j,k,i)
                                 tc.SaveAs(cn)
 '''
-                                pass
-                        pass
-                pass
-        pass
+                                #pass
+                        #pass
+                #pass
+        #pass
