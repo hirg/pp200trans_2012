@@ -98,7 +98,7 @@ for i in xrange(3,4):
                         print shift_error_JP2
                         print shift_error_AJP
 
-                        lg=TLegend(0.4,0.6,0.9,0.8)
+                        lg=TLegend(0.65,0.3,0.9,0.75)
                         lg.SetBorderSize(0)
 
                         lg.AddEntry(h_ZB,'MB      Shifit','lep')
