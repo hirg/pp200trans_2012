@@ -14,6 +14,8 @@
 #include <TSelector.h>
 
 // Header file for the classes stored in the TTree if any.
+class TH1D;
+class TH2D;
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 const int kMax = 100;
@@ -432,11 +434,14 @@ public:
 
            bool    checkSpin();
            bool    checkTrig();
-
+           int     getPTbin(double apt);
 
    // Declare histograms
    TH1D           *h_pvz0;
    TH1D           *h_pvz1;
+   TH1I           *h_spinbit;
+   TH1D           *h_bbcrate;
+   TH1D           *h_zdcrate;
 
    TH1D           *h_nJet;
    TH1D           *h_deteta_J;
@@ -448,6 +453,7 @@ public:
 
    TH1D           *h_im_L[2][6];
    TH1D           *h_im_A[2][6];
+   TH1D           *h_im_K[2][6];
 
    /*
    TH2D           *h_cosTv_yell_A[2][6];
@@ -460,14 +466,12 @@ public:
    TH2D           *h_cosY_blue_A[2][6]; 
    */
 
+   TH1D           *h_peak_pt_Lp[2][6];
    TH1D           *h_peak_eta_Lp[2][6];  
    TH1D           *h_peak_phi_Lp[2][6];   
    TH1D           *h_peak_pt_Lpi[2][6];  
    TH1D           *h_peak_eta_Lpi[2][6]; 
    TH1D           *h_peak_phi_Lpi[2][6]; 
-   TH1D           *h_peak_x_stop_L[2][6];
-   TH1D           *h_peak_y_stop_L[2][6];
-   TH1D           *h_peak_z_stop_L[2][6];
    TH1D           *h_peak_pt_L[2][6];   
    TH1D           *h_peak_eta_L[2][6];   
    TH1D           *h_peak_phi_L[2][6];   
@@ -483,12 +487,12 @@ public:
    TH1D           *h_peak_dcaV0_L[2][6];   
    TH1D           *h_peak_crp_L[2][6];
 
-   TH1D           *h_peak_index_L[2][6];   
-   TH1D           *h_peak_type_L[2][6]; 
+   //TH1D           *h_peak_type_L[2][6]; 
    TH1D           *h_peak_dr_L[2][6];   
    TH1D           *h_peak_deta_L[2][6]; 
    TH1D           *h_peak_dphi_L[2][6];
 
+   /*
    TH1D           *h_peak_cosTv_yell_L[2][6];
    TH1D           *h_peak_cosTv_blue_L[2][6];
    TH1D           *h_peak_cosTj_yell_L[2][6];
@@ -497,9 +501,10 @@ public:
    TH1D           *h_peak_cosN_blue_L[2][6]; 
    TH1D           *h_peak_cosY_yell_L[2][6]; 
    TH1D           *h_peak_cosY_blue_L[2][6];
-
+   */
    TH1D           *h_peak_fz_L[6];
 
+   TH1D           *h_peak_pt_Ap[2][6];
    TH1D           *h_peak_eta_Ap[2][6];  
    TH1D           *h_peak_phi_Ap[2][6];    
    TH1D           *h_peak_pt_Api[2][6];  
@@ -511,7 +516,6 @@ public:
    TH1D           *h_peak_pt_A[2][6];   
    TH1D           *h_peak_eta_A[2][6];   
    TH1D           *h_peak_phi_A[2][6];   
-     
 
    TH1D           *h_peak_dca_Ap[2][6];   
    TH1D           *h_peak_dca_Api[2][6];   
@@ -530,6 +534,34 @@ public:
    TH1D           *h_peak_deta_A[2][6]; 
    TH1D           *h_peak_dphi_A[2][6];
 
+   TH1D           *h_peak_fz_A[6];
+
+   TH1D           *h_peak_pt_Kp[2][6];
+   TH1D           *h_peak_eta_Kp[2][6];  
+   TH1D           *h_peak_phi_Kp[2][6];   
+   TH1D           *h_peak_pt_Kpi[2][6];  
+   TH1D           *h_peak_eta_Kpi[2][6]; 
+   TH1D           *h_peak_phi_Kpi[2][6]; 
+   TH1D           *h_peak_pt_K[2][6];   
+   TH1D           *h_peak_eta_K[2][6];   
+   TH1D           *h_peak_phi_K[2][6];   
+   
+   TH1D           *h_peak_dca_Kp[2][6];   
+   TH1D           *h_peak_dca_Kpi[2][6];   
+   TH1D           *h_peak_nFit_Kp[2][6];   
+   TH1D           *h_peak_nFit_Kpi[2][6];  
+   TH1D           *h_peak_nSigP_Kp[2][6];
+   TH1D           *h_peak_nSigPi_Kpi[2][6];
+   TH1D           *h_peak_dl_K[2][6];   
+   TH1D           *h_peak_dca2_K[2][6];   
+   TH1D           *h_peak_dcaV0_K[2][6];   
+   TH1D           *h_peak_crp_K[2][6];
+
+   //TH1D           *h_peak_type_K[2][6]; 
+   TH1D           *h_peak_dr_K[2][6];   
+   TH1D           *h_peak_deta_K[2][6]; 
+   TH1D           *h_peak_dphi_K[2][6];
+
    /*
    TH1D           *h_peak_cosTv_yell_A[2][6];
    TH1D           *h_peak_cosTv_blue_A[2][6];
@@ -540,10 +572,9 @@ public:
    TH1D           *h_peak_cosY_yell_A[2][6]; 
    TH1D           *h_peak_cosY_blue_A[2][6]; 
    */
+   TH1D           *h_peak_fz_K[6];
 
-   TH1D           *h_peak_fz_A[6];
-
-
+   TH1D           *h_bkg_pt_Lp[2][6];
    TH1D           *h_bkg_eta_Lp[2][6];  
    TH1D           *h_bkg_phi_Lp[2][6];   
    TH1D           *h_bkg_pt_Lpi[2][6];  
@@ -573,6 +604,7 @@ public:
    TH1D           *h_bkg_deta_L[2][6]; 
    TH1D           *h_bkg_dphi_L[2][6];
 
+   /*
    TH1D           *h_bkg_cosTv_yell_L[2][6];
    TH1D           *h_bkg_cosTv_blue_L[2][6];
    TH1D           *h_bkg_cosTj_yell_L[2][6];
@@ -581,9 +613,10 @@ public:
    TH1D           *h_bkg_cosN_blue_L[2][6]; 
    TH1D           *h_bkg_cosY_yell_L[2][6]; 
    TH1D           *h_bkg_cosY_blue_L[2][6];
-
+   */
    TH1D           *h_bkg_fz_L[6];
 
+   TH1D           *h_bkg_pt_Ap[2][6];
    TH1D           *h_bkg_eta_Ap[2][6];  
    TH1D           *h_bkg_phi_Ap[2][6];    
    TH1D           *h_bkg_pt_Api[2][6];  
@@ -624,6 +657,38 @@ public:
    TH1D           *h_bkg_cosY_blue_A[2][6]; 
    */
    TH1D           *h_bkg_fz_A[6];
+
+   TH1D           *h_bkg_pt_Kp[2][6];
+   TH1D           *h_bkg_eta_Kp[2][6];  
+   TH1D           *h_bkg_phi_Kp[2][6];   
+   TH1D           *h_bkg_pt_Kpi[2][6];  
+   TH1D           *h_bkg_eta_Kpi[2][6]; 
+   TH1D           *h_bkg_phi_Kpi[2][6];  
+   TH1D           *h_bkg_x_stop_K[2][6];
+   TH1D           *h_bkg_y_stop_K[2][6];
+   TH1D           *h_bkg_z_stop_K[2][6];
+   TH1D           *h_bkg_pt_K[2][6];   
+   TH1D           *h_bkg_eta_K[2][6];   
+   TH1D           *h_bkg_phi_K[2][6];    
+
+   TH1D           *h_bkg_dca_Kp[2][6];   
+   TH1D           *h_bkg_dca_Kpi[2][6];   
+   TH1D           *h_bkg_nFit_Kp[2][6];   
+   TH1D           *h_bkg_nFit_Kpi[2][6];  
+   TH1D           *h_bkg_nSigP_Kp[2][6];
+   TH1D           *h_bkg_nSigPi_Kpi[2][6];
+   TH1D           *h_bkg_dl_K[2][6];   
+   TH1D           *h_bkg_dca2_K[2][6];   
+   TH1D           *h_bkg_dcaV0_K[2][6];   
+   TH1D           *h_bkg_crp_K[2][6];
+
+   TH1D           *h_bkg_index_K[2][6];   
+   TH1D           *h_bkg_type_K[2][6]; 
+   TH1D           *h_bkg_dr_K[2][6];   
+   TH1D           *h_bkg_deta_K[2][6]; 
+   TH1D           *h_bkg_dphi_K[2][6];
+
+   TH1D           *h_bkg_fz_K[6];
 
    ClassDef(fillHist,0);
 };
@@ -884,6 +949,16 @@ bool fillHist::checkTrig()
       trigF = (trig[3]*IsAJP)*(!(trig[0]*IsJP0))*(!(trig[1]*IsJP1))*(!(trig[2]*IsJP2));
    }
    return trigZ;
+}
+
+int fillHist::getPTbin(double apt)
+{
+   int PTbin = -1;
+   if (apt<1.0 || apt>=8.0) return PTbin;
+   PTbin = floor(apt)-1;
+   if (PTbin==6) PTbin=5;
+
+   return PTbin; 
 }
 
 #endif // #ifdef fillHist_cxx
