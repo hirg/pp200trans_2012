@@ -11,7 +11,7 @@ def cal_shift_error( pX, pY, epX, epY):
         epXsq=epX*epX
         epYsq=epY*epY
 
-        outE=abs( ( (1 - 2*pX / pY)*epXsq  + pXsq * epYsq / pYsq ) / pYsq )
+        outE=abs( ( (1 - 2*pX/pY)*epXsq+pXsq * epYsq / pYsq ) / pYsq )
         return outE
         pass
 
@@ -31,13 +31,13 @@ for i in xrange(3,4):
                 print j
 
                 for k in particle_List:
-                        tc = TCanvas('c','c',700,500)
+                        tc=TCanvas('c','c',700,500)
                         print k
-                        h_ZB = fin_ZB.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
-                        h_JP0 = fin_JP0.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
-                        h_JP1 = fin_JP1.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
-                        h_JP2 = fin_JP2.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
-                        h_AJP = fin_AJP.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
+                        h_ZB=fin_ZB.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
+                        h_JP0=fin_JP0.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
+                        h_JP1=fin_JP1.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
+                        h_JP2=fin_JP2.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
+                        h_AJP=fin_AJP.Get('h_%s_fz_%s_PT%d'%(j,k,i-1))
 
                         h_ZB.Scale(1.0/(h_ZB.Integral()))
                         h_JP0.Scale(1.0/(h_JP0.Integral()))
