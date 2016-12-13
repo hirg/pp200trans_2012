@@ -118,7 +118,6 @@ void fillHist::Begin(TTree * /*tree*/)
          hn = Form("h_peak_crp_L_J%d_PT%d", kJ, kPT);
          h_peak_crp_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),500,0.95,1.0);
 
-
          hn = Form("h_bkg_pt_Lp_J%d_PT%d", kJ, kPT);
          h_bkg_pt_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
          hn = Form("h_bkg_eta_Lp_J%d_PT%d", kJ, kPT);
@@ -558,8 +557,6 @@ Bool_t fillHist::Process(Long64_t entry)
          {
             if( sK_index[i]<0 ) continue;
             if( sK_dr[i]<0 || sK_dr[i]>0.6 ) continue;
-            int iJ = sK_index[i];
-            h_fz_K[_kPT]->Fill(sK_pt[i]/J_pt[iJ]);
          }
 
          h_im_K[kJ][kPT]->Fill(sK_im[i]);
