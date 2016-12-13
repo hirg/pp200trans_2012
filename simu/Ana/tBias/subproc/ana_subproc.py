@@ -134,9 +134,9 @@ for i in xrange(3,4):
 
                                 lg.Draw('same')
 
-                                cn = 'Pic/decay_%s_%s_J%d_PT%d.png' %(j,k,m,i)
+                                cn = 'Pic/subproc_%s_%s_J%d_PT%d.png' %(j,k,m,i)
                                 tc.SaveAs(cn)
-                                cn = 'Pic/decay_%s_%s_J%d_PT%d.eps' %(j,k,m,i)
+                                cn = 'Pic/subproc_%s_%s_J%d_PT%d.eps' %(j,k,m,i)
                                 tc.SaveAs(cn)
 
                                 pass
