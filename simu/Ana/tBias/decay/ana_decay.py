@@ -125,7 +125,7 @@ for i in xrange(3,4):
                                 d_ZB.GetYaxis().SetRangeUser(0,1.0)
 
                                 tc.cd()
-                                d_ZB.Draw()
+                                d_ZB.Draw('v')
                                 d_JP0.Draw('same')
                                 d_JP1.Draw('same')
                                 d_JP2.Draw('same')
