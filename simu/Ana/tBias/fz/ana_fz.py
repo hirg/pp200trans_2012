@@ -57,6 +57,12 @@ for i in xrange(3,4):
                         h_JP2.SetMarkerColor(6)
                         h_AJP.SetMarkerColor(8)
 
+                        h_ZB.SetMarkerLine(1)
+                        h_JP0.SetMarkerLine(2)
+                        h_JP1.SetMarkerLine(4)
+                        h_JP2.SetMarkerLine(6)
+                        h_AJP.SetMarkerLine(8)
+
                         h_ZB.SetXTitle('z(=L_pt/J_pt)')
                         h_ZB.SetTitle('fz shift for %s, pt%s'%(k,i))
                         h_ZB.GetYaxis().SetRangeUser(0,0.06)
@@ -92,16 +98,17 @@ for i in xrange(3,4):
                         print shift_error_JP2
                         print shift_error_AJP
 
-                        lg=TLegend(0.6,0.65,0.9,0.9)
+                        lg=TLegend(0.4,0.6,0.9,0.8)
+                        lg.SetBorderSize(0)
 
-                        lg.AddEntry(h_ZB,'MB','lep')
-                        tchar='JP0: %.4f#pm%.4f'%(shift_JP0,shift_error_JP0)
+                        lg.AddEntry(h_ZB,'MB      Shifit','lep')
+                        tchar='JP0:  %.4f#pm%.4f'%(shift_JP0,shift_error_JP0)
                         lg.AddEntry(h_JP0,tchar,'lep')
-                        tchar='JP1: %.4f#pm%.4f'%(shift_JP1,shift_error_JP1)
+                        tchar='JP1:  %.4f#pm%.4f'%(shift_JP1,shift_error_JP1)
                         lg.AddEntry(h_JP1,tchar,'lep')
-                        tchar='JP2: %.4f#pm%.4f'%(shift_JP2,shift_error_JP2)
+                        tchar='JP2:  %.4f#pm%.4f'%(shift_JP2,shift_error_JP2)
                         lg.AddEntry(h_JP2,tchar,'lep')
-                        tchar='AJP: %.4f#pm%.4f'%(shift_AJP,shift_error_AJP)
+                        tchar='AJP:  %.4f#pm%.4f'%(shift_AJP,shift_error_AJP)
                         lg.AddEntry(h_AJP,tchar,'lep')
 
                         lg.Draw('same')
