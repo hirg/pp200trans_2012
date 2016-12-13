@@ -23,9 +23,9 @@ def cal_shift( pX, pY ):
 for i in xrange(3,4):
         print i
 
-        fin_3 = TFile('../../toHist/data/Jpt3/mc_ptV%d.hist_JP2.root'%i)
-        fin_4 = TFile('../../toHist/data/Jpt4/mc_ptV%d.hist_JP2.root'%i)
-        fin_5 = TFile('../../toHist/data/Jpt5/mc_ptV%d.hist_JP2.root'%i)
+        fin_3 = TFile('../toHist/data/Jpt3/mc_ptV%d.hist_JP2.root'%i)
+        fin_4 = TFile('../toHist/data/Jpt4/mc_ptV%d.hist_JP2.root'%i)
+        fin_5 = TFile('../toHist/data/Jpt5/mc_ptV%d.hist_JP2.root'%i)
 
         for j in reckind_List:
                 print j
