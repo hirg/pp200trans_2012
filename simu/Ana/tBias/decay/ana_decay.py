@@ -99,6 +99,8 @@ for i in xrange(3,4):
                                         d_AJP.SetBinContent(ppid_bin,nEvts)
                                         d_AJP.SetBinError(ppid_bin,enEvts)
 
+                                        pass
+
                                 
                                 d_ZB.SetMarkerStyle(20)
                                 d_JP0.SetMarkerStyle(20)
@@ -133,11 +135,11 @@ for i in xrange(3,4):
                                 lg.SetBorderSize(0)
                                 lg.SetNColumns(2)
 
-                                lg.AddEntry(h_ZB,'MB ','lep')
-                                lg.AddEntry(h_JP0,'JP0','lep')
-                                lg.AddEntry(h_JP1,'JP1','lep')
-                                lg.AddEntry(h_JP2,'JP2','lep')
-                                lg.AddEntry(h_AJP,'AJP','lep')
+                                lg.AddEntry(d_ZB,'MB ','lep')
+                                lg.AddEntry(d_JP0,'JP0','lep')
+                                lg.AddEntry(d_JP1,'JP1','lep')
+                                lg.AddEntry(d_JP2,'JP2','lep')
+                                lg.AddEntry(d_AJP,'AJP','lep')
 
                                 lg.Draw('same')
 
@@ -146,7 +148,7 @@ for i in xrange(3,4):
                                 cn = 'Pic/decay_%s_%s_J%d_PT%d.eps' %(j,k,m,i)
                                 tc.SaveAs(cn)
 
-                                #pass
-                        #pass
-                #pass
-        #pass
+                                pass
+                        pass
+                pass
+        pass
