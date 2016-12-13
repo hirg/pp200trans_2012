@@ -60,8 +60,8 @@ for i in xrange(3,4):
                                                 h_5.Rebin(5)
                                                 pass
                                         h_3.SetMarkerStyle(20)
-                                        h_4.SetMarkerStyle(20)
-                                        h_5.SetMarkerStyle(20)
+                                        h_4.SetMarkerStyle(21)
+                                        h_5.SetMarkerStyle(34)
                                         h_3.SetMarkerColor(2)
                                         h_4.SetMarkerColor(4)
                                         h_5.SetMarkerColor(6)
@@ -75,8 +75,9 @@ for i in xrange(3,4):
                                         h_4.Draw('same')
                                         h_5.Draw('same')
 
-                                        lg=TLegend(0.15,0.75,0.4,0.88)
+                                        lg=TLegend(0.1,0.82,0.4,0.88)
                                         lg.SetBorderSize(0)
+                                        lg.SetNColumns(3)
 
                                         lg.AddEntry(h_3,'J_pt3','lep')
                                         lg.AddEntry(h_4,'J_pt4','lep')
