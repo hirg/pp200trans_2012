@@ -71,9 +71,12 @@ for i in xrange(3,4):
 
                                         tc.cd()
 
+                                        h_3.Draw('same')
+                                        h_4.Draw('same')
+                                        h_5.Draw('same')
+
                                         lg=TLegend(0.15,0.75,0.4,0.88)
                                         lg.SetBorderSize(0)
-                                        lg.SetNColumns(2)
 
                                         lg.AddEntry(h_3,'J_pt3','lep')
                                         lg.AddEntry(h_4,'J_pt4','lep')
