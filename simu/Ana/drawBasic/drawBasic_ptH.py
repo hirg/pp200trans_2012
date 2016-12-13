@@ -45,6 +45,7 @@ for i in xrange(3,4):
                                         print n
 
                                         tc=TCanvas('c','c',1600,700)
+                                        tc.Divide(4,2)
 
                                         h_3=fin_3.Get('h_%s_%s_%s_J%d_PT%d'%(j,n,k,m,i-1))
                                         h_4=fin_4.Get('h_%s_%s_%s_J%d_PT%d'%(j,n,k,m,i-1))
