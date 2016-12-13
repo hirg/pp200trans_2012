@@ -1,6 +1,6 @@
 from ROOT import TFile, TH1D, TCanvas, TStyle, TLegend, TPaveText, TLatex
 
-reckind_List = ['g','a','m','t']
+reckind_List = ['a','m','t']
 particle_List = ['L','A']
 
 trig_List = ['ZB','JP0','JP1','JP2','AJP']
