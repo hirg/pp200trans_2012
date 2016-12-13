@@ -392,14 +392,17 @@ Bool_t fillHist::Process(Long64_t entry)
          {
             if( sL_index[i]<0 ) continue;
             if( sL_dr[i]<0 || sL_dr[i]>0.6 ) continue;
-            int iJ = sL_index[i];
-            h_fz_L[_kPT]->Fill(sL_pt[i]/J_pt[iJ]);
          }
 
-         h_im_L_J[kJ][kPT]->Fill(sL_im[i]);
+         h_im_L[kJ][kPT]->Fill(sL_im[i]);
 
          if (sL_im[i]>=kIM3[kPT] && sL_im[i]<kIM4[kPT])
          {
+            if (kJ)
+            {
+               int iJ = sL_index[i];
+               h_peak_fz_L[kPT]->Fill(sL_pt[i]/J_pt[iJ]);
+            }
             h_peak_pt_Lp[kJ][kPT]->Fill(sLp_pt[i]);
             h_peak_eta_Lp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_peak_phi_Lp[kJ][kPT]->Fill(sLp_phi[i]); 
@@ -412,8 +415,8 @@ Bool_t fillHist::Process(Long64_t entry)
 
             h_peak_dca_Lp[kJ][kPT]->Fill(sLp_dca[i]);   
             h_peak_dca_Lpi[kJ][kPT]->Fill(sLpi_dca[i]);   
-            h_peak_nFit_Lp[kJ][kPT]->Fill(sLp_nFit[i]);
-            h_peak_nFit_Lpi[kJ][kPT]->Fill(sLpi_nFit[i]);  
+            h_peak_nFit_Lp[kJ][kPT]->Fill(sLp_nHit[i]);
+            h_peak_nFit_Lpi[kJ][kPT]->Fill(sLpi_nHit[i]);  
             h_peak_nSigP_Lp[kJ][kPT]->Fill(sLp_nSigmaP[i]);
             h_peak_nSigPi_Lpi[kJ][kPT]->Fill(sLpi_nSigmaPi[i]);
             h_peak_dl_L[kJ][kPT]->Fill(sL_dl[i]);   
@@ -428,6 +431,11 @@ Bool_t fillHist::Process(Long64_t entry)
 
          if ( (sL_im[i]>=kIM1[kPT] && sL_im[i]<kIM2[kPT]) || (sL_im[i]>=kIM5[kPT] && sL_im[i]<kIM6[kPT]) )
          {
+            if (kJ)
+            {
+               int iJ = sL_index[i];
+               h_bkg_fz_L[kPT]->Fill(sL_pt[i]/J_pt[iJ]);
+            }
             h_bkg_pt_Lp[kJ][kPT]->Fill(sLp_pt[i]);
             h_bkg_eta_Lp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_bkg_phi_Lp[kJ][kPT]->Fill(sLp_phi[i]); 
@@ -440,8 +448,8 @@ Bool_t fillHist::Process(Long64_t entry)
 
             h_bkg_dca_Lp[kJ][kPT]->Fill(sLp_dca[i]);   
             h_bkg_dca_Lpi[kJ][kPT]->Fill(sLpi_dca[i]);   
-            h_bkg_nFit_Lp[kJ][kPT]->Fill(sLp_nFit[i]);
-            h_bkg_nFit_Lpi[kJ][kPT]->Fill(sLpi_nFit[i]);  
+            h_bkg_nFit_Lp[kJ][kPT]->Fill(sLp_nHit[i]);
+            h_bkg_nFit_Lpi[kJ][kPT]->Fill(sLpi_nHit[i]);  
             h_bkg_nSigP_Lp[kJ][kPT]->Fill(sLp_nSigmaP[i]);
             h_bkg_nSigPi_Lpi[kJ][kPT]->Fill(sLpi_nSigmaPi[i]);
             h_bkg_dl_L[kJ][kPT]->Fill(sL_dl[i]);   
@@ -467,14 +475,17 @@ Bool_t fillHist::Process(Long64_t entry)
          {
             if( sA_index[i]<0 ) continue;
             if( sA_dr[i]<0 || sA_dr[i]>0.6 ) continue;
-            int iJ = sA_index[i];
-            h_fz_A[_kPT]->Fill(sA_pt[i]/J_pt[iJ]);
          }
 
-         h_im_A_J[kJ][kPT]->Fill(sA_im[i]);
+         h_im_A[kJ][kPT]->Fill(sA_im[i]);
 
          if (sA_im[i]>=kIM3[kPT] && sA_im[i]<kIM4[kPT])
          {
+            if (kJ)
+            {
+               int iJ = sA_index[i];
+               h_peak_fz_A[kPT]->Fill(sA_pt[i]/J_pt[iJ]);
+            }
             h_peak_pt_Ap[kJ][kPT]->Fill(sLp_pt[i]);
             h_peak_eta_Ap[kJ][kPT]->Fill(sLp_eta[i]); 
             h_peak_phi_Ap[kJ][kPT]->Fill(sLp_phi[i]); 
@@ -487,8 +498,8 @@ Bool_t fillHist::Process(Long64_t entry)
 
             h_peak_dca_Ap[kJ][kPT]->Fill(sLp_dca[i]);   
             h_peak_dca_Api[kJ][kPT]->Fill(sLpi_dca[i]);   
-            h_peak_nFit_Ap[kJ][kPT]->Fill(sLp_nFit[i]);
-            h_peak_nFit_Api[kJ][kPT]->Fill(sLpi_nFit[i]);  
+            h_peak_nFit_Ap[kJ][kPT]->Fill(sLp_nHit[i]);
+            h_peak_nFit_Api[kJ][kPT]->Fill(sLpi_nHit[i]);  
             h_peak_nSigP_Ap[kJ][kPT]->Fill(sLp_nSigmaP[i]);
             h_peak_nSigPi_Api[kJ][kPT]->Fill(sLpi_nSigmaPi[i]);
             h_peak_dl_A[kJ][kPT]->Fill(sA_dl[i]);   
@@ -503,6 +514,11 @@ Bool_t fillHist::Process(Long64_t entry)
 
          if ( (sA_im[i]>=kIM1[kPT] && sA_im[i]<kIM2[kPT]) || (sA_im[i]>=kIM5[kPT] && sA_im[i]<kIM6[kPT]) )
          {
+            if (kJ)
+            {
+               int iJ = sA_index[i];
+               h_bkg_fz_A[kPT]->Fill(sA_pt[i]/J_pt[iJ]);
+            }
             h_bkg_pt_Ap[kJ][kPT]->Fill(sLp_pt[i]);
             h_bkg_eta_Ap[kJ][kPT]->Fill(sLp_eta[i]); 
             h_bkg_phi_Ap[kJ][kPT]->Fill(sLp_phi[i]); 
@@ -515,8 +531,8 @@ Bool_t fillHist::Process(Long64_t entry)
 
             h_bkg_dca_Ap[kJ][kPT]->Fill(sLp_dca[i]);   
             h_bkg_dca_Api[kJ][kPT]->Fill(sLpi_dca[i]);   
-            h_bkg_nFit_Ap[kJ][kPT]->Fill(sLp_nFit[i]);
-            h_bkg_nFit_Api[kJ][kPT]->Fill(sLpi_nFit[i]);  
+            h_bkg_nFit_Ap[kJ][kPT]->Fill(sLp_nHit[i]);
+            h_bkg_nFit_Api[kJ][kPT]->Fill(sLpi_nHit[i]);  
             h_bkg_nSigP_Ap[kJ][kPT]->Fill(sLp_nSigmaP[i]);
             h_bkg_nSigPi_Api[kJ][kPT]->Fill(sLpi_nSigmaPi[i]);
             h_bkg_dl_A[kJ][kPT]->Fill(sA_dl[i]);   
@@ -546,10 +562,15 @@ Bool_t fillHist::Process(Long64_t entry)
             h_fz_K[_kPT]->Fill(sK_pt[i]/J_pt[iJ]);
          }
 
-         h_im_K_J[kJ][kPT]->Fill(sK_im[i]);
+         h_im_K[kJ][kPT]->Fill(sK_im[i]);
 
          if (sK_im[i]>=kIMK3[kPT] && sK_im[i]<kIMK4[kPT])
          {
+            if (kJ)
+            {
+               int iJ = sK_index[i];
+               h_peak_fz_K[kPT]->Fill(sK_pt[i]/J_pt[iJ]);
+            }
             h_peak_pt_Kp[kJ][kPT]->Fill(sLp_pt[i]);
             h_peak_eta_Kp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_peak_phi_Kp[kJ][kPT]->Fill(sLp_phi[i]); 
@@ -562,8 +583,8 @@ Bool_t fillHist::Process(Long64_t entry)
 
             h_peak_dca_Kp[kJ][kPT]->Fill(sLp_dca[i]);   
             h_peak_dca_Kpi[kJ][kPT]->Fill(sLpi_dca[i]);   
-            h_peak_nFit_Kp[kJ][kPT]->Fill(sLp_nFit[i]);
-            h_peak_nFit_Kpi[kJ][kPT]->Fill(sLpi_nFit[i]);  
+            h_peak_nFit_Kp[kJ][kPT]->Fill(sLp_nHit[i]);
+            h_peak_nFit_Kpi[kJ][kPT]->Fill(sLpi_nHit[i]);  
             h_peak_nSigP_Kp[kJ][kPT]->Fill(sLp_nSigmaP[i]);
             h_peak_nSigPi_Kpi[kJ][kPT]->Fill(sLpi_nSigmaPi[i]);
             h_peak_dl_K[kJ][kPT]->Fill(sK_dl[i]);   
@@ -578,6 +599,11 @@ Bool_t fillHist::Process(Long64_t entry)
 
          if ( (sK_im[i]>=kIMK1[kPT] && sK_im[i]<kIMK2[kPT]) || (sK_im[i]>=kIMK5[kPT] && sK_im[i]<kIMK6[kPT]) )
          {
+            if (kJ)
+            {
+               int iJ = sK_index[i];
+               h_bkg_fz_K[kPT]->Fill(sK_pt[i]/J_pt[iJ]);
+            }
             h_bkg_pt_Kp[kJ][kPT]->Fill(sLp_pt[i]);
             h_bkg_eta_Kp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_bkg_phi_Kp[kJ][kPT]->Fill(sLp_phi[i]); 
@@ -590,8 +616,8 @@ Bool_t fillHist::Process(Long64_t entry)
 
             h_bkg_dca_Kp[kJ][kPT]->Fill(sLp_dca[i]);   
             h_bkg_dca_Kpi[kJ][kPT]->Fill(sLpi_dca[i]);   
-            h_bkg_nFit_Kp[kJ][kPT]->Fill(sLp_nFit[i]);
-            h_bkg_nFit_Kpi[kJ][kPT]->Fill(sLpi_nFit[i]);  
+            h_bkg_nFit_Kp[kJ][kPT]->Fill(sLp_nHit[i]);
+            h_bkg_nFit_Kpi[kJ][kPT]->Fill(sLpi_nHit[i]);  
             h_bkg_nSigP_Kp[kJ][kPT]->Fill(sLp_nSigmaP[i]);
             h_bkg_nSigPi_Kpi[kJ][kPT]->Fill(sLpi_nSigmaPi[i]);
             h_bkg_dl_K[kJ][kPT]->Fill(sK_dl[i]);   
