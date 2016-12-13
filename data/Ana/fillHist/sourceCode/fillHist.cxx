@@ -105,6 +105,10 @@ void fillHist::Begin(TTree * /*tree*/)
          h_peak_dca_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_peak_dca_Lpi_J%d_PT%d", kJ, kPT);
          h_peak_dca_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_peak_nSigP_Lp_J%d_PT%d", kJ, kPT);
+         h_peak_nSigP_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_peak_nSigPi_Lpi_J%d_PT%d", kJ, kPT);
+         h_peak_nSigPi_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
          hn = Form("h_peak_nFit_Lp_J%d_PT%d", kJ, kPT);
          h_peak_nFit_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),46,0,46);
          hn = Form("h_peak_nFit_Lpi_J%d_PT%d", kJ, kPT);
@@ -144,6 +148,10 @@ void fillHist::Begin(TTree * /*tree*/)
          h_bkg_dca_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_bkg_dca_Lpi_J%d_PT%d", kJ, kPT);
          h_bkg_dca_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_bkg_nSigP_Lp_J%d_PT%d", kJ, kPT);
+         h_bkg_nSigP_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_bkg_nSigPi_Lpi_J%d_PT%d", kJ, kPT);
+         h_bkg_nSigPi_Lpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
          hn = Form("h_bkg_nFit_Lp_J%d_PT%d", kJ, kPT);
          h_bkg_nFit_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),46,0,46);
          hn = Form("h_bkg_nFit_Lpi_J%d_PT%d", kJ, kPT);
@@ -187,6 +195,10 @@ void fillHist::Begin(TTree * /*tree*/)
          h_peak_dca_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_peak_dca_Api_J%d_PT%d", kJ, kPT);
          h_peak_dca_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_peak_nSigP_Ap_J%d_PT%d", kJ, kPT);
+         h_peak_nSigP_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_peak_nSigPi_Api_J%d_PT%d", kJ, kPT);
+         h_peak_nSigPi_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
          hn = Form("h_peak_nFit_Ap_J%d_PT%d", kJ, kPT);
          h_peak_nFit_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),46,0,46);
          hn = Form("h_peak_nFit_Api_J%d_PT%d", kJ, kPT);
@@ -226,6 +238,10 @@ void fillHist::Begin(TTree * /*tree*/)
          h_bkg_dca_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_bkg_dca_Api_J%d_PT%d", kJ, kPT);
          h_bkg_dca_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_bkg_nSigP_Ap_J%d_PT%d", kJ, kPT);
+         h_bkg_nSigP_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_bkg_nSigPi_Api_J%d_PT%d", kJ, kPT);
+         h_bkg_nSigPi_Api[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
          hn = Form("h_bkg_nFit_Ap_J%d_PT%d", kJ, kPT);
          h_bkg_nFit_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),46,0,46);
          hn = Form("h_bkg_nFit_Api_J%d_PT%d", kJ, kPT);
@@ -269,6 +285,10 @@ void fillHist::Begin(TTree * /*tree*/)
          h_peak_dca_Kp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_peak_dca_Kpi_J%d_PT%d", kJ, kPT);
          h_peak_dca_Kpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_peak_nSigP_Kp_J%d_PT%d", kJ, kPT);
+         h_peak_nSigP_Kp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_peak_nSigPi_Kpi_J%d_PT%d", kJ, kPT);
+         h_peak_nSigPi_Kpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
          hn = Form("h_peak_nFit_Kp_J%d_PT%d", kJ, kPT);
          h_peak_nFit_Kp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),46,0,46);
          hn = Form("h_peak_nFit_Kpi_J%d_PT%d", kJ, kPT);
@@ -308,6 +328,10 @@ void fillHist::Begin(TTree * /*tree*/)
          h_bkg_dca_Kp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
          hn = Form("h_bkg_dca_Kpi_J%d_PT%d", kJ, kPT);
          h_bkg_dca_Kpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),50,0,5);
+         hn = Form("h_bkg_nSigP_Kp_J%d_PT%d", kJ, kPT);
+         h_bkg_nSigP_Kp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
+         hn = Form("h_bkg_nSigPi_Kpi_J%d_PT%d", kJ, kPT);
+         h_bkg_nSigPi_Kpi[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),120,-3,3);
          hn = Form("h_bkg_nFit_Kp_J%d_PT%d", kJ, kPT);
          h_bkg_nFit_Kp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),46,0,46);
          hn = Form("h_bkg_nFit_Kpi_J%d_PT%d", kJ, kPT);
@@ -376,12 +400,14 @@ Bool_t fillHist::Process(Long64_t entry)
       h_rt_J->Fill(J_rt[i]);
       h_charge_J->Fill(J_charge[i]);
    }
+   cout << "event filling over. " << endl;
 
    for (int kJ=0; kJ<2; ++kJ)
    {
       for (int i = 0; i < snlam; ++i)
       {
          int kPT=getPTbin(sL_pt[i]);
+         cout << "L PTbin: " << kPT << endl;
          if (kPT<0)
          {
             continue;
@@ -465,6 +491,7 @@ Bool_t fillHist::Process(Long64_t entry)
       for (int i = 0; i < snlbr; ++i)
       {
          int kPT=getPTbin(sA_pt[i]);
+         cout << "A PTbin: " << kPT << endl;
          if (kPT<0)
          {
             continue;
@@ -548,6 +575,7 @@ Bool_t fillHist::Process(Long64_t entry)
       for (int i = 0; i < snk0s; ++i)
       {
          int kPT=getPTbin(sK_pt[i]);
+         cout << "K PTbin: " << kPT << endl;
          if (kPT<0)
          {
             continue;
