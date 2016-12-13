@@ -23,14 +23,14 @@ def cal_shift( pX, pY ):
 for i in xrange(3,4):
         print i
 
-        fin_3 = TFile('../toHist/data/Jpt5/mc_ptH_3_4_3000.hist_JP2.root'%i)
-        fin_4 = TFile('../toHist/data/Jpt5/mc_ptH_4_5_3000.hist_JP2.root'%i)
-        fin_5 = TFile('../toHist/data/Jpt5/mc_ptH_5_6_3000.hist_JP2.root'%i)
-        fin_6 = TFile('../toHist/data/Jpt5/mc_ptH_6_8_3000.hist_JP2.root'%i)
-        fin_11 = TFile('../toHist/data/Jpt5/mc_ptH_11_15_3000.hist_JP2.root'%i)
-        fin_15 = TFile('../toHist/data/Jpt5/mc_ptH_15_20_3000.hist_JP2.root'%i)
-        fin_20 = TFile('../toHist/data/Jpt5/mc_ptH_20_25_3000.hist_JP2.root'%i)
-        fin_25 = TFile('../toHist/data/Jpt5/mc_ptH_25_35_3000.hist_JP2.root'%i)
+        fin_3 = TFile('../toHist/data/Jpt5/mc_ptH_3_4_3000.hist_JP2.root')
+        fin_4 = TFile('../toHist/data/Jpt5/mc_ptH_4_5_3000.hist_JP2.root')
+        fin_5 = TFile('../toHist/data/Jpt5/mc_ptH_5_6_3000.hist_JP2.root')
+        fin_6 = TFile('../toHist/data/Jpt5/mc_ptH_6_8_3000.hist_JP2.root')
+        fin_11 = TFile('../toHist/data/Jpt5/mc_ptH_11_15_3000.hist_JP2.root')
+        fin_15 = TFile('../toHist/data/Jpt5/mc_ptH_15_20_3000.hist_JP2.root')
+        fin_20 = TFile('../toHist/data/Jpt5/mc_ptH_20_25_3000.hist_JP2.root')
+        fin_25 = TFile('../toHist/data/Jpt5/mc_ptH_25_35_3000.hist_JP2.root')
 
         for j in reckind_List:
                 print j
