@@ -4,7 +4,7 @@ reckind_List = ['g','a']
 particle_List = ['L','A']
 
 trig_List = ['ZB','JP0','JP1','JP2','AJP']
-#ppid_List = [-4232,-4132,-4122,-3334,-3322,-3312,-3224,-3214,-3212,-3114,-531,-521,-511,-443,-441,91,92,441,443,511,521,531,3114,3212,3214,3224,3312,3322,3334,4122,4132,4232]
+ppid_List = [-4232,-4132,-4122,-3334,-3322,-3312,-3224,-3214,-3212,-3114,-531,-521,-511,-443,-441,91,92,441,443,511,521,531,3114,3212,3214,3224,3312,3322,3334,4122,4132,4232]
 
 def cal_shift_error( pX, pY, epX, epY):
         pXsq=pX*pX
@@ -31,7 +31,7 @@ for i in xrange(3,4):
         for j in reckind_List:
                 print j
 
-                for m in xrange(0,1):
+                for m in xrange(0,2):
                         print m
 
                         for k in particle_List:
@@ -49,13 +49,15 @@ for i in xrange(3,4):
                                 h_JP2.Scale(1.0000/(h_JP2.Integral()))
                                 h_AJP.Scale(1.0000/(h_AJP.Integral()))
 
+                                '''
                                 h_ZB.GetXaxis().SetDecimals(1)
                                 h_JP0.GetXaxis().SetDecimals(1)
                                 h_JP1.GetXaxis().SetDecimals(1)
                                 h_JP2.GetXaxis().SetDecimals(1)
                                 h_AJP.GetXaxis().SetDecimals(1)
-
                                 '''
+
+                                
                                 d_ZB=TH1D('decay_ZB','decay_ZB',32,0,32)
                                 d_JP0=TH1D('decay_JP0','decay_JP0',32,0,32)
                                 d_JP1=TH1D('decay_JP1','decay_JP1',32,0,32)
@@ -70,43 +72,64 @@ for i in xrange(3,4):
                                         d_JP2.GetXaxis().SetBinLabel(ppid_bin,str(ppid_List[ppid_bin-1]))
                                         d_AJP.GetXaxis().SetBinLabel(ppid_bin,str(ppid_List[ppid_bin-1]))
 
-                                        nEvts=h_ZB.GetBinContent(ppid)
-                                        if nEvts>0:
-                                                lout='%d\t%d\t%.2e'%(ppid,ppid-5001,nEvts)
-                                                print lout
-                                                #pass
-                                        #pass
-                                '''
-                                h_ZB.SetMarkerStyle(20)
-                                h_JP0.SetMarkerStyle(20)
-                                h_JP1.SetMarkerStyle(20)
-                                h_JP2.SetMarkerStyle(20)
-                                h_AJP.SetMarkerStyle(20)
+                                        ppid=ppid_List[ppid_bin-1]
 
-                                h_ZB.SetMarkerColor(1)
-                                h_JP0.SetMarkerColor(2)
-                                h_JP1.SetMarkerColor(4)
-                                h_JP2.SetMarkerColor(6)
-                                h_AJP.SetMarkerColor(8)
+                                        nEvts=h_ZB.GetBinContent(ppid+5001)
+                                        enEvts=h_ZB.GetBinError(ppid+5001)
+                                        d_ZB.SetBinContent(ppid_bin,nEvts)
+                                        d_ZB.SetBinError(ppid_bin,enEvts)
 
-                                h_ZB.SetLineColor(1)
-                                h_JP0.SetLineColor(2)
-                                h_JP1.SetLineColor(4)
-                                h_JP2.SetLineColor(6)
-                                h_AJP.SetLineColor(8)
+                                        nEvts=h_JP0.GetBinContent(ppid+5001)
+                                        enEvts=h_JP0.GetBinError(ppid+5001)
+                                        d_JP0.SetBinContent(ppid_bin,nEvts)
+                                        d_JP0.SetBinError(ppid_bin,enEvts)
 
-                                h_ZB.SetXTitle('pid_parent')
-                                h_ZB.SetTitle('pid_parent distribution for %s, J%d, pt%s'%(k,m,i))
-                                h_ZB.GetYaxis().SetRangeUser(0,1.0)
+                                        nEvts=h_JP1.GetBinContent(ppid+5001)
+                                        enEvts=h_JP1.GetBinError(ppid+5001)
+                                        d_JP1.SetBinContent(ppid_bin,nEvts)
+                                        d_JP1.SetBinError(ppid_bin,enEvts)
+
+                                        nEvts=h_JP2.GetBinContent(ppid+5001)
+                                        enEvts=h_JP2.GetBinError(ppid+5001)
+                                        d_JP2.SetBinContent(ppid_bin,nEvts)
+                                        d_JP2.SetBinError(ppid_bin,enEvts)
+
+                                        nEvts=h_AJP.GetBinContent(ppid+5001)
+                                        enEvts=h_AJP.GetBinError(ppid+5001)
+                                        d_AJP.SetBinContent(ppid_bin,nEvts)
+                                        d_AJP.SetBinError(ppid_bin,enEvts)
+
+                                
+                                d_ZB.SetMarkerStyle(20)
+                                d_JP0.SetMarkerStyle(20)
+                                d_JP1.SetMarkerStyle(20)
+                                d_JP2.SetMarkerStyle(20)
+                                d_AJP.SetMarkerStyle(20)
+
+                                d_ZB.SetMarkerColor(1)
+                                d_JP0.SetMarkerColor(2)
+                                d_JP1.SetMarkerColor(4)
+                                d_JP2.SetMarkerColor(6)
+                                d_AJP.SetMarkerColor(8)
+
+                                d_ZB.SetLineColor(1)
+                                d_JP0.SetLineColor(2)
+                                d_JP1.SetLineColor(4)
+                                d_JP2.SetLineColor(6)
+                                d_AJP.SetLineColor(8)
+
+                                d_ZB.SetXTitle('pid_parent')
+                                d_ZB.SetTitle('pid_parent distribution for %s, J%d, pt%s'%(k,m,i))
+                                d_ZB.GetYaxis().SetRangeUser(0,1.0)
 
                                 tc.cd()
-                                h_ZB.Draw()
-                                h_JP0.Draw('same')
-                                h_JP1.Draw('same')
-                                h_JP2.Draw('same')
-                                h_AJP.Draw('same')
+                                d_ZB.Draw()
+                                d_JP0.Draw('same')
+                                d_JP1.Draw('same')
+                                d_JP2.Draw('same')
+                                d_AJP.Draw('same')
 
-                                lg=TLegend(0.3,0.7,0.7,0.85)
+                                lg=TLegend(0.15,0.75,0.65,0.88)
                                 lg.SetBorderSize(0)
                                 lg.SetNColumns(2)
 
