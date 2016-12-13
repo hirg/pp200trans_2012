@@ -29,6 +29,7 @@
 #include <TStyle.h>
 #include <iostream>
 
+using namespace std;
 
 void fillHist::Begin(TTree * /*tree*/)
 {
