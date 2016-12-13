@@ -49,11 +49,11 @@ for i in xrange(3,4):
                                 h_JP2.Scale(1.0000/(h_JP2.Integral()))
                                 h_AJP.Scale(1.0000/(h_AJP.Integral()))
 
-                                h_ZB.GetXaxis().SetDecimals(kTRUE)
-                                h_JP0.GetXaxis().SetDecimals(kTRUE)
-                                h_JP1.GetXaxis().SetDecimals(kTRUE)
-                                h_JP2.GetXaxis().SetDecimals(kTRUE)
-                                h_AJP.GetXaxis().SetDecimals(kTRUE)
+                                h_ZB.GetXaxis().SetDecimals(1)
+                                h_JP0.GetXaxis().SetDecimals(1)
+                                h_JP1.GetXaxis().SetDecimals(1)
+                                h_JP2.GetXaxis().SetDecimals(1)
+                                h_AJP.GetXaxis().SetDecimals(1)
 
                                 '''
                                 d_ZB=TH1D('decay_ZB','decay_ZB',32,0,32)
@@ -106,8 +106,9 @@ for i in xrange(3,4):
                                 h_JP2.Draw('same')
                                 h_AJP.Draw('same')
 
-                                lg=TLegend(0.45,0.7,0.7,0.9)
+                                lg=TLegend(0.3,0.7,0.7,0.85)
                                 lg.SetBorderSize(0)
+                                lg.SetNColumns(2)
 
                                 lg.AddEntry(h_ZB,'MB ','lep')
                                 lg.AddEntry(h_JP0,'JP0','lep')
