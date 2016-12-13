@@ -125,11 +125,11 @@ for i in xrange(3,4):
                                 d_ZB.GetYaxis().SetRangeUser(0,1.0)
 
                                 tc.cd()
-                                d_ZB.Draw('d')
-                                d_JP0.Draw('dsame')
-                                d_JP1.Draw('dsame')
-                                d_JP2.Draw('dsame')
-                                d_AJP.Draw('dsame')
+                                d_ZB.Draw()
+                                d_JP0.Draw('same')
+                                d_JP1.Draw('same')
+                                d_JP2.Draw('same')
+                                d_AJP.Draw('same')
 
                                 lg=TLegend(0.15,0.75,0.4,0.88)
                                 lg.SetBorderSize(0)
