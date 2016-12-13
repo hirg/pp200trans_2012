@@ -59,20 +59,30 @@ for i in xrange(3,4):
                                         h_4.Scale(1.0000/(h_4.Integral()))
                                         h_5.Scale(1.0000/(h_5.Integral()))
                                         h_6.Scale(1.0000/(h_6.Integral()))
-                                        h_11.Scale(1.0000/(h_.Integral()))
-                                        h_15.Scale(1.0000/(h_5.Integral()))
-                                        h_20.Scale(1.0000/(h_5.Integral()))
-                                        h_25.Scale(1.0000/(h_5.Integral()))
+                                        h_11.Scale(1.0000/(h_11.Integral()))
+                                        h_15.Scale(1.0000/(h_15.Integral()))
+                                        h_20.Scale(1.0000/(h_20.Integral()))
+                                        h_25.Scale(1.0000/(h_25.Integral()))
 
                                         if n=='eta':
                                                 h_3.Rebin(5)
                                                 h_4.Rebin(5)
                                                 h_5.Rebin(5)
+                                                h_6.Rebin(5)
+                                                h_11.Rebin(5)
+                                                h_15.Rebin(5)
+                                                h_20.Rebin(5)
+                                                h_25.Rebin(5)
                                                 pass
                                         if n=='phi':
                                                 h_3.Rebin(5)
                                                 h_4.Rebin(5)
                                                 h_5.Rebin(5)
+                                                h_6.Rebin(5)
+                                                h_11.Rebin(5)
+                                                h_15.Rebin(5)
+                                                h_20.Rebin(5)
+                                                h_25.Rebin(5)
                                                 pass
 
                                         h_3.SetMarkerStyle(20)
@@ -84,6 +94,7 @@ for i in xrange(3,4):
                                         h_20.SetMarkerStyle(20)
                                         h_25.SetMarkerStyle(20)
 
+                                        '''
                                         h_3.SetMarkerColor(2)
                                         h_4.SetMarkerColor(4)
                                         h_5.SetMarkerColor(6)
@@ -101,6 +112,7 @@ for i in xrange(3,4):
                                         h_15.SetLineColor(6)
                                         h_20.SetLineColor(6)
                                         h_25.SetLineColor(6)
+                                        '''
 
                                         tc.cd(1)
                                         h_3.Draw()
