@@ -57,11 +57,11 @@ for i in xrange(3,4):
                         h_JP2.SetMarkerColor(6)
                         h_AJP.SetMarkerColor(8)
 
-                        h_ZB.SetMarkerLine(1)
-                        h_JP0.SetMarkerLine(2)
-                        h_JP1.SetMarkerLine(4)
-                        h_JP2.SetMarkerLine(6)
-                        h_AJP.SetMarkerLine(8)
+                        h_ZB.SetLineColor(1)
+                        h_JP0.SetLineColor(2)
+                        h_JP1.SetLineColor(4)
+                        h_JP2.SetLineColor(6)
+                        h_AJP.SetLineColor(8)
 
                         h_ZB.SetXTitle('z(=L_pt/J_pt)')
                         h_ZB.SetTitle('fz shift for %s, pt%s'%(k,i))
@@ -114,6 +114,8 @@ for i in xrange(3,4):
                         lg.Draw('same')
 
                         cn = 'Pic/fz_%s_%s_PT%d.png' %(j,k,i)
+                        tc.SaveAs(cn)
+                        cn = 'Pic/fz_%s_%s_PT%d.eps' %(j,k,i)
                         tc.SaveAs(cn)
                         pass
                 pass
