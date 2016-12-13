@@ -49,11 +49,11 @@ for i in xrange(3,4):
                                 h_JP2.Scale(1.0000/(h_JP2.Integral()))
                                 h_AJP.Scale(1.0000/(h_AJP.Integral()))
 
-                                h_ZB.GetXaxis().SetDecimais()
-                                h_JP0.GetXaxis().SetDecimais()
-                                h_JP1.GetXaxis().SetDecimais()
-                                h_JP2.GetXaxis().SetDecimais()
-                                h_AJP.GetXaxis().SetDecimais()
+                                h_ZB.GetXaxis().SetDecimals()
+                                h_JP0.GetXaxis().SetDecimals()
+                                h_JP1.GetXaxis().SetDecimals()
+                                h_JP2.GetXaxis().SetDecimals()
+                                h_AJP.GetXaxis().SetDecimals()
 
                                 '''
                                 d_ZB=TH1D('decay_ZB','decay_ZB',32,0,32)
