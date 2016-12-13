@@ -118,7 +118,6 @@ for i in xrange(3,4):
                                         h_20.Draw()
                                         tc.cd(8)
                                         h_25.Draw()
-                                        lg.Draw('same')
 
                                         cn = 'Pic/%s_%s_%s_J%d_PT%d.png' %(n,j,k,m,i)
                                         tc.SaveAs(cn)
