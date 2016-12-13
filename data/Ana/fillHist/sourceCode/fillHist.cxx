@@ -24,10 +24,13 @@
 //
 
 #include "fillHist.h"
+#include "imInfo.h"
+
 #include <TH1.h>
 #include <TH2.h>
 #include <TStyle.h>
 #include <iostream>
+
 
 using namespace std;
 
@@ -390,7 +393,7 @@ Bool_t fillHist::Process(Long64_t entry)
             if( sL_index[i]<0 ) continue;
             if( sL_dr[i]<0 || sL_dr[i]>0.6 ) continue;
             int iJ = sL_index[i];
-            h_fz_L[ptVmin-1]->Fill(sL_pt[i]/J_pt[iJ]);
+            h_fz_L[_kPT]->Fill(sL_pt[i]/J_pt[iJ]);
          }
 
          h_im_L_J[kJ][kPT]->Fill(sL_im[i]);
@@ -398,7 +401,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if (sL_im[i]>=kIM3[kPT] && sL_im[i]<kIM4[kPT])
          {
             h_peak_pt_Lp[kJ][kPT]->Fill(sLp_pt[i]);
-            h_peak_eta_Lp[kJ][kPT]->FIll(sLp_eta[i]); 
+            h_peak_eta_Lp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_peak_phi_Lp[kJ][kPT]->Fill(sLp_phi[i]); 
             h_peak_pt_Lpi[kJ][kPT]->Fill(sLpi_pt[i]);
             h_peak_eta_Lpi[kJ][kPT]->Fill(sLpi_eta[i]);
@@ -426,7 +429,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if ( (sL_im[i]>=kIM1[kPT] && sL_im[i]<kIM2[kPT]) || (sL_im[i]>=kIM5[kPT] && sL_im[i]<kIM6[kPT]) )
          {
             h_bkg_pt_Lp[kJ][kPT]->Fill(sLp_pt[i]);
-            h_bkg_eta_Lp[kJ][kPT]->FIll(sLp_eta[i]); 
+            h_bkg_eta_Lp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_bkg_phi_Lp[kJ][kPT]->Fill(sLp_phi[i]); 
             h_bkg_pt_Lpi[kJ][kPT]->Fill(sLpi_pt[i]);
             h_bkg_eta_Lpi[kJ][kPT]->Fill(sLpi_eta[i]);
@@ -465,7 +468,7 @@ Bool_t fillHist::Process(Long64_t entry)
             if( sA_index[i]<0 ) continue;
             if( sA_dr[i]<0 || sA_dr[i]>0.6 ) continue;
             int iJ = sA_index[i];
-            h_fz_A[ptVmin-1]->Fill(sA_pt[i]/J_pt[iJ]);
+            h_fz_A[_kPT]->Fill(sA_pt[i]/J_pt[iJ]);
          }
 
          h_im_A_J[kJ][kPT]->Fill(sA_im[i]);
@@ -473,7 +476,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if (sA_im[i]>=kIM3[kPT] && sA_im[i]<kIM4[kPT])
          {
             h_peak_pt_Ap[kJ][kPT]->Fill(sLp_pt[i]);
-            h_peak_eta_Ap[kJ][kPT]->FIll(sLp_eta[i]); 
+            h_peak_eta_Ap[kJ][kPT]->Fill(sLp_eta[i]); 
             h_peak_phi_Ap[kJ][kPT]->Fill(sLp_phi[i]); 
             h_peak_pt_Api[kJ][kPT]->Fill(sLpi_pt[i]);
             h_peak_eta_Api[kJ][kPT]->Fill(sLpi_eta[i]);
@@ -501,7 +504,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if ( (sA_im[i]>=kIM1[kPT] && sA_im[i]<kIM2[kPT]) || (sA_im[i]>=kIM5[kPT] && sA_im[i]<kIM6[kPT]) )
          {
             h_bkg_pt_Ap[kJ][kPT]->Fill(sLp_pt[i]);
-            h_bkg_eta_Ap[kJ][kPT]->FIll(sLp_eta[i]); 
+            h_bkg_eta_Ap[kJ][kPT]->Fill(sLp_eta[i]); 
             h_bkg_phi_Ap[kJ][kPT]->Fill(sLp_phi[i]); 
             h_bkg_pt_Api[kJ][kPT]->Fill(sLpi_pt[i]);
             h_bkg_eta_Api[kJ][kPT]->Fill(sLpi_eta[i]);
@@ -540,15 +543,15 @@ Bool_t fillHist::Process(Long64_t entry)
             if( sK_index[i]<0 ) continue;
             if( sK_dr[i]<0 || sK_dr[i]>0.6 ) continue;
             int iJ = sK_index[i];
-            h_fz_K[ptVmin-1]->Fill(sK_pt[i]/J_pt[iJ]);
+            h_fz_K[_kPT]->Fill(sK_pt[i]/J_pt[iJ]);
          }
 
          h_im_K_J[kJ][kPT]->Fill(sK_im[i]);
 
-         if (sK_im[i]>=kIM3[kPT] && sK_im[i]<kIM4[kPT])
+         if (sK_im[i]>=kIMK3[kPT] && sK_im[i]<kIMK4[kPT])
          {
             h_peak_pt_Kp[kJ][kPT]->Fill(sLp_pt[i]);
-            h_peak_eta_Kp[kJ][kPT]->FIll(sLp_eta[i]); 
+            h_peak_eta_Kp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_peak_phi_Kp[kJ][kPT]->Fill(sLp_phi[i]); 
             h_peak_pt_Kpi[kJ][kPT]->Fill(sLpi_pt[i]);
             h_peak_eta_Kpi[kJ][kPT]->Fill(sLpi_eta[i]);
@@ -573,10 +576,10 @@ Bool_t fillHist::Process(Long64_t entry)
             h_peak_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
          }
 
-         if ( (sK_im[i]>=kIM1[kPT] && sK_im[i]<kIM2[kPT]) || (sK_im[i]>=kIM5[kPT] && sK_im[i]<kIM6[kPT]) )
+         if ( (sK_im[i]>=kIMK1[kPT] && sK_im[i]<kIMK2[kPT]) || (sK_im[i]>=kIMK5[kPT] && sK_im[i]<kIMK6[kPT]) )
          {
             h_bkg_pt_Kp[kJ][kPT]->Fill(sLp_pt[i]);
-            h_bkg_eta_Kp[kJ][kPT]->FIll(sLp_eta[i]); 
+            h_bkg_eta_Kp[kJ][kPT]->Fill(sLp_eta[i]); 
             h_bkg_phi_Kp[kJ][kPT]->Fill(sLp_phi[i]); 
             h_bkg_pt_Kpi[kJ][kPT]->Fill(sLpi_pt[i]);
             h_bkg_eta_Kpi[kJ][kPT]->Fill(sLpi_eta[i]);
