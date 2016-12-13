@@ -71,7 +71,7 @@ for i in xrange(3,4):
 
                                         tc.cd()
 
-                                        h_3.Draw('same')
+                                        h_3.Draw()
                                         h_4.Draw('same')
                                         h_5.Draw('same')
 
