@@ -55,7 +55,7 @@ for i in xrange(3,4):
                         h_JP0.SetMarkerColor(2)
                         h_JP1.SetMarkerColor(4)
                         h_JP2.SetMarkerColor(6)
-                        h_AJP.SetMarkerColor(9)
+                        h_AJP.SetMarkerColor(8)
 
                         h_ZB.SetXTitle('z(=L_pt/J_pt)')
                         h_ZB.SetTitle('fz shift for %s, pt%s'%(k,i))
