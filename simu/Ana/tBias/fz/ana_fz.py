@@ -44,6 +44,7 @@ for i in xrange(3,4):
                         h_JP1.Scale(1.0/(h_JP1.Integral()))
                         h_JP2.Scale(1.0/(h_JP2.Integral()))
                         h_AJP.Scale(1.0/(h_AJP.Integral()))
+
                         h_ZB.SetMarkerStyle(20)
                         h_JP0.SetMarkerStyle(20)
                         h_JP1.SetMarkerStyle(20)
@@ -51,14 +52,14 @@ for i in xrange(3,4):
                         h_AJP.SetMarkerStyle(20)
 
                         h_ZB.SetMarkerColor(1)
-                        h_JP0.SetMarkerStyle(2)
-                        h_JP1.SetMarkerStyle(4)
-                        h_JP2.SetMarkerStyle(8)
-                        h_AJP.SetMarkerStyle(9)
+                        h_JP0.SetMarkerColor(2)
+                        h_JP1.SetMarkerColor(4)
+                        h_JP2.SetMarkerColor(8)
+                        h_AJP.SetMarkerColor(9)
 
                         h_ZB.SetXTitle('z(=L_pt/J_pt)')
                         h_ZB.SetTitle('fz shift for %s, pt%s'%(k,i))
-                        h_ZB.GetYaxis().SetRangeUser(0,0.05)
+                        h_ZB.GetYaxis().SetRangeUser(0,0.06)
 
                         tc.cd()
                         h_ZB.Draw()
@@ -66,13 +67,6 @@ for i in xrange(3,4):
                         h_JP1.Draw('same')
                         h_JP2.Draw('same')
                         h_AJP.Draw('same')
-
-                        lg=TLegend(0.75,0.7,0.9,0.9)
-                        lg.AddEntry(h_ZB,'MB','lep')
-                        lg.AddEntry(h_JP0,'JP0','lep')
-                        lg.AddEntry(h_JP1,'JP1','lep')
-                        lg.AddEntry(h_JP2,'JP2','lep')
-                        lg.AddEntry(h_AJP,'AJP','lep')
 
                         m_ZB=h_ZB.GetMean()
                         m_JP0=h_JP0.GetMean()
@@ -94,15 +88,19 @@ for i in xrange(3,4):
                         shift_error_JP2=cal_shift_error(m_JP2,m_ZB,em_JP2,em_ZB)
                         shift_error_AJP=cal_shift_error(m_AJP,m_ZB,em_AJP,em_ZB)
 
-                        pt=TPaveText(0.7,0.4,0.9,0.7)
-                        pt.AddText('shift of mean value')
-                        pt.AddText('JP0: %.4f#pm%.4f'%(shift_JP0,shift_error_JP0))
-                        pt.AddText('JP1: %.4f#pm%.4f'%(shift_JP1,shift_error_JP1))
-                        pt.AddText('JP2: %.4f#pm%.4f'%(shift_JP2,shift_error_JP2))
-                        pt.AddText('AJP: %.4f#pm%.4f'%(shift_AJP,shift_error_AJP))
+                        lg=TLegend(0.65,0.7,0.9,0.9)
+
+                        lg.AddEntry(h_ZB,'MB','lep')
+                        tchar='JP0: %.4f#pm%.4f'%(shift_JP0,shift_error_JP0)
+                        lg.AddEntry(h_JP0,tchar,'lep')
+                        tchar='JP1: %.4f#pm%.4f'%(shift_JP1,shift_error_JP1)
+                        lg.AddEntry(h_JP1,tchar,'lep')
+                        tchar='JP2: %.4f#pm%.4f'%(shift_JP2,shift_error_JP2)
+                        lg.AddEntry(h_JP2,tchar,'lep')
+                        tchar='AJP: %.4f#pm%.4f'%(shift_AJP,shift_error_AJP)
+                        lg.AddEntry(h_AJP,tchar,'lep')
 
                         lg.Draw('same')
-                        pt.Draw('same')
 
                         cn = 'Pic/fz_%s_%s_PT%d.png' %(j,k,i)
                         tc.SaveAs(cn)
