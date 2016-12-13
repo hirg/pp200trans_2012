@@ -1,4 +1,4 @@
-#from ROOT import TFile, TH1D, TCanvas, TStyle
+from ROOT import TFile, TH1D, TCanvas, TStyle, TLegend
 
 reckind_List = ['g','a','m','t']
 particle_List = ['L','A']
@@ -51,7 +51,27 @@ for i in xrange(1,7):
 			h_JP2.Draw('same')
 			h_AJP.Draw('same')
 
-			cn = 'Pic/fz_%s_%s_PT%d.eps' %(j,k,i)
+			lg = TLegend(0.6,0.7,0.9,0.9)
+			lg.AddEntry(h_ZB,'ZeroBias','lep')
+			lg.AddEntry(h_JP0,'JP0','lep')
+			lg.AddEntry(h_JP1,'JP1','lep')
+			lg.AddEntry(h_JP2,'JP2','lep')
+			lg.AddEntry(h_AJP,'AJP','lep')
+
+			m_ZB = h_ZB.GetMean()
+			m_JP0 = h_JP0.GetMean()
+			m_JP1 = h_JP1.GetMean()
+			m_JP2 = h_JP2.GetMean()
+			m_AJP = h_AJP.GetMean()
+			em_ZB = h_ZB.GetMeanError()
+			em_JP0 = h_JP0.GetMeanError()
+			em_JP1 = h_JP1.GetMeanError()
+			em_JP2 = h_JP2.GetMeanError()
+			em_AJP = h_AJP.GetMeanError()
+
+			lg.Draw('same')
+
+			cn = 'Pic/fz_%s_%s_PT%d.png' %(j,k,i)
 			tc.SaveAs(cn)
 			pass
 		pass
