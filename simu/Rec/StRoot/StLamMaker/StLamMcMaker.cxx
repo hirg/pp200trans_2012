@@ -126,7 +126,7 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("p_s", &p_s, "p_s/D");
         fOutTree->Branch("p_t", &p_t, "p_t/D");
         fOutTree->Branch("p_u", &p_u, "p_u/D");
-        fOutTree->Branch("p_y", &p_y, "p_y/D";);
+        fOutTree->Branch("p_y", &p_y, "p_y/D");
         fOutTree->Branch("p_ptHard", &p_ptHard, "p_ptHard/D");
         fOutTree->Branch("p_cosTheta", &p_cosTheta, "p_cosTheta/D");
         fOutTree->Branch("p_x1", &p_x1, "p_x1/D");
@@ -612,7 +612,7 @@ int StLamMcMaker::Make() {
         p_cosTheta = table_g2t_pythia->cos_th;
         p_x1 = table_g2t_pythia->bjor_1;
         p_x2 = table_g2t_pythia->bjor_2;
-        p_y = t/s;
+        p_y = p_t/p_s;
 
         St_particle *particleTabPtr = (St_particle*)geantDstI("particle");
         particle_st *particleTable = particleTabPtr->GetTable();
@@ -1075,7 +1075,7 @@ int StLamMcMaker::Make() {
                         double Tpi_E = sqrt(M_pion*M_pion + Tpi_p.mag2());
                         double T_E = Tp_E + Tpi_E;
                         double T_im = sqrt( T_E*T_E - T_p.mag2() );
-                        if( T_im>1.16 ) continue;
+                        if( T_im>=1.16 ) continue;
                         if( T_im<1.08 ) continue;
                         //if( dot<0.0 ) continue;
                         //double toa = OpenAngle(T_lv, Tp_lv, Tpi_lv);
@@ -1277,8 +1277,8 @@ int StLamMcMaker::Make() {
                         double Tpi_E = sqrt(M_pion*M_pion + Tpi_p.mag2());
                         double T_E = Tp_E + Tpi_E;
                         double T_im = sqrt( T_E*T_E - T_p.mag2() );
-                        if( T_im>0.42 ) continue;
-                        if( T_im=<0.58 ) continue;
+                        if( T_im>=0.58 ) continue;
+                        if( T_im<0.42 ) continue;
                         //if( dot<0.0 ) continue;
                         //double toa = OpenAngle(T_lv, Tp_lv, Tpi_lv);
 
