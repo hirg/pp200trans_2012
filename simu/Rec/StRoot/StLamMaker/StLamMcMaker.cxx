@@ -192,10 +192,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("g_x_start_L", g_x_start_L, "g_x_start_L[g_nL]/D");
         fOutTree->Branch("g_y_start_L", g_y_start_L, "g_y_start_L[g_nL]/D");
         fOutTree->Branch("g_z_start_L", g_z_start_L, "g_z_start_L[g_nL]/D");
-        fOutTree->Branch("g_geantProc_start_L", g_geantProc_start_L, "g_geantProc_start_L[g_nL]/I");
-        fOutTree->Branch("g_geantMedium_start_L", g_geantMedium_start_L, "g_geantMedium_start_L[g_nL]/I");
-        fOutTree->Branch("g_generatorProc_start_L", g_generatorProc_start_L, "g_generatorProc_start_L[g_nL]/I");
-        fOutTree->Branch("g_key_start_L", g_key_start_L, "g_key_start_L[g_nL]/I");
         fOutTree->Branch("g_pid_parent_L", g_pid_parent_L, "g_pid_parent_L[g_nL]/I");
         fOutTree->Branch("g_gid_parent_L", g_gid_parent_L, "g_gid_parent_L[g_nL]/I");
         fOutTree->Branch("g_key_parent_L", g_key_parent_L, "g_key_parent_L[g_nL]/I");
@@ -231,10 +227,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("g_x_start_A", g_x_start_A, "g_x_start_A[g_nA]/D");
         fOutTree->Branch("g_y_start_A", g_y_start_A, "g_y_start_A[g_nA]/D");
         fOutTree->Branch("g_z_start_A", g_z_start_A, "g_z_start_A[g_nA]/D");
-        fOutTree->Branch("g_geantProc_start_A", g_geantProc_start_A, "g_geantProc_start_A[g_nA]/I");
-        fOutTree->Branch("g_geantMedium_start_A", g_geantMedium_start_A, "g_geantMedium_start_A[g_nA]/I");
-        fOutTree->Branch("g_generatorProc_start_A", g_generatorProc_start_A, "g_generatorProc_start_A[g_nA]/I");
-        fOutTree->Branch("g_key_start_A", g_key_start_A, "g_key_start_A[g_nA]/I");
         fOutTree->Branch("g_pid_parent_A", g_pid_parent_A, "g_pid_parent_A[g_nA]/I");
         fOutTree->Branch("g_gid_parent_A", g_gid_parent_A, "g_gid_parent_A[g_nA]/I");
         fOutTree->Branch("g_key_parent_A", g_key_parent_A, "g_key_parent_A[g_nA]/I");
@@ -270,10 +262,6 @@ void StLamMcMaker::InitOutTree() {
         fOutTree->Branch("g_x_start_K", g_x_start_K, "g_x_start_K[g_nK]/D");
         fOutTree->Branch("g_y_start_K", g_y_start_K, "g_y_start_K[g_nK]/D");
         fOutTree->Branch("g_z_start_K", g_z_start_K, "g_z_start_K[g_nK]/D");
-        fOutTree->Branch("g_geantProc_start_K", g_geantProc_start_K, "g_geantProc_start_K[g_nK]/I");
-        fOutTree->Branch("g_geantMedium_start_K", g_geantMedium_start_K, "g_geantMedium_start_K[g_nK]/I");
-        fOutTree->Branch("g_generatorProc_start_K", g_generatorProc_start_K, "g_generatorProc_start_K[g_nK]/I");
-        fOutTree->Branch("g_key_start_K", g_key_start_K, "g_key_start_K[g_nK]/I");
         fOutTree->Branch("g_pid_parent_K", g_pid_parent_K, "g_pid_parent_K[g_nK]/I");
         fOutTree->Branch("g_gid_parent_K", g_gid_parent_K, "g_gid_parent_K[g_nK]/I");
         fOutTree->Branch("g_key_parent_K", g_key_parent_K, "g_key_parent_K[g_nK]/I");
