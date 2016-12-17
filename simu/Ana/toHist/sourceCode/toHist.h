@@ -43,27 +43,28 @@ const double cut_P_min_pion[6]       = { 0.15, 0.15, 0.20, 0.25, 0.30, 0.40 };
 // Particle ID map
 int findPid( int gid )
 {
-    map<int,int> id_map;
-    id_map[19] = 3222;
-    id_map[20] = 3212;
-    id_map[21] = 3112;
-    id_map[22] = 3322;
-    id_map[23] = 3312;
-    id_map[24] = 3334;
+   map<int,int> id_map;
 
-    id_map[27] = -3222;
-    id_map[28] = -3212;
-    id_map[29] = -3112;
-    id_map[30] = -3322;
-    id_map[31] = -3312;
-    id_map[32] = -3334;
+   id_map[19] = 3222;
+   id_map[20] = 3212;
+   id_map[21] = 3112;
+   id_map[22] = 3322;
+   id_map[23] = 3312;
+   id_map[24] = 3334;
 
-    return id_map[gid];
+   id_map[27] = -3222;
+   id_map[28] = -3212;
+   id_map[29] = -3112;
+   id_map[30] = -3322;
+   id_map[31] = -3312;
+   id_map[32] = -3334;
+
+   return id_map[gid];
 }
 
 class toHist : public TSelector {
 private :
-   TTree          *fChain;   //!pointer to the analyzed TTree or TChain
+   TTree         *fChain;   //!pointer to the analyzed TTree or TChain
 
    // Declaration of leaf types
    int           ptHmin;
@@ -181,10 +182,6 @@ private :
    double        g_x_start_A[kMax];   //[g_nA]
    double        g_y_start_A[kMax];   //[g_nA]
    double        g_z_start_A[kMax];   //[g_nA]
-   int           g_geantProc_start_A[kMax];   //[g_nA]
-   int           g_geantMedium_start_A[kMax];   //[g_nA]
-   int           g_generatorProc_start_A[kMax];   //[g_nA]
-   int           g_key_start_A[kMax];   //[g_nA]
    int           g_pid_parent_A[kMax];   //[g_nA]
    int           g_gid_parent_A[kMax];   //[g_nA]
    int           g_key_parent_A[kMax];   //[g_nA]

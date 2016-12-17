@@ -785,10 +785,7 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_pt_L[kJ][ptVmin-1]->Fill(g_pt_L[i], weight_fill);   
          h_g_eta_L[kJ][ptVmin-1]->Fill(g_eta_L[i], weight_fill);   
          h_g_phi_L[kJ][ptVmin-1]->Fill(g_phi_L[i], weight_fill);   
-         h_g_im_L[kJ][ptVmin-1]->Fill(g_im_L[i], weight_fill);   
-         h_g_geantProc_start_L[kJ][ptVmin-1]->Fill(g_geantProc_start_L[i], weight_fill);   
-         h_g_geantMedium_start_L[kJ][ptVmin-1]->Fill(g_geantMedium_start_L[i], weight_fill);   
-         h_g_generatorProc_start_L[kJ][ptVmin-1]->Fill(g_generatorProc_start_L[i], weight_fill);
+         h_g_im_L[kJ][ptVmin-1]->Fill(g_im_L[i], weight_fill);
          h_g_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
          if( g_gid_parent_L[i]!=0 ) g_pid_parent_L[i] = findPid( g_gid_parent_L[i] );

@@ -67,12 +67,10 @@ void matchTree(const char* inFn_V0)
     	return;
     }
 
-    weight_pt_hard = 1.0;
-    weight_pt_v0 = 1.0;
-    weight_run = 1.0;
+
 
     map<int,double> map_weight_pt_hard = getMAP_ptHweight( ptVmin );
-    weight_pt_hard = map_weight_pt_hard[ptHmin];
+    
     //cout << "8\t" << map_weight_pt_hard[8] << "\tptHmin: "  << ptHmin << "\t" << weight_pt_hard << endl;
     //cout << "11\t" << map_weight_pt_hard[11] << "\tptHmin: "  << ptHmin << "\t" << weight_pt_hard << endl;
 
@@ -96,7 +94,16 @@ void matchTree(const char* inFn_V0)
 
     	assert(v0Tree->m_runN==jetTree->runID && v0Tree->m_evtN==jetTree->evtID);
 
+        weight_pt_hard = 1.0;
+        weight_pt_v0 = 1.0;
+        weight_run = 1.0;
     	weight_pvz = 1.0;
+
+        ptHmin = ptHmin;
+        ptVmin = ptVmin;
+        ptVmax = ptVmax;
+
+        weight_pt_hard = map_weight_pt_hard[ptHmin];
 
         m_runN = v0Tree->m_runN;
         m_evtN = v0Tree->m_evtN;
@@ -143,6 +150,8 @@ void matchTree(const char* inFn_V0)
     	IsJP1s = jetTree->IsJP1s;
     	IsJP2s = jetTree->IsJP2s;
     	IsAJPs = jetTree->IsAJPs;
+
+
 
     	njet = jetTree->njet;
     	for( int j=0; j<njet; j++ ) {
@@ -199,10 +208,6 @@ void matchTree(const char* inFn_V0)
             g_x_start_L[g_nL] = v0Tree->g_x_start_L[i];
             g_y_start_L[g_nL] = v0Tree->g_y_start_L[i];
             g_z_start_L[g_nL] = v0Tree->g_z_start_L[i];
-            g_geantProc_start_L[g_nL] = v0Tree->g_geantProc_start_L[i];
-            g_geantMedium_start_L[g_nL] = v0Tree->g_geantMedium_start_L[i];
-            g_generatorProc_start_L[g_nL] = v0Tree->g_generatorProc_start_L[i];
-            g_key_start_L[g_nL] = v0Tree->g_key_start_L[i];
             g_pid_parent_L[g_nL] = v0Tree->g_pid_parent_L[i];
             g_gid_parent_L[g_nL] = v0Tree->g_gid_parent_L[i];
             g_key_parent_L[g_nL] = v0Tree->g_key_parent_L[i];
@@ -249,10 +254,6 @@ void matchTree(const char* inFn_V0)
             g_x_start_A[g_nA] = v0Tree->g_x_start_A[i];
             g_y_start_A[g_nA] = v0Tree->g_y_start_A[i];
             g_z_start_A[g_nA] = v0Tree->g_z_start_A[i];
-            g_geantProc_start_A[g_nA] = v0Tree->g_geantProc_start_A[i];
-            g_geantMedium_start_A[g_nA] = v0Tree->g_geantMedium_start_A[i];
-            g_generatorProc_start_A[g_nA] = v0Tree->g_generatorProc_start_A[i];
-            g_key_start_A[g_nA] = v0Tree->g_key_start_A[i];
             g_pid_parent_A[g_nA] = v0Tree->g_pid_parent_A[i];
             g_gid_parent_A[g_nA] = v0Tree->g_gid_parent_A[i];
             g_key_parent_A[g_nA] = v0Tree->g_key_parent_A[i];
@@ -299,10 +300,6 @@ void matchTree(const char* inFn_V0)
             g_x_start_K[g_nK] = v0Tree->g_x_start_K[i];
             g_y_start_K[g_nK] = v0Tree->g_y_start_K[i];
             g_z_start_K[g_nK] = v0Tree->g_z_start_K[i];
-            g_geantProc_start_K[g_nK] = v0Tree->g_geantProc_start_K[i];
-            g_geantMedium_start_K[g_nK] = v0Tree->g_geantMedium_start_K[i];
-            g_generatorProc_start_K[g_nK] = v0Tree->g_generatorProc_start_K[i];
-            g_key_start_K[g_nK] = v0Tree->g_key_start_K[i];
             g_pid_parent_K[g_nK] = v0Tree->g_pid_parent_K[i];
             g_gid_parent_K[g_nK] = v0Tree->g_gid_parent_K[i];
             g_key_parent_K[g_nK] = v0Tree->g_key_parent_K[i];
@@ -352,9 +349,9 @@ void matchTree(const char* inFn_V0)
             a_dca2_L[a_nL] = v0Tree->a_dca2_L[i];
             a_dcaV0_L[a_nL] = v0Tree->a_dcaV0_L[i];
             a_crp_L[a_nL] = v0Tree->a_crp_L[i];
-            a_pid_parent_L[a_nL] = v0Tree->g_pid_parent_L[i];
-            a_gid_parent_L[a_nL] = v0Tree->g_gid_parent_L[i];
-            a_key_parent_L[a_nL] = v0Tree->g_key_parent_L[i];
+            a_pid_parent_L[a_nL] = v0Tree->a_pid_parent_L[i];
+            a_gid_parent_L[a_nL] = v0Tree->a_gid_parent_L[i];
+            a_key_parent_L[a_nL] = v0Tree->a_key_parent_L[i];
 
             a_index_L[a_nL] = -1;
             a_type_L[a_nL]  = -1;
@@ -401,9 +398,9 @@ void matchTree(const char* inFn_V0)
             a_dca2_A[a_nA] = v0Tree->a_dca2_A[i];
             a_dcaV0_A[a_nA] = v0Tree->a_dcaV0_A[i];
             a_crp_A[a_nA] = v0Tree->a_crp_A[i];
-            a_pid_parent_A[a_nA] = v0Tree->g_pid_parent_A[i];
-            a_gid_parent_A[a_nA] = v0Tree->g_gid_parent_A[i];
-            a_key_parent_A[a_nA] = v0Tree->g_key_parent_A[i];
+            a_pid_parent_A[a_nA] = v0Tree->a_pid_parent_A[i];
+            a_gid_parent_A[a_nA] = v0Tree->a_gid_parent_A[i];
+            a_key_parent_A[a_nA] = v0Tree->a_key_parent_A[i];
 
             a_index_A[a_nA] = -1;
             a_type_A[a_nA]  = -1;
@@ -450,9 +447,9 @@ void matchTree(const char* inFn_V0)
             a_dca2_K[a_nK] = v0Tree->a_dca2_K[i];
             a_dcaV0_K[a_nK] = v0Tree->a_dcaV0_K[i];
             a_crp_K[a_nK] = v0Tree->a_crp_K[i];
-            a_pid_parent_K[a_nK] = v0Tree->g_pid_parent_K[i];
-            a_gid_parent_K[a_nK] = v0Tree->g_gid_parent_K[i];
-            a_key_parent_K[a_nK] = v0Tree->g_key_parent_K[i];
+            a_pid_parent_K[a_nK] = v0Tree->a_pid_parent_K[i];
+            a_gid_parent_K[a_nK] = v0Tree->a_gid_parent_K[i];
+            a_key_parent_K[a_nK] = v0Tree->a_key_parent_K[i];
 
             a_index_K[a_nK] = -1;
             a_type_K[a_nK]  = -1;

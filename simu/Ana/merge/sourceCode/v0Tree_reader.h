@@ -18,10 +18,23 @@
 
 class v0Tree_reader {
 public :
-   TTree          *fChain;   //!pointer to the analyzed TTree or TChain
+   TTree         *fChain;   //!pointer to the analyzed TTree or TChain
    int           fCurrent; //!current Tree number in a TChain
 
    // Declaration of leaf types
+   double        p_s;
+   double        p_t;
+   double        p_u;
+   double        p_y;
+   double        p_ptHard;
+   double        p_cosTheta;
+   double        p_x1;
+   double        p_x2;
+   int           p_f1;
+   int           p_f2;
+   int           p_f3;
+   int           p_f4;
+
    int           g_runN;
    int           g_evtN;
    int           g_idSubproc;
@@ -33,8 +46,6 @@ public :
    int           g_pv_generatorProc;
    int           g_pv_key;
    int           g_nJets;
-   double        g_impactPar;
-   double        g_phiRP;
    
    int           g_idParton1;
    double        g_pxParton1;
@@ -80,10 +91,6 @@ public :
    double        g_x_start_L[100];   //[g_nL]
    double        g_y_start_L[100];   //[g_nL]
    double        g_z_start_L[100];   //[g_nL]
-   int           g_geantProc_start_L[100];   //[g_nL]
-   int           g_geantMedium_start_L[100];   //[g_nL]
-   int           g_generatorProc_start_L[100];   //[g_nL]
-   int           g_key_start_L[100];   //[g_nL]
    int           g_pid_parent_L[100];   //[g_nL]
    int           g_gid_parent_L[100];   //[g_nL]
    int           g_key_parent_L[100];   //[g_nL]
@@ -119,10 +126,6 @@ public :
    double        g_x_start_A[100];   //[g_nA]
    double        g_y_start_A[100];   //[g_nA]
    double        g_z_start_A[100];   //[g_nA]
-   int           g_geantProc_start_A[100];   //[g_nA]
-   int           g_geantMedium_start_A[100];   //[g_nA]
-   int           g_generatorProc_start_A[100];   //[g_nA]
-   int           g_key_start_A[100];   //[g_nA]
    int           g_pid_parent_A[100];   //[g_nA]
    int           g_gid_parent_A[100];   //[g_nA]
    int           g_key_parent_A[100];   //[g_nA]
@@ -158,10 +161,6 @@ public :
    double        g_x_start_K[100];   //[g_nK]
    double        g_y_start_K[100];   //[g_nK]
    double        g_z_start_K[100];   //[g_nK]
-   int           g_geantProc_start_K[100];   //[g_nK]
-   int           g_geantMedium_start_K[100];   //[g_nK]
-   int           g_generatorProc_start_K[100];   //[g_nK]
-   int           g_key_start_K[100];   //[g_nK]
    int           g_pid_parent_K[100];   //[g_nK]
    int           g_gid_parent_K[100];   //[g_nK]
    int           g_key_parent_K[100];   //[g_nK]
@@ -392,6 +391,19 @@ public :
    double        m_phi_K[100];   //[m_nK]
 
    // List of branches
+   TBranch        *b_p_s;
+   TBranch        *b_p_t;
+   TBranch        *b_p_u;
+   TBranch        *b_p_y;
+   TBranch        *b_p_ptHard;
+   TBranch        *b_p_cosTheta;
+   TBranch        *b_p_x1;
+   TBranch        *b_p_x2;
+   TBranch        *b_p_f1;
+   TBranch        *b_p_f2;
+   TBranch        *b_p_f3;
+   TBranch        *b_p_f4;
+
    TBranch        *b_g_runN;   //!
    TBranch        *b_g_evtN;   //!
    TBranch        *b_g_idSubproc;   //!
@@ -403,8 +415,6 @@ public :
    TBranch        *b_g_pv_generatorProc;   //!
    TBranch        *b_g_pv_key;   //!
    TBranch        *b_g_nJets;   //!
-   TBranch        *b_g_impactPar;
-   TBranch        *b_g_phiRP;
 
    TBranch        *b_g_idParton1;
    TBranch        *b_g_pxParton1;
@@ -450,10 +460,6 @@ public :
    TBranch        *b_g_x_start_L;   //!
    TBranch        *b_g_y_start_L;   //!
    TBranch        *b_g_z_start_L;   //!
-   TBranch        *b_g_geantProc_start_L;   //!
-   TBranch        *b_g_geantMedium_start_L;   //!
-   TBranch        *b_g_generatorProc_start_L;   //!
-   TBranch        *b_g_key_start_L;   //!
    TBranch        *b_g_pid_parent_L;   //!
    TBranch        *b_g_gid_parent_L;   //!
    TBranch        *b_g_key_parent_L;   //!
@@ -489,10 +495,6 @@ public :
    TBranch        *b_g_x_start_A;   //!
    TBranch        *b_g_y_start_A;   //!
    TBranch        *b_g_z_start_A;   //!
-   TBranch        *b_g_geantProc_start_A;   //!
-   TBranch        *b_g_geantMedium_start_A;   //!
-   TBranch        *b_g_generatorProc_start_A;   //!
-   TBranch        *b_g_key_start_A;   //!
    TBranch        *b_g_pid_parent_A;   //!
    TBranch        *b_g_gid_parent_A;   //!
    TBranch        *b_g_key_parent_A;   //!
@@ -528,10 +530,6 @@ public :
    TBranch        *b_g_x_start_K;   //!
    TBranch        *b_g_y_start_K;   //!
    TBranch        *b_g_z_start_K;   //!
-   TBranch        *b_g_geantProc_start_K;   //!
-   TBranch        *b_g_geantMedium_start_K;   //!
-   TBranch        *b_g_generatorProc_start_K;   //!
-   TBranch        *b_g_key_start_K;   //!
    TBranch        *b_g_pid_parent_K;   //!
    TBranch        *b_g_gid_parent_K;   //!
    TBranch        *b_g_key_parent_K;   //!
@@ -842,6 +840,19 @@ void v0Tree_reader::Init(TTree *tree)
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
+   fChain->SetBranchAddress("p_s", &p_s, &b_p_s);
+   fChain->SetBranchAddress("p_t", &p_t, &b_p_t);
+   fChain->SetBranchAddress("p_u", &p_u, &b_p_u);
+   fChain->SetBranchAddress("p_y", &p_y, &b_p_y);
+   fChain->SetBranchAddress("p_ptHard", &p_ptHard, &b_p_ptHard);
+   fChain->SetBranchAddress("p_cosTheta", &p_cosTheta, &b_p_cosTheta);
+   fChain->SetBranchAddress("p_x1", &p_x1, &b_p_x1);
+   fChain->SetBranchAddress("p_x2", &p_x2, &b_p_x2);
+   fChain->SetBranchAddress("p_f1", &p_f1, &b_p_f1);
+   fChain->SetBranchAddress("p_f2", &p_f2, &b_p_f2);
+   fChain->SetBranchAddress("p_f3", &p_f3, &b_p_f3);
+   fChain->SetBranchAddress("p_f4", &p_f4, &b_p_f4);
+
    fChain->SetBranchAddress("g_runN", &g_runN, &b_g_runN);
    fChain->SetBranchAddress("g_evtN", &g_evtN, &b_g_evtN);
    fChain->SetBranchAddress("g_idSubproc", &g_idSubproc, &b_g_idSubproc);
@@ -853,8 +864,6 @@ void v0Tree_reader::Init(TTree *tree)
    fChain->SetBranchAddress("g_pv_generatorProc", &g_pv_generatorProc, &b_g_pv_generatorProc);
    fChain->SetBranchAddress("g_pv_key", &g_pv_key, &b_g_pv_key);
    fChain->SetBranchAddress("g_nJets", &g_nJets, &b_g_nJets);
-   fChain->SetBranchAddress("g_impactPar", &g_impactPar, &b_g_impactPar);
-   fChain->SetBranchAddress("g_phiRP", &g_phiRP, &b_g_phiRP);
 
    fChain->SetBranchAddress("g_idParton1",& g_idParton1, &b_g_idParton1);
    fChain->SetBranchAddress("g_pxParton1",& g_pxParton1, &b_g_pxParton1);
@@ -900,10 +909,6 @@ void v0Tree_reader::Init(TTree *tree)
    fChain->SetBranchAddress("g_x_start_L", g_x_start_L, &b_g_x_start_L);
    fChain->SetBranchAddress("g_y_start_L", g_y_start_L, &b_g_y_start_L);
    fChain->SetBranchAddress("g_z_start_L", g_z_start_L, &b_g_z_start_L);
-   fChain->SetBranchAddress("g_geantProc_start_L", g_geantProc_start_L, &b_g_geantProc_start_L);
-   fChain->SetBranchAddress("g_geantMedium_start_L", g_geantMedium_start_L, &b_g_geantMedium_start_L);
-   fChain->SetBranchAddress("g_generatorProc_start_L", g_generatorProc_start_L, &b_g_generatorProc_start_L);
-   fChain->SetBranchAddress("g_key_start_L", g_key_start_L, &b_g_key_start_L);
    fChain->SetBranchAddress("g_pid_parent_L", g_pid_parent_L, &b_g_pid_parent_L);
    fChain->SetBranchAddress("g_gid_parent_L", g_gid_parent_L, &b_g_gid_parent_L);
    fChain->SetBranchAddress("g_key_parent_L", g_key_parent_L, &b_g_key_parent_L);
@@ -939,10 +944,6 @@ void v0Tree_reader::Init(TTree *tree)
    fChain->SetBranchAddress("g_x_start_A", g_x_start_A, &b_g_x_start_A);
    fChain->SetBranchAddress("g_y_start_A", g_y_start_A, &b_g_y_start_A);
    fChain->SetBranchAddress("g_z_start_A", g_z_start_A, &b_g_z_start_A);
-   fChain->SetBranchAddress("g_geantProc_start_A", g_geantProc_start_A, &b_g_geantProc_start_A);
-   fChain->SetBranchAddress("g_geantMedium_start_A", g_geantMedium_start_A, &b_g_geantMedium_start_A);
-   fChain->SetBranchAddress("g_generatorProc_start_A", g_generatorProc_start_A, &b_g_generatorProc_start_A);
-   fChain->SetBranchAddress("g_key_start_A", g_key_start_A, &b_g_key_start_A);
    fChain->SetBranchAddress("g_pid_parent_A", g_pid_parent_A, &b_g_pid_parent_A);
    fChain->SetBranchAddress("g_gid_parent_A", g_gid_parent_A, &b_g_gid_parent_A);
    fChain->SetBranchAddress("g_key_parent_A", g_key_parent_A, &b_g_key_parent_A);
@@ -978,10 +979,6 @@ void v0Tree_reader::Init(TTree *tree)
    fChain->SetBranchAddress("g_x_start_K", g_x_start_K, &b_g_x_start_K);
    fChain->SetBranchAddress("g_y_start_K", g_y_start_K, &b_g_y_start_K);
    fChain->SetBranchAddress("g_z_start_K", g_z_start_K, &b_g_z_start_K);
-   fChain->SetBranchAddress("g_geantProc_start_K", g_geantProc_start_K, &b_g_geantProc_start_K);
-   fChain->SetBranchAddress("g_geantMedium_start_K", g_geantMedium_start_K, &b_g_geantMedium_start_K);
-   fChain->SetBranchAddress("g_generatorProc_start_K", g_generatorProc_start_K, &b_g_generatorProc_start_K);
-   fChain->SetBranchAddress("g_key_start_K", g_key_start_K, &b_g_key_start_K);
    fChain->SetBranchAddress("g_pid_parent_K", g_pid_parent_K, &b_g_pid_parent_K);
    fChain->SetBranchAddress("g_gid_parent_K", g_gid_parent_K, &b_g_gid_parent_K);
    fChain->SetBranchAddress("g_key_parent_K", g_key_parent_K, &b_g_key_parent_K);
