@@ -664,8 +664,8 @@ int StLamMcMaker::Make() {
         int i=0;
         for(tIter = tracks.begin(); tIter != tracks.end(); tIter++) {
                 StMcTrack *track = *tIter;
-                const long gId = track->geantId();
-                const long pId = track->pdgId();
+                const int gId = track->geantId();
+                const int pId = track->pdgId();
                 i++;
 
                 //LOG_INFO << i << " ~~pId:  " << pId << " ~~gId:  " << gId << endm;
@@ -703,8 +703,8 @@ int StLamMcMaker::Make() {
         for( tIter=tracks.begin(); tIter!=tracks.end(); tIter++ ) {
                 StMcTrack *track = *tIter;
                 if( !track ) continue;
-                const long gId = track->geantId();
-                const long pId = track->pdgId();
+                const int gId = track->geantId();
+                const int pId = track->pdgId();
                 i++;
                 if( gId!=18 && gId!=26 && gId!=16 && fabs(pId)!=3122 && pId!=310 ) continue;
                 StMcVertex *ver_start = 0;
@@ -739,17 +739,17 @@ int StLamMcMaker::Make() {
 
                         StThreeVectorD pos_start = ver_start->position();
 
-                        long pId_parent = tra_parent->pdgId();
-                        long gId_parent = tra_parent->geantId();
-                        long key_parent = tra_parent->key();
+                        int pId_parent = tra_parent->pdgId();
+                        int gId_parent = tra_parent->geantId();
+                        int key_parent = tra_parent->key();
 
                         StThreeVectorD pos_stop = ver_stop->position();
                         tra_dau0 = ver_stop->daughter(0);
                         tra_dau1 = ver_stop->daughter(1);
-                        long pId_dau0 = tra_dau0->pdgId();
-                        long gId_dau0 = tra_dau0->geantId();
-                        long pId_dau1 = tra_dau1->pdgId();
-                        long gId_dau1 = tra_dau1->geantId();
+                        int pId_dau0 = tra_dau0->pdgId();
+                        int gId_dau0 = tra_dau0->geantId();
+                        int pId_dau1 = tra_dau1->pdgId();
+                        int gId_dau1 = tra_dau1->geantId();
                         if( (pId_dau0==2212||gId_dau0==14) && (pId_dau1==-211||gId_dau1==9) ) {
                                 tra_P = tra_dau0;
                                 tra_Pi = tra_dau1;
@@ -945,17 +945,17 @@ int StLamMcMaker::Make() {
 
                         StThreeVectorD pos_start = ver_start->position();
 
-                        long pId_parent = tra_parent->pdgId();
-                        long gId_parent = tra_parent->geantId();
-                        long key_parent = tra_parent->key();
+                        int pId_parent = tra_parent->pdgId();
+                        int gId_parent = tra_parent->geantId();
+                        int key_parent = tra_parent->key();
 
                         StThreeVectorD pos_stop = ver_stop->position();
                         tra_dau0 = ver_stop->daughter(0);
                         tra_dau1 = ver_stop->daughter(1);
-                        long pId_dau0 = tra_dau0->pdgId();
-                        long gId_dau0 = tra_dau0->geantId();
-                        long pId_dau1 = tra_dau1->pdgId();
-                        long gId_dau1 = tra_dau1->geantId();
+                        int pId_dau0 = tra_dau0->pdgId();
+                        int gId_dau0 = tra_dau0->geantId();
+                        int pId_dau1 = tra_dau1->pdgId();
+                        int gId_dau1 = tra_dau1->geantId();
                         if( (pId_dau0==-2212||gId_dau0==15) && (pId_dau1==211||gId_dau1==8) ) {
                                 tra_P = tra_dau0;
                                 tra_Pi = tra_dau1;
@@ -1147,17 +1147,17 @@ int StLamMcMaker::Make() {
 
                         StThreeVectorD pos_start = ver_start->position();
 
-                        long pId_parent = tra_parent->pdgId();
-                        long gId_parent = tra_parent->geantId();
-                        long key_parent = tra_parent->key();
+                        int pId_parent = tra_parent->pdgId();
+                        int gId_parent = tra_parent->geantId();
+                        int key_parent = tra_parent->key();
 
                         StThreeVectorD pos_stop = ver_stop->position();
                         tra_dau0 = ver_stop->daughter(0);
                         tra_dau1 = ver_stop->daughter(1);
-                        long pId_dau0 = tra_dau0->pdgId();
-                        long gId_dau0 = tra_dau0->geantId();
-                        long pId_dau1 = tra_dau1->pdgId();
-                        long gId_dau1 = tra_dau1->geantId();
+                        int pId_dau0 = tra_dau0->pdgId();
+                        int gId_dau0 = tra_dau0->geantId();
+                        int pId_dau1 = tra_dau1->pdgId();
+                        int gId_dau1 = tra_dau1->geantId();
                         if( (pId_dau0==221||gId_dau0==8) && (pId_dau1==-211||gId_dau1==9) ) {
                                 tra_P = tra_dau0;
                                 tra_Pi = tra_dau1;
