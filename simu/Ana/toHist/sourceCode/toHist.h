@@ -1027,6 +1027,10 @@ public:
    TH1D           *h_g_pv_generatorProc;   //!
    TH1D           *h_g_pv_key;   //!
 
+   TH1D           *h_p_ptHard0;
+   TH1D           *h_p_ptHard1;
+   TH1D           *h_p_cosTheta;
+
    TH1D           *h_nJet;
    TH1D           *h_deteta_J;
    TH1D           *h_eta_J;

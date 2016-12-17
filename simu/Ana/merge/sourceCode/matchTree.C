@@ -136,6 +136,19 @@ void matchTree(const char* inFn_V0)
         g_mParton2 = v0Tree->g_mParton2;
         g_eParton2 = v0Tree->g_eParton2;
 
+        p_s = v0Tree->p_s;
+        p_t = v0Tree->p_t;
+        p_u = v0Tree->p_u;
+        p_y = v0Tree->p_y;
+        p_ptHard = v0Tree->p_ptHard;
+        p_cosThet = v0Tree->p_cosTheta
+        p_x1 = v0Tree->p_x1;
+        p_x2 = v0Tree->p_x2;
+        p_f1 = v0Tree->p_f1;
+        p_f2 = v0Tree->p_f2;
+        p_f3 = v0Tree->p_f3;
+        p_f4 = v0Tree->p_f4;
+
         TLorentzVector V4_Parton1;
         V4_Parton1.SetPxPyPzE( g_pxParton1, g_pyParton1, g_pzParton1, g_eParton1);
         TLorentzVector V4_Parton2;
@@ -150,8 +163,6 @@ void matchTree(const char* inFn_V0)
     	IsJP1s = jetTree->IsJP1s;
     	IsJP2s = jetTree->IsJP2s;
     	IsAJPs = jetTree->IsAJPs;
-
-
 
     	njet = jetTree->njet;
     	for( int j=0; j<njet; j++ ) {

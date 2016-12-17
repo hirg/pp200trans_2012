@@ -69,12 +69,20 @@ void toHist::Begin(TTree * /*tree*/)
    h_g_pv_geantProc     = new TH1D("h_g_pv_geantProc","h_g_pv_geantProc",100,0,100);   
    h_g_pv_geantMedium   = new TH1D("h_g_pv_geantMedium","h_g_pv_geantMedium",100,0,100);   
    h_g_pv_generatorProc = new TH1D("h_g_pv_generatorProc","h_g_pv_generatorProc",100,0,100);
+
    h_g_idSubproc->Sumw2();   
    h_g_pvz->Sumw2();
    h_m_pvz->Sumw2();
    h_g_pv_geantProc->Sumw2();
    h_g_pv_geantMedium->Sumw2();
    h_g_pv_generatorProc->Sumw2();
+
+   h_p_ptHard0 = new TH1D("h_p_ptHard0","h_p_ptHard0",30,0,30);
+   h_p_ptHard1 = new TH1D("h_p_ptHard1","h_p_ptHard1",30,0,30);
+   h_p_cosTheta = new TH1D("h_p_cosTheta","h_p_cosTheta",200,-1,1);
+   h_p_ptHard0->Sumw2();
+   h_p_ptHard1->Sumw2();
+   h_p_cosTheta->Sumw2();
 
    h_nJet     = new TH1D("h_nJet","h_nJet",10,0,10);
    h_deteta_J = new TH1D("h_deteta_J","h_deteta_J",200,-2,2);
@@ -83,7 +91,8 @@ void toHist::Begin(TTree * /*tree*/)
    h_phi_J    = new TH1D("h_phi_J","h_phi_J",340,-3.2,3.2);
    h_rt_J     = new TH1D("h_rt_J","h_rt_J",100,0.,1.);
    h_charge_J = new TH1D("h_charge_J","h_charge_J",100,0.,1);
-   j_drParton_J = new TH2D("h_drParton_J","h_drParton_J",200,0,10,200,0,10);
+   h_drParton_J = new TH2D("h_drParton_J","h_drParton_J",200,0,10,200,0,10);
+
    h_nJet->Sumw2();
    h_deteta_J->Sumw2();
    h_eta_J->Sumw2();
@@ -172,7 +181,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_drParton_L_J%d_PT%d", kJ, kPT);
          h_g_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
-
 
          h_g_e_L[kJ][kPT]->Sumw2();
          h_g_pt_L[kJ][kPT]->Sumw2();
@@ -726,7 +734,6 @@ Bool_t toHist::Process(Long64_t entry)
    cout << "===-->  m_pvz:\t(" << m_pvx << "," << m_pvy << "," << m_pvz << ")" << endl;
 
    double weight_fill = weight_pt_hard;//weight_pt_hard;
-   
    cout << "===-->  Trigger Selection: " << fOption.Data() << "\t===> Weight" << weight_fill << endl;
 
    int trigT = 1;
@@ -745,6 +752,10 @@ Bool_t toHist::Process(Long64_t entry)
    h_g_pv_geantMedium->Fill(g_pv_geantMedium, weight_fill);
    h_g_pv_generatorProc->Fill(g_pv_generatorProc, weight_fill);
    //cout << "===-->  Event Filled " << endl;
+
+   h_p_ptHard0->Fill(p_ptHard);
+   h_p_ptHard1->Fill(p_ptHard, weight_fill);
+   h_p_cosTheta->Fill(p_cosTheta, weight_fill);
 
    for (int i = 0; i < njet; ++i)  {
       h_deteta_J->Fill(J_deteta[i], weight_fill);
@@ -788,7 +799,10 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_im_L[kJ][ptVmin-1]->Fill(g_im_L[i], weight_fill);
          h_g_idSubproc_L[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill);
 
-         if( g_gid_parent_L[i]!=0 ) g_pid_parent_L[i] = findPid( g_gid_parent_L[i] );
+         if( g_gid_parent_L[i]!=0 ) {
+            g_pid_parent_L[i] = findPid( g_gid_parent_L[i] );
+            cout << "gid :: pid  ===>   " << g_gid_parent_L[i] << "\t::\t" << g_pid_parent_L[i] << endl;
+         }
          h_g_pid_parent_L[kJ][ptVmin-1]->Fill(g_pid_parent_L[i], weight_fill);   
 
          h_g_dr_L[kJ][ptVmin-1]->Fill(g_dr_L[i], weight_fill);
