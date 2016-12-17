@@ -141,7 +141,7 @@ void matchTree(const char* inFn_V0)
         p_u = v0Tree->p_u;
         p_y = v0Tree->p_y;
         p_ptHard = v0Tree->p_ptHard;
-        p_cosThet = v0Tree->p_cosTheta
+        p_cosTheta = v0Tree->p_cosTheta;
         p_x1 = v0Tree->p_x1;
         p_x2 = v0Tree->p_x2;
         p_f1 = v0Tree->p_f1;
