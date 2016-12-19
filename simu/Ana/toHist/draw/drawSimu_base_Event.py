@@ -1,5 +1,7 @@
-from ROOT import TFile, TH1D, TH2D, TCanvas, TStyle, TLegend
+from ROOT import TFile, TH1D, TH2D, TCanvas, TStyle, TLegend, gStyle
 import sys
+
+gStyle.SetOptStat(0)
 
 ptH=sys.argv[1]
 ptV=sys.argv[2]
@@ -31,8 +33,9 @@ for i in xrange(0,5):
 c=TCanvas('c','c',700,500)
 for j in xrange(0,10):
 	print It_List[j]
-	lg=TLegend(0.1,0.82,0.6,0.9)
+	lg=TLegend(0.12,0.82,0.6,0.89)
 	lg.SetNColumns(5)
+	lg.SetBorderSize(0)
 
 	for i in xrange(0,5):
 		hn='h_%s'%(It_List[j])
@@ -52,9 +55,9 @@ for j in xrange(0,10):
 		pass
 		
 	lg.Draw('same')
-	cn='Pic_base/ptH_%s/ptV_%s/c_*s.eps'%(ptH,ptV,It_List[j])
+	cn='Pic_base/ptH_%s/ptV_%s/c_%s.eps'%(ptH,ptV,It_List[j])
 	c.SaveAs(cn)
-	cn='Pic_base/ptH_%s/ptV_%s/c_*s.png'%(ptH,ptV,It_List[j])
+	cn='Pic_base/ptH_%s/ptV_%s/c_%s.png'%(ptH,ptV,It_List[j])
 	c.SaveAs(cn)
 	pass
 
