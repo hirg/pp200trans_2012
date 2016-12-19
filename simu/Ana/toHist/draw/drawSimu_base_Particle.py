@@ -64,11 +64,11 @@ for j in xrange(0,5):
 					else:
 						ht.Draw('same')
 					pass
-					lg.Draw('same')
-					cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%s.eps'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,ptV)
-					c.SaveAs(cn)
-					cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%s.png'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,ptV)
-					c.SaveAs(cn)
+				lg.Draw('same')
+				cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%s.eps'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,ptV)
+				c.SaveAs(cn)
+				cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%s.png'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,ptV)
+				c.SaveAs(cn)
 				pass
 			pass
 		pass
