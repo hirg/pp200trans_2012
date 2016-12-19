@@ -17,14 +17,14 @@ It_List=['im','pt','eta','phi','dr']
 
 X_List=['Mass_p#pi[GeV/c]','p_{T}[GeV/c]','#eta','#phi','#DeltaR']
 
-Title_List=['Invariant Mass of ','p_{T} of ','#eta of ','#phi of','#DeltaR of']
+Title_List=['Invariant Mass of ','p_{T} of ','#eta of ','#phi of ','#DeltaR of ']
 
 file_List=[]
 
 for i in xrange(0,5):
 	print i
 	fdir='../data/ptH_%s/'%(ptH)
-	fn='mc_ptH_%s_%s.hist_%s.root'%(ptH,ptV,Trig_List[i])
+	fn='mc_ptH_%s_ptV%s.hist_%s.root'%(ptH,ptV,Trig_List[i])
 
 	fn_full=fdir+fn
 
@@ -51,7 +51,7 @@ for j in xrange(0,5):
 					hn='h_%s_%s_%s_J%d_PT%d'%(Type_List[iT],It_List[j],Par_List[iPar],iJ,int(ptV)-1)
 					ht=file_List[i].Get(hn)
 					ht.SetXTitle(X_List[j])
-					ht.SetTitle(Title_List[j])
+					ht.SetTitle(Title_List[j]+LPar_List[iPar])
 					ht.SetMarkerStyle(20)
 					ht.SetMarkerColor(MarkerC_List[i])
 					ht.SetLineColor(MarkerC_List[i])
