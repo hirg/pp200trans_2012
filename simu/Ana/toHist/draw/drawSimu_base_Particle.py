@@ -1,4 +1,8 @@
 from ROOT import TFile, TH1D, TH2D, TCanvas, TStyle, TLegend
+import sys
+
+ptH=sys.argv[1]
+ptV=sys.argv[2]
 
 Trig_List=['ZB','JP0','JP1','JP2','AJP']
 MarkerC_List=[1,2,4,6,8]
@@ -60,9 +64,9 @@ for j in xrange(0,5):
                         	ht.Draw('same')
                         pass
                         lg.Draw('same')
-                        cn='Pic_base/h_%s_%s_%s_J%d_PT%d.eps'%(Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
+                        cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%d.eps'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
                         c.SaveAs(cn)
-                        cn='Pic_base/h_%s_%s_%s_J%d_PT%d.png'%(Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
+                        cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%d.png'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
                         c.SaveAs(cn)
 
 						pass
