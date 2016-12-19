@@ -10,10 +10,10 @@ MarkerC_List=[1,2,4,6,8]
 # Event Level
 It_List=['g_pvz','m_pvz','g_idSubproc','eta_J','pt_J','phi_J','rt_J','charge_J','fParton_J','fPartonS_J','drParton_J']
 
-X_List=['pvz[cm]','pvz[cm]','Subprocess ID','#eta','p_{T}[GeV/c]','#phi',
+X_List=['pvz[cm]','pvz[cm]','Subprocess ID','#eta','p_{T}[GeV/c]','#phi',\
 'neutral fraction','charged fraction','orignal parton flavour','orignal parton flavour','dr_Parton1']
 
-Title_List=['pvz for McEvent','pvz for MuEvent','Subprocess ID of Event Level','Jet #eta','Jet p_{T}','Jet #phi',
+Title_List=['pvz for McEvent','pvz for MuEvent','Subprocess ID of Event Level','Jet #eta','Jet p_{T}','Jet #phi',\
 'Jet neutral fraction','Jet charged fraction','Jet orignal parton flavour','Jet orignal parton flavour','dr_Parton1']
 
 file_List=[]

@@ -40,14 +40,12 @@ for j in xrange(0,5):
 			print Type_List[iT]
 
 			for iJ in xrange(0,2):
+				lg=TLegend(0.1,0.82,0.6,0.9)
+				lg.SetNColumns(5)
 
-				for iPT in xrange(0,6):
-					lg=TLegend(0.1,0.82,0.6,0.9)
-					lg.SetNColumns(5)
+				for i in xrange(0,5):
 
-					for i in xrange(0,5):
-
-						hn='h_%s_%s_%s_J%d_PT%d'%(Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
+						hn='h_%s_%s_%s_J%d_PT%d'%(Type_List[iT],It_List[j],Par_List[iPar],iJ,int(ptV))
 						ht=file_List[i].Get(hn)
                         ht.SetXTitle(X_List[j])
                         ht.SetTitle(Title_List[j])
@@ -64,12 +62,11 @@ for j in xrange(0,5):
                         	ht.Draw('same')
                         pass
                         lg.Draw('same')
-                        cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%d.eps'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
+                        cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%d.eps'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,int(ptV))
                         c.SaveAs(cn)
-                        cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%d.png'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,iPT)
+                        cn='Pic_base/ptH_%s/ptV_%s/h_%s_%s_%s_J%d_PT%d.png'%(ptH,ptV,Type_List[iT],It_List[j],Par_List[iPar],iJ,int(ptV))
                         c.SaveAs(cn)
 
 						pass
-					pass
 				pass
 

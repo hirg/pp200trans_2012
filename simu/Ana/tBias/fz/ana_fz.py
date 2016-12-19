@@ -1,4 +1,7 @@
 from ROOT import TFile, TH1D, TCanvas, TStyle, TLegend, TPaveText, TLatex
+import sys
+
+ptH=sys.argv[1]
 
 reckind_List = ['g','a','m','t']
 particle_List = ['L','A']
@@ -21,11 +24,11 @@ def cal_shift( pX, pY ):
 
 for i in xrange(3,4):
         print i
-        fin_ZB = TFile('../../toHist/data/mc_ptV%d.hist_ZB.root'%i)
-        fin_JP0 = TFile('../../toHist/data/mc_ptV%d.hist_JP0.root'%i)
-        fin_JP1 = TFile('../../toHist/data/mc_ptV%d.hist_JP1.root'%i)
-        fin_JP2 = TFile('../../toHist/data/mc_ptV%d.hist_JP2.root'%i)
-        fin_AJP = TFile('../../toHist/data/mc_ptV%d.hist_AJP.root'%i)
+        fin_ZB = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_ZB.root'%(ptH,ptH,i))
+        fin_JP0 = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_JP0.root'%(ptH,ptH,i))
+        fin_JP1 = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_JP1.root'%(ptH,ptH,i))
+        fin_JP2 = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_JP2.root'%(ptH,ptH,i))
+        fin_AJP = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_AJP.root'%(ptH,ptH,i))
 
         for j in reckind_List:
                 print j
@@ -98,7 +101,7 @@ for i in xrange(3,4):
                         print shift_error_JP2
                         print shift_error_AJP
 
-                        lg=TLegend(0.65,0.3,0.9,0.75)
+                        lg=TLegend(0.60,0.4,0.95,0.75)
                         lg.SetBorderSize(0)
 
                         lg.AddEntry(h_ZB,'MB      Shifit','lep')
@@ -113,9 +116,9 @@ for i in xrange(3,4):
 
                         lg.Draw('same')
 
-                        cn = 'Pic/fz_%s_%s_PT%d.png' %(j,k,i)
+                        cn = 'Pic/ptH_%s/fz_%s_%s_PT%d.png' %(ptH,j,k,i)
                         tc.SaveAs(cn)
-                        cn = 'Pic/fz_%s_%s_PT%d.eps' %(j,k,i)
+                        cn = 'Pic/ptH_%s/fz_%s_%s_PT%d.eps' %(ptH,j,k,i)
                         tc.SaveAs(cn)
                         pass
                 pass
