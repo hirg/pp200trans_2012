@@ -92,6 +92,8 @@ void toHist::Begin(TTree * /*tree*/)
    h_rt_J     = new TH1D("h_rt_J","h_rt_J",100,0.,1.);
    h_charge_J = new TH1D("h_charge_J","h_charge_J",100,0.,1);
    h_drParton_J = new TH2D("h_drParton_J","h_drParton_J",200,0,10,200,0,10);
+   h_fParton_J = new TH1D("h_fParton_J","h_fParton_J",35,-10,25);
+   h_fPartonS_J = new TH1D("h_fPartonS_J","h_fPartonS_J",35,-10,25);
 
    h_nJet->Sumw2();
    h_deteta_J->Sumw2();
@@ -101,6 +103,16 @@ void toHist::Begin(TTree * /*tree*/)
    h_rt_J->Sumw2();
    h_charge_J->Sumw2();
    h_drParton_J->Sumw2();
+   h_fParton_J->Sumw2();
+   h_fPartonS_J->Sumw2();
+
+   h_p_ptHard0 = new TH1D("h_p_ptHard0","h_p_ptHard0",250,0,25);
+   h_p_ptHard1 = new TH1D("h_p_ptHard1","h_p_ptHard1",250,0,25);
+   h_p_cosTheta = new TH1D("h_p_cosTheta","h_p_cosTheta",200,-1,1);
+
+   h_p_ptHard0->Sumw2();
+   h_p_ptHard1->Sumw2();
+   h_p_cosTheta->Sumw2();
 
    TString hn;
    for(int kPT=0; kPT<6; ++kPT) {
@@ -167,12 +179,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_phi_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
          hn = Form("h_g_im_L_J%d_PT%d", kJ, kPT);
          h_g_im_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),80,1.08,1.16);
-         hn = Form("h_g_geantProc_start_L_J%d_PT%d", kJ, kPT);
-         h_g_geantProc_start_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
-         hn = Form("h_g_geantMedium_start_L_J%d_PT%d", kJ, kPT);
-         h_g_geantMedium_start_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
-         hn = Form("h_g_generatorProc_start_L_J%d_PT%d", kJ, kPT);
-         h_g_generatorProc_start_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_pid_parent_L_J%d_PT%d", kJ, kPT);
          h_g_pid_parent_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
          hn = Form("h_g_dr_L_J%d_PT%d", kJ, kPT);
@@ -181,19 +187,22 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_drParton_L_J%d_PT%d", kJ, kPT);
          h_g_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_g_fParton_L_J%d_PT%d", kJ, kPT);
+         h_g_fParton_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_g_fPartonS_L_J%d_PT%d", kJ, kPT);
+         h_g_fPartonS_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_g_e_L[kJ][kPT]->Sumw2();
          h_g_pt_L[kJ][kPT]->Sumw2();
          h_g_eta_L[kJ][kPT]->Sumw2();
          h_g_phi_L[kJ][kPT]->Sumw2();
          h_g_im_L[kJ][kPT]->Sumw2();
-         h_g_geantProc_start_L[kJ][kPT]->Sumw2();
-         h_g_geantMedium_start_L[kJ][kPT]->Sumw2();
-         h_g_generatorProc_start_L[kJ][kPT]->Sumw2();
          h_g_pid_parent_L[kJ][kPT]->Sumw2();
          h_g_dr_L[kJ][kPT]->Sumw2();
          h_g_idSubproc_L[kJ][kPT]->Sumw2();
          h_g_drParton_L[kJ][kPT]->Sumw2();
+         h_g_fParton_L[kJ][kPT]->Sumw2();
+         h_g_fPartonS_L[kJ][kPT]->Sumw2();
 
          hn = Form("h_g_e_Ap_J%d_PT%d", kJ, kPT);
          h_g_e_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -223,12 +232,6 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_phi_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),340,-3.2,3.2);
          hn = Form("h_g_im_A_J%d_PT%d", kJ, kPT);
          h_g_im_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),80,1.08,1.16);
-         hn = Form("h_g_geantProc_start_A_J%d_PT%d", kJ, kPT);
-         h_g_geantProc_start_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
-         hn = Form("h_g_geantMedium_start_A_J%d_PT%d", kJ, kPT);
-         h_g_geantMedium_start_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
-         hn = Form("h_g_generatorProc_start_A_J%d_PT%d", kJ, kPT);
-         h_g_generatorProc_start_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_pid_parent_A_J%d_PT%d", kJ, kPT);
          h_g_pid_parent_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),10000,-5000,5000);
          hn = Form("h_g_dr_A_J%d_PT%d", kJ, kPT);
@@ -237,6 +240,10 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_g_drParton_A_J%d_PT%d", kJ, kPT);
          h_g_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_g_fParton_A_J%d_PT%d", kJ, kPT);
+         h_g_fParton_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_g_fPartonS_A_J%d_PT%d", kJ, kPT);
+         h_g_fPartonS_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_g_e_Ap[kJ][kPT]->Sumw2();
          h_g_pt_Ap[kJ][kPT]->Sumw2();
@@ -251,13 +258,12 @@ void toHist::Begin(TTree * /*tree*/)
          h_g_eta_A[kJ][kPT]->Sumw2();
          h_g_phi_A[kJ][kPT]->Sumw2();
          h_g_im_A[kJ][kPT]->Sumw2();
-         h_g_geantProc_start_A[kJ][kPT]->Sumw2();
-         h_g_geantMedium_start_A[kJ][kPT]->Sumw2();
-         h_g_generatorProc_start_A[kJ][kPT]->Sumw2();
          h_g_pid_parent_A[kJ][kPT]->Sumw2();
          h_g_dr_A[kJ][kPT]->Sumw2();
          h_g_idSubproc_A[kJ][kPT]->Sumw2();
          h_g_drParton_A[kJ][kPT]->Sumw2();
+         h_g_fParton_A[kJ][kPT]->Sumw2();
+         h_g_fPartonS_A[kJ][kPT]->Sumw2();
 
          hn = Form("h_a_e_Lp_J%d_PT%d", kJ, kPT);
          h_a_e_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -339,6 +345,10 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_a_drParton_L_J%d_PT%d", kJ, kPT);
          h_a_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_a_fParton_L_J%d_PT%d", kJ, kPT);
+         h_a_fParton_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_a_fPartonS_L_J%d_PT%d", kJ, kPT);
+         h_a_fPartonS_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_a_pid_parent_L[kJ][kPT]->Sumw2();
          h_a_dr_L[kJ][kPT]->Sumw2();
@@ -347,6 +357,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_dcaV0_L[kJ][kPT]->Sumw2();
          h_a_idSubproc_L[kJ][kPT]->Sumw2();
          h_a_drParton_L[kJ][kPT]->Sumw2();
+         h_a_fParton_L[kJ][kPT]->Sumw2();
+         h_a_fPartonS_L[kJ][kPT]->Sumw2();
 
          hn = Form("h_a_e_Ap_J%d_PT%d", kJ, kPT);
          h_a_e_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -405,6 +417,10 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_a_drParton_A_J%d_PT%d", kJ, kPT);
          h_a_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_a_fParton_A_J%d_PT%d", kJ, kPT);
+         h_a_fParton_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_a_fPartonS_A_J%d_PT%d", kJ, kPT);
+         h_a_fPartonS_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_a_e_Ap[kJ][kPT]->Sumw2();
          h_a_pt_Ap[kJ][kPT]->Sumw2();
@@ -433,6 +449,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_a_dcaV0_A[kJ][kPT]->Sumw2();
          h_a_idSubproc_A[kJ][kPT]->Sumw2();
          h_a_drParton_A[kJ][kPT]->Sumw2();
+         h_a_fParton_A[kJ][kPT]->Sumw2();
+         h_a_fPartonS_A[kJ][kPT]->Sumw2();
 
          hn = Form("h_m_pt_Lp_J%d_PT%d", kJ, kPT);
          h_m_pt_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -477,6 +495,10 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_m_drParton_L_J%d_PT%d", kJ, kPT);
          h_m_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_m_fParton_L_J%d_PT%d", kJ, kPT);
+         h_m_fParton_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_m_fPartonS_L_J%d_PT%d", kJ, kPT);
+         h_m_fPartonS_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_m_pt_Lp[kJ][kPT]->Sumw2();
          h_m_eta_Lp[kJ][kPT]->Sumw2();
@@ -498,6 +520,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_dcaV0_L[kJ][kPT]->Sumw2();
          h_m_idSubproc_L[kJ][kPT]->Sumw2();
          h_m_drParton_L[kJ][kPT]->Sumw2();
+         h_m_fParton_L[kJ][kPT]->Sumw2();
+         h_m_fPartonS_L[kJ][kPT]->Sumw2();
 
          hn = Form("h_m_pt_Ap_J%d_PT%d", kJ, kPT);
          h_m_pt_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -542,6 +566,11 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_m_drParton_A_J%d_PT%d", kJ, kPT);
          h_m_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_m_fParton_A_J%d_PT%d", kJ, kPT);
+         h_m_fParton_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_m_fPartonS_A_J%d_PT%d", kJ, kPT);
+         h_m_fPartonS_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+
 
          h_m_pt_Ap[kJ][kPT]->Sumw2();
          h_m_eta_Ap[kJ][kPT]->Sumw2();
@@ -563,6 +592,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_m_dcaV0_A[kJ][kPT]->Sumw2();
          h_m_idSubproc_A[kJ][kPT]->Sumw2();
          h_m_drParton_A[kJ][kPT]->Sumw2();
+         h_m_fParton_A[kJ][kPT]->Sumw2();
+         h_m_fPartonS_A[kJ][kPT]->Sumw2();
 
          hn = Form("h_t_pt_Lp_J%d_PT%d", kJ, kPT);
          h_t_pt_Lp[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -607,6 +638,10 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_idSubproc_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_t_drParton_L_J%d_PT%d", kJ, kPT);
          h_t_drParton_L[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_t_fParton_L_J%d_PT%d", kJ, kPT);
+         h_t_fParton_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_t_fPartonS_L_J%d_PT%d", kJ, kPT);
+         h_t_fPartonS_L[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_t_pt_Lp[kJ][kPT]->Sumw2();
          h_t_eta_Lp[kJ][kPT]->Sumw2();
@@ -628,6 +663,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_dcaV0_L[kJ][kPT]->Sumw2();
          h_t_idSubproc_L[kJ][kPT]->Sumw2();
          h_t_drParton_L[kJ][kPT]->Sumw2();
+         h_t_fParton_L[kJ][kPT]->Sumw2();
+         h_t_fPartonS_L[kJ][kPT]->Sumw2();
 
          hn = Form("h_t_pt_Ap_J%d_PT%d", kJ, kPT);
          h_t_pt_Ap[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,10);
@@ -672,6 +709,10 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_idSubproc_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),100,0,100);
          hn = Form("h_t_drParton_A_J%d_PT%d", kJ, kPT);
          h_t_drParton_A[kJ][kPT] = new TH2D(hn.Data(),hn.Data(),200,0,10,200,0,10);
+         hn = Form("h_t_fParton_L_J%d_PT%d", kJ, kPT);
+         h_t_fParton_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
+         hn = Form("h_t_fPartonS_L_J%d_PT%d", kJ, kPT);
+         h_t_fPartonS_A[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),35,-10,25);
 
          h_t_pt_Ap[kJ][kPT]->Sumw2();
          h_t_eta_Ap[kJ][kPT]->Sumw2();
@@ -693,6 +734,8 @@ void toHist::Begin(TTree * /*tree*/)
          h_t_dcaV0_A[kJ][kPT]->Sumw2();
          h_t_idSubproc_A[kJ][kPT]->Sumw2();
          h_t_drParton_A[kJ][kPT]->Sumw2();
+         h_t_fParton_A[kJ][kPT]->Sumw2();
+         h_t_fParton_A[kJ][kPT]->Sumw2();
       }
    }
 }
@@ -765,6 +808,22 @@ Bool_t toHist::Process(Long64_t entry)
       h_rt_J->Fill(J_rt[i], weight_fill);
       h_charge_J->Fill(J_charge[i], weight_fill);
       h_drParton_J->Fill(J_drParton1[i],J_drParton2[i], weight_fill);
+      int fParton = g_idParton1;
+      if (J_drParton2[i]<J_drParton1[i])
+      {
+         fParton = g_idParton2;
+      }
+      h_fParton_J->Fill(fParton, weight_fill);
+
+      if (J_drParton1<1.0 || J_drParton2<1.0)
+      {
+         int fPartonS = g_idParton1;
+         if (J_drParton2[i]<J_drParton1[i])
+         {
+            fPartonS = g_idParton2;
+         }
+         h_fPartonS_J->Fill(fPartonS, weight_fill);
+      }
    }
 
    ReadCutTable(ptVmin-1);
@@ -808,7 +867,24 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_dr_L[kJ][ptVmin-1]->Fill(g_dr_L[i], weight_fill);
          h_g_drParton_L[kJ][ptVmin-1]->Fill(g_drParton1_L[i],g_drParton2_L[i], weight_fill); 
          //h_g_deta_L[kJ][ptVmin-1]->Fill(g_deta_L[i], weight_fill);   
-         //h_g_dphi_L[kJ][ptVmin-1]->Fill(g_dphi_L[i], weight_fill);   
+         //h_g_dphi_L[kJ][ptVmin-1]->Fill(g_dphi_L[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (g_drParton2_L[i]<g_drParton1_L[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_g_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (g_drParton1_L[i]<1.0 || g_drParton2_L[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (g_drParton2_L[i]<g_drParton1_L[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_g_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<g_nA; ++i ){
@@ -850,6 +926,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_dr_A[kJ][ptVmin-1]->Fill(g_dr_A[i], weight_fill);
          h_g_drParton_A[kJ][ptVmin-1]->Fill(g_drParton1_A[i],g_drParton2_A[i], weight_fill); 
          //cout << "===-->  g_A Filled " << endl;
+
+         int fParton = g_idParton1;
+         if (g_drParton2_A[i]<g_drParton1_A[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_g_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (g_drParton1_A[i]<1.0 || g_drParton2_A[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (g_drParton2_A[i]<g_drParton1_A[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_g_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<a_nL; ++i ){
@@ -911,6 +1004,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_a_dl_L[kJ][ptVmin-1]->Fill(a_dl_L[i], weight_fill);
          h_a_dca2_L[kJ][ptVmin-1]->Fill(a_dca2_L[i], weight_fill);
          h_a_dcaV0_L[kJ][ptVmin-1]->Fill(a_dcaV0_L[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (a_drParton2_L[i]<a_drParton1_L[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_a_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (a_drParton1_L[i]<1.0 || a_drParton2_L[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (a_drParton2_L[i]<a_drParton1_L[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_a_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<a_nA; ++i ){
@@ -972,6 +1082,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_a_dl_A[kJ][ptVmin-1]->Fill(a_dl_A[i], weight_fill);
          h_a_dca2_A[kJ][ptVmin-1]->Fill(a_dca2_A[i], weight_fill);
          h_a_dcaV0_A[kJ][ptVmin-1]->Fill(a_dcaV0_A[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (a_drParton2_A[i]<a_drParton1_A[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_a_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (a_drParton1_A[i]<1.0 || a_drParton2_A[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (a_drParton2_A[i]<a_drParton1_A[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_a_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<m_nL; ++i ){
@@ -1024,6 +1151,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_m_dl_L[kJ][ptVmin-1]->Fill(m_dl_L[i], weight_fill);
          h_m_dca2_L[kJ][ptVmin-1]->Fill(m_dca2_L[i], weight_fill);
          h_m_dcaV0_L[kJ][ptVmin-1]->Fill(m_dcaV0_L[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (m_drParton2_L[i]<m_drParton1_L[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_m_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (m_drParton1_L[i]<1.0 || m_drParton2_L[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (m_drParton2_L[i]<m_drParton1_L[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_m_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<m_nA; ++i ){
@@ -1076,6 +1220,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_m_dl_A[kJ][ptVmin-1]->Fill(m_dl_A[i], weight_fill);
          h_m_dca2_A[kJ][ptVmin-1]->Fill(m_dca2_A[i], weight_fill);
          h_m_dcaV0_A[kJ][ptVmin-1]->Fill(m_dcaV0_A[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (m_drParton2_A[i]<m_drParton1_A[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_m_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (m_drParton1_A[i]<1.0 || m_drParton2_A[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (m_drParton2_A[i]<m_drParton1_A[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_m_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<m_nL; ++i ){
@@ -1135,6 +1296,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_t_dl_L[kJ][ptVmin-1]->Fill(m_dl_L[i], weight_fill);
          h_t_dca2_L[kJ][ptVmin-1]->Fill(m_dca2_L[i], weight_fill);
          h_t_dcaV0_L[kJ][ptVmin-1]->Fill(m_dcaV0_L[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (m_drParton2_L[i]<m_drParton1_L[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_t_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (m_drParton1_L[i]<1.0 || m_drParton2_L[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (m_drParton2_L[i]<m_drParton1_L[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_t_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
 
       for( int i=0; i<m_nA; ++i ){
@@ -1194,6 +1372,23 @@ Bool_t toHist::Process(Long64_t entry)
          h_t_dl_A[kJ][ptVmin-1]->Fill(m_dl_A[i], weight_fill);
          h_t_dca2_A[kJ][ptVmin-1]->Fill(m_dca2_A[i], weight_fill);
          h_t_dcaV0_A[kJ][ptVmin-1]->Fill(m_dcaV0_A[i], weight_fill);
+
+         int fParton = g_idParton1;
+         if (m_drParton2_A[i]<m_drParton1_A[i])
+         {
+            fParton = g_idParton2;
+         }
+         h_t_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+   
+         if (m_drParton1_A[i]<1.0 || m_drParton2_A[i]<1.0)
+         {
+            int fPartonS = g_idParton1;
+            if (m_drParton2_A[i]<m_drParton1_A[i])
+            {
+               fPartonS = g_idParton2;
+            }
+            h_t_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+         }
       }
    }
    return kTRUE;

@@ -18,7 +18,7 @@ class TH1D;
 class TH2D;
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
-const int kMax = 10;
+const int kMax = 50;
 
 const double cut_nSigma_protect[6]   = { 0.50, 0.50, 0.60, 0.80, 1.00, 1.00 };
 const double cut_nSigma_proton[6]    = { 3.00, 3.00, 3.00, 3.00, 3.00, 3.00 };
@@ -91,6 +91,19 @@ private :
    int           g_pv_key;
    int           g_nJets;
 
+   double        p_s;
+   double        p_t;
+   double        p_u;
+   double        p_y;
+   double        p_ptHard;
+   double        p_cosTheta;
+   double        p_x1;
+   double        p_x2;
+   int           p_f1;
+   int           p_f2;
+   int           p_f3;
+   int           p_f4;
+
    int           g_idParton1;
    double        g_pxParton1;
    double        g_pyParton1;
@@ -135,10 +148,6 @@ private :
    double        g_x_start_L[kMax];   //[g_nL]
    double        g_y_start_L[kMax];   //[g_nL]
    double        g_z_start_L[kMax];   //[g_nL]
-   int           g_geantProc_start_L[kMax];   //[g_nL]
-   int           g_geantMedium_start_L[kMax];   //[g_nL]
-   int           g_generatorProc_start_L[kMax];   //[g_nL]
-   int           g_key_start_L[kMax];   //[g_nL]
    int           g_pid_parent_L[kMax];   //[g_nL]
    int           g_gid_parent_L[kMax];   //[g_nL]
    int           g_key_parent_L[kMax];   //[g_nL]
@@ -224,10 +233,6 @@ private :
    double        g_x_start_K[kMax];   //[g_nK]
    double        g_y_start_K[kMax];   //[g_nK]
    double        g_z_start_K[kMax];   //[g_nK]
-   int           g_geantProc_start_K[kMax];   //[g_nK]
-   int           g_geantMedium_start_K[kMax];   //[g_nK]
-   int           g_generatorProc_start_K[kMax];   //[g_nK]
-   int           g_key_start_K[kMax];   //[g_nK]
    int           g_pid_parent_K[kMax];   //[g_nK]
    int           g_gid_parent_K[kMax];   //[g_nK]
    int           g_key_parent_K[kMax];   //[g_nK]
@@ -521,6 +526,19 @@ private :
    double        J_drParton2[kMax];
 
    // List of branches
+   TBranch        *b_p_s;
+   TBranch        *b_p_t;
+   TBranch        *b_p_u;
+   TBranch        *b_p_y;
+   TBranch        *b_p_ptHard;
+   TBranch        *b_p_cosTheta;
+   TBranch        *b_p_x1;
+   TBranch        *b_p_x2;
+   TBranch        *b_p_f1;
+   TBranch        *b_p_f2;
+   TBranch        *b_p_f3;
+   TBranch        *b_p_f4;
+
    TBranch        *b_ptHmin;   //!
    TBranch        *b_ptVmin;   //!
    TBranch        *b_ptVmax;   //!
@@ -1039,6 +1057,7 @@ public:
    TH1D           *h_rt_J;
    TH1D           *h_charge_J;
    TH2D           *h_drParton_J;
+   TH1D           *h_fParton_J;
 
    TH1D           *h_g_e_Lp[2][6];   //!
    TH1D           *h_g_pt_Lp[2][6];   //!
@@ -1061,9 +1080,6 @@ public:
    TH1D           *h_g_x_start_L[2][6];   //!
    TH1D           *h_g_y_start_L[2][6];   //!
    TH1D           *h_g_z_start_L[2][6];   //!
-   TH1D           *h_g_geantProc_start_L[2][6];   //!
-   TH1D           *h_g_geantMedium_start_L[2][6];   //!
-   TH1D           *h_g_generatorProc_start_L[2][6];   //!
    TH1D           *h_g_pid_parent_L[2][6];   //!
    TH1D           *h_g_index_L[2][6];   //!
    TH1D           *h_g_type_L[2][6];   //!
@@ -1072,6 +1088,7 @@ public:
    TH1D           *h_g_dphi_L[2][6];   //!
    TH1D           *h_g_idSubproc_L[2][6];
    TH2D           *h_g_drParton_L[2][6];
+   TH1D           *h_g_fParton_L[2][6];
 
    TH1D           *h_g_e_Ap[2][6];   //!
    TH1D           *h_g_pt_Ap[2][6];   //!
@@ -1094,9 +1111,6 @@ public:
    TH1D           *h_g_x_start_A[2][6];   //!
    TH1D           *h_g_y_start_A[2][6];   //!
    TH1D           *h_g_z_start_A[2][6];   //!
-   TH1D           *h_g_geantProc_start_A[2][6];   //!
-   TH1D           *h_g_geantMedium_start_A[2][6];   //!
-   TH1D           *h_g_generatorProc_start_A[2][6];   //!
    TH1D           *h_g_pid_parent_A[2][6];   //!
    TH1D           *h_g_index_A[2][6];   //!
    TH1D           *h_g_type_A[2][6];   //!
@@ -1105,6 +1119,7 @@ public:
    TH1D           *h_g_dphi_A[2][6];   //!
    TH1D           *h_g_idSubproc_A[2][6];
    TH2D           *h_g_drParton_A[2][6];
+   TH1D           *h_g_fParton_A[2][6];
 
    TH1D           *h_a_e_Lp[2][6];   //!
    TH1D           *h_a_pt_Lp[2][6];   //!
@@ -1141,6 +1156,7 @@ public:
    TH1D           *h_a_dphi_L[2][6];   //!
    TH1D           *h_a_idSubproc_L[2][6];
    TH2D           *h_a_drParton_L[2][6];
+   TH1D           *h_a_fParton_L[2][6];
 
    TH1D           *h_a_e_Ap[2][6];   //!
    TH1D           *h_a_pt_Ap[2][6];   //!
@@ -1177,6 +1193,7 @@ public:
    TH1D           *h_a_dphi_A[2][6];   //!
    TH1D           *h_a_idSubproc_A[2][6];
    TH2D           *h_a_drParton_A[2][6];
+   TH1D           *h_a_fParton_A[2][6];
 
    TH1D           *h_m_pt_Lp[2][6];   //!
    TH1D           *h_m_eta_Lp[2][6];   //!
@@ -1201,6 +1218,7 @@ public:
    TH1D           *h_m_dphi_L[2][6];   //!
    TH1D           *h_m_idSubproc_L[2][6];
    TH2D           *h_m_drParton_L[2][6];
+   TH1D           *h_m_fParton_L[2][6];
 
    TH1D           *h_m_pt_Ap[2][6];   //!
    TH1D           *h_m_eta_Ap[2][6];   //!
@@ -1225,6 +1243,7 @@ public:
    TH1D           *h_m_dphi_A[2][6];   //!
    TH1D           *h_m_idSubproc_A[2][6];
    TH2D           *h_m_drParton_A[2][6];
+   TH1D           *h_m_fParton_A[2][6];
    /*
    TH1D           *h_m_pid_parent_L[2][6];   //!
    TH1D           *h_m_key_parent_L[2][6];   //!
@@ -1255,6 +1274,7 @@ public:
    TH1D           *h_t_dphi_L[2][6];   //!
    TH1D           *h_t_idSubproc_L[2][6];
    TH2D           *h_t_drParton_L[2][6];
+   TH1D           *h_t_fParton_L[2][6];
 
    TH1D           *h_t_pt_Ap[2][6];   //!
    TH1D           *h_t_eta_Ap[2][6];   //!
@@ -1279,6 +1299,7 @@ public:
    TH1D           *h_t_dphi_A[2][6];   //!
    TH1D           *h_t_idSubproc_A[2][6];
    TH2D           *h_t_drParton_A[2][6];
+   TH1D           *h_t_fParton_L[2][6];
 
    TH1D           *h_g_fz_L[6];
    TH1D           *h_g_fz_A[6];
@@ -1312,6 +1333,19 @@ void toHist::Init(TTree *tree)
    if (!tree) return;
    fChain = tree;
    fChain->SetMakeClass(1);
+
+   fChain->SetBranchAddress("p_s", &p_s, &b_p_s);
+   fChain->SetBranchAddress("p_t", &p_t, &b_p_t);
+   fChain->SetBranchAddress("p_u", &p_u, &b_p_u);
+   fChain->SetBranchAddress("p_y", &p_y, &b_p_y);
+   fChain->SetBranchAddress("p_ptHard", &p_ptHard, &b_p_ptHard);
+   fChain->SetBranchAddress("p_cosTheta", &p_cosTheta, &b_p_cosTheta);
+   fChain->SetBranchAddress("p_x1", &p_x1, &b_p_x1);
+   fChain->SetBranchAddress("p_x2", &p_x2, &b_p_x2);
+   fChain->SetBranchAddress("p_f1", &p_f1, &b_p_f1);
+   fChain->SetBranchAddress("p_f2", &p_f2, &b_p_f2);
+   fChain->SetBranchAddress("p_f3", &p_f3, &b_p_f3);
+   fChain->SetBranchAddress("p_f4", &p_f4, &b_p_f4);
 
    fChain->SetBranchAddress("ptHmin", &ptHmin, &b_ptHmin);
    fChain->SetBranchAddress("ptVmin", &ptVmin, &b_ptVmin);
