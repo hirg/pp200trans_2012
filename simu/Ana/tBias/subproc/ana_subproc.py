@@ -125,9 +125,8 @@ for i in xrange(3,4):
                                         fout.write('\t')
                                         fout.write(nEvts-nEvts_ZB)
                                         fout.write('\n')
-
                                         pass
-
+                                        
                                 d_ZB.SetMarkerStyle(20)
                                 d_JP0.SetMarkerStyle(20)
                                 d_JP1.SetMarkerStyle(20)

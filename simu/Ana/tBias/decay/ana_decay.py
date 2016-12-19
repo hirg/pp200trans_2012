@@ -22,11 +22,11 @@ def cal_shift( pX, pY ):
 
 for i in xrange(3,4):
         print i
-        fin_ZB = TFile('../../toHist/data/mc_ptV%d.hist_ZB.root'%i)
-        fin_JP0 = TFile('../../toHist/data/mc_ptV%d.hist_JP0.root'%i)
-        fin_JP1 = TFile('../../toHist/data/mc_ptV%d.hist_JP1.root'%i)
-        fin_JP2 = TFile('../../toHist/data/mc_ptV%d.hist_JP2.root'%i)
-        fin_AJP = TFile('../../toHist/data/mc_ptV%d.hist_AJP.root'%i)
+        fin_ZB = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_ZB.root'%(ptH,ptH,i))
+        fin_JP0 = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_JP0.root'%(ptH,ptH,i))
+        fin_JP1 = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_JP1.root'%(ptH,ptH,i))
+        fin_JP2 = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_JP2.root'%(ptH,ptH,i))
+        fin_AJP = TFile('../../toHist/data/ptH_%s/mc_ptH_%s_ptV%d.hist_AJP.root'%(ptH,ptH,i))
 
         for j in reckind_List:
                 print j

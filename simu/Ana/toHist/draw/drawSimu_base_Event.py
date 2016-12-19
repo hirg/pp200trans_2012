@@ -20,8 +20,8 @@ file_List=[]
 
 for i in xrange(0,5):
 	print i
-	fdir=''+'ptH_%s/'%(ptH)
-	fn='mc_ptH_%s_%s.hist_%s.root'%(ptH,ptV,Trig_List[i])
+	fdir='../data/ptH_%s/'%(ptH)
+	fn='mc_ptH_%s_ptV%s.hist_%s.root'%(ptH,ptV,Trig_List[i])
 
 	fn_full=fdir+fn
 
