@@ -9,7 +9,7 @@ ptV=sys.argv[2]
 Trig_List=['ZB','JP0','JP1','JP2','AJP']
 MarkerC_List=[1,2,4,6,8]
 Par_List=['L','A']
-LPar_List=['#Lambda','#bar{\Lambda}']
+LPar_List=['#Lambda','#bar{#Lambda}']
 Type_List=['g','a','m','t']
 
 # Event Level
