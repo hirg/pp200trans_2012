@@ -815,7 +815,7 @@ Bool_t toHist::Process(Long64_t entry)
       }
       h_fParton_J->Fill(fParton, weight_fill);
 
-      if (J_drParton1<1.0 || J_drParton2<1.0)
+      if (J_drParton1[i]<1.0 || J_drParton2[i]<1.0)
       {
          int fPartonS = g_idParton1;
          if (J_drParton2[i]<J_drParton1[i])
@@ -874,7 +874,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_g_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_g_fParton_L[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (g_drParton1_L[i]<1.0 || g_drParton2_L[i]<1.0)
          {
@@ -883,7 +883,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_g_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_g_fPartonS_L[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -915,9 +915,6 @@ Bool_t toHist::Process(Long64_t entry)
          h_g_phi_A[kJ][ptVmin-1]->Fill(g_phi_A[i], weight_fill);   
          h_g_im_A[kJ][ptVmin-1]->Fill(g_im_A[i], weight_fill);
          //cout << "===-->  g_A Filling " << ptVmin << "\t======\t" << g_im_A[i] << endl;
-         h_g_geantProc_start_A[kJ][ptVmin-1]->Fill(g_geantProc_start_A[i], weight_fill);   
-         h_g_geantMedium_start_A[kJ][ptVmin-1]->Fill(g_geantMedium_start_A[i], weight_fill);   
-         h_g_generatorProc_start_A[kJ][ptVmin-1]->Fill(g_generatorProc_start_A[i], weight_fill);
          h_g_idSubproc_A[kJ][ptVmin-1]->Fill(g_idSubproc, weight_fill); 
 
          if( g_gid_parent_A[i]!=0 ) g_pid_parent_A[i] = findPid( g_gid_parent_A[i] );
@@ -932,7 +929,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_g_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_g_fParton_A[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (g_drParton1_A[i]<1.0 || g_drParton2_A[i]<1.0)
          {
@@ -941,7 +938,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_g_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_g_fPartonS_A[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -1010,7 +1007,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_a_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_a_fParton_L[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (a_drParton1_L[i]<1.0 || a_drParton2_L[i]<1.0)
          {
@@ -1019,7 +1016,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_a_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_a_fPartonS_L[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -1088,7 +1085,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_a_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_a_fParton_A[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (a_drParton1_A[i]<1.0 || a_drParton2_A[i]<1.0)
          {
@@ -1097,7 +1094,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_a_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_a_fPartonS_A[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -1157,7 +1154,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_m_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_m_fParton_L[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (m_drParton1_L[i]<1.0 || m_drParton2_L[i]<1.0)
          {
@@ -1166,7 +1163,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_m_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_m_fPartonS_L[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -1226,7 +1223,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_m_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_m_fParton_A[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (m_drParton1_A[i]<1.0 || m_drParton2_A[i]<1.0)
          {
@@ -1235,7 +1232,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_m_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_m_fPartonS_A[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -1302,7 +1299,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_t_fParton_L[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_t_fParton_L[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (m_drParton1_L[i]<1.0 || m_drParton2_L[i]<1.0)
          {
@@ -1311,7 +1308,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_t_fPartonS_L[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_t_fPartonS_L[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
 
@@ -1378,7 +1375,7 @@ Bool_t toHist::Process(Long64_t entry)
          {
             fParton = g_idParton2;
          }
-         h_t_fParton_A[kT][ptVmin-1]->Fill(fParton, weight_fill);
+         h_t_fParton_A[kJ][ptVmin-1]->Fill(fParton, weight_fill);
    
          if (m_drParton1_A[i]<1.0 || m_drParton2_A[i]<1.0)
          {
@@ -1387,7 +1384,7 @@ Bool_t toHist::Process(Long64_t entry)
             {
                fPartonS = g_idParton2;
             }
-            h_t_fPartonS_A[kT][ptVmin-1]->Fill(fPartonS, weight_fill);
+            h_t_fPartonS_A[kJ][ptVmin-1]->Fill(fPartonS, weight_fill);
          }
       }
    }
