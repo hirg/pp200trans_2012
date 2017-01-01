@@ -566,7 +566,7 @@ Bool_t fillHist::Process(Long64_t entry)
       for (int i = 0; i < snlam; ++i)
       {
          int kPT=getPTbin(sL_pt[i]);
-         cout << "L PTbin: " << kPT << endl;
+         //cout << "L PTbin: " << kPT << endl;
          if (kPT<0)
          {
             continue;
@@ -707,12 +707,12 @@ Bool_t fillHist::Process(Long64_t entry)
       for (int i = 0; i < snlbr; ++i)
       {
          int kPT=getPTbin(sA_pt[i]);
-         cout << "A PTbin: " << kPT << endl;
+         //cout << "A PTbin: " << kPT << endl;
          if (kPT<0)
          {
             continue;
          }
-         cout << "Filling A_0 " << entry << endl;
+         //cout << "Filling A_0 " << entry << endl;
          if (kJ)
          {
             if( sA_index[i]<0 ) continue;
@@ -749,7 +749,7 @@ Bool_t fillHist::Process(Long64_t entry)
             h_cJ_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosTj_yell[i]);
             h_cJ_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosTj_blue[i]);
          }
-         cout << "Filling A_1 " << entry << endl;
+         //cout << "Filling A_1 " << entry << endl;
          h_pt_Ap[kJ][kPT]->Fill(sAp_pt[i]);
          h_eta_Ap[kJ][kPT]->Fill(sAp_eta[i]); 
          h_phi_Ap[kJ][kPT]->Fill(sAp_phi[i]); 
@@ -770,17 +770,17 @@ Bool_t fillHist::Process(Long64_t entry)
          h_dcaV0_A[kJ][kPT]->Fill(sA_dcaV0[i]);
          h_crp_A[kJ][kPT]->Fill(sA_crp[i]);
          h_dr_A[kJ][kPT]->Fill(sA_dr[i]);
-         cout << "Filling A_2 " << entry << endl;
+         //cout << "Filling A_2 " << entry << endl;
          //h_deta_A[kJ][kPT]->Fill(sA_deta[i]);
          //h_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
-         cout << "Filling A_3 " << entry << endl;
+         //cout << "Filling A_3 " << entry << endl;
          h_cV_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosTv_yell[i]);
          h_cN_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosN_yell[i]);
          h_cY_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosY_yell[i]);
          h_cV_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosTv_blue[i]);
          h_cN_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosN_blue[i]);
          h_cY_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosY_blue[i]);
-         cout << "Filling A_4 " << entry << endl;
+         //cout << "Filling A_4 " << entry << endl;
 
 
          if (sA_im[i]>=kIM3[kPT] && sA_im[i]<kIM4[kPT])
@@ -853,7 +853,7 @@ Bool_t fillHist::Process(Long64_t entry)
       for (int i = 0; i < snk0s; ++i)
       {
          int kPT=getPTbin(sK_pt[i]);
-         cout << "K PTbin: " << kPT << endl;
+         //cout << "K PTbin: " << kPT << endl;
          if (kPT<0)
          {
             continue;
@@ -989,7 +989,7 @@ Bool_t fillHist::Process(Long64_t entry)
       }      
    }
 
-   if (entry%10000==0) cout << "Filling histograms over for entry: " << entry << endl;
+   if (entry%100000==0) cout << "Filling histograms over for entry: " << entry << endl;
 
    return kTRUE;
 }
