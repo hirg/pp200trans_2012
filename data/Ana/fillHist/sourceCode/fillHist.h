@@ -997,7 +997,7 @@ int fillHist::getPTbin(double apt)
    return PTbin; 
 }
 
-void ReadCutTable(int pT)
+void fillHist::ReadCutTable(int pT)
 {
    // new
    const double cut_nSigma_protect[6]   = { 0.50, 0.50, 0.60, 0.80, 1.00, 1.00 };
