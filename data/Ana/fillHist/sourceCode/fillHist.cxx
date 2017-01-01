@@ -30,6 +30,7 @@
 #include <TH2.h>
 #include <TStyle.h>
 #include <iostream>
+#include <TVectoe3.h>
 
 
 using namespace std;
@@ -577,7 +578,7 @@ Bool_t fillHist::Process(Long64_t entry)
             if( sL_index[i]<0 ) continue;
             if( sL_dr[i]<0 || sL_dr[i]>0.6 ) continue;
          }
-         /*
+         
          ReadCutTable(kPT);
 
          if( sLp_dca[i] < c_dca_min_proton ) continue;
@@ -591,14 +592,13 @@ Bool_t fillHist::Process(Long64_t entry)
          if( (fabs(sLp_nSigmaP[i]) > c_nSigma_protect) && (fabs(sLp_nSigmaP[i])>fabs(sLp_nSigmaPi[i])) ) continue;
 
          TVector3 tPi;
-         tPi.SetPtEtaPhi( sLpi_pt[iP], sLpi_eta[iP], sLpi_phi[iP] );
+         tPi.SetPtEtaPhi( sLpi_pt[i], sLpi_eta[i], sLpi_phi[i] );
          if( tPi.Mag() < c_P_min_pion ) continue;
 
          if( sLp_dca[i] > 200.0 ) continue;
          if( sLpi_dca[i] > 200.0 ) continue;
          if( sLpi_dca[i] > 16 && sLp_dca[i] < 0.8 ) continue;
          if( sLpi_dca[i] > 45 ) continue;
-         */
 
          h_im_L[kJ][kPT]->Fill(sL_im[i]);
          if (kJ)
@@ -718,7 +718,7 @@ Bool_t fillHist::Process(Long64_t entry)
             if( sA_index[i]<0 ) continue;
             if( sA_dr[i]<0 || sA_dr[i]>0.6 ) continue;
          }
-         /*
+         
          ReadCutTable(kPT);
 
          if( sAp_dca[i] < c_dca_min_proton ) continue;
@@ -732,7 +732,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if( (fabs(sAp_nSigmaP[i]) > c_nSigma_protect) && (fabs(sAp_nSigmaP[i])>fabs(sAp_nSigmaPi[i])) ) continue;
 
          TVector3 tPi;
-         tPi.SetPtEtaPhi( sApi_pt[iP], sApi_eta[iP], sApi_phi[iP] );
+         tPi.SetPtEtaPhi( sApi_pt[i], sApi_eta[i], sApi_phi[i] );
          if( tPi.Mag() < c_P_min_pion ) continue;
 
          if( sAp_dca[i] > 200.0 ) continue;
@@ -740,7 +740,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if( sAp_dca[i] > 20 ) continue;
          if( sApi_dca[i] > 20 && sAp_dca[i] < 0.8 ) continue;
          if( sApi_dca[i] < 2 && sAp_dca[i] > 3 ) continue;
-         */
+         
          h_im_A[kJ][kPT]->Fill(sA_im[i]);
          if (kJ)
          {
@@ -864,7 +864,7 @@ Bool_t fillHist::Process(Long64_t entry)
             if( sK_index[i]<0 ) continue;
             if( sK_dr[i]<0 || sK_dr[i]>0.6 ) continue;
          }
-         /*
+         
          ReadCutTable(kPT);
 
          if( sKp_dca[i] < K_c_dca_min_pion ) continue;
@@ -883,7 +883,7 @@ Bool_t fillHist::Process(Long64_t entry)
          if( tPi.Mag() < c_P_min_pion ) continue;
          tPi.SetPtEtaPhi( sKpi_pt[i], sKpi_eta[i], sKpi_phi[i] );
          if( tPi.Mag() < c_P_min_pion ) continue;
-         */
+         
          h_im_K[kJ][kPT]->Fill(sK_im[i]);
          if (kJ)
          {
