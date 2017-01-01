@@ -628,8 +628,8 @@ Bool_t fillHist::Process(Long64_t entry)
          h_dcaV0_L[kJ][kPT]->Fill(sL_dcaV0[i]);
          h_crp_L[kJ][kPT]->Fill(sL_crp[i]);
          h_dr_L[kJ][kPT]->Fill(sL_dr[i]);
-         h_deta_L[kJ][kPT]->Fill(sL_deta[i]);
-         h_dphi_L[kJ][kPT]->Fill(sL_dphi[i]);
+         //h_deta_L[kJ][kPT]->Fill(sL_deta[i]);
+         //h_dphi_L[kJ][kPT]->Fill(sL_dphi[i]);
          h_cV_yell_L[kJ][kPT]->Fill(sL_im[i],sL_cosTv_yell[i]);
          h_cN_yell_L[kJ][kPT]->Fill(sL_im[i],sL_cosN_yell[i]);
          h_cY_yell_L[kJ][kPT]->Fill(sL_im[i],sL_cosY_yell[i]);
@@ -666,8 +666,8 @@ Bool_t fillHist::Process(Long64_t entry)
             h_peak_crp_L[kJ][kPT]->Fill(sL_crp[i]);
 
             h_peak_dr_L[kJ][kPT]->Fill(sL_dr[i]);
-            h_peak_deta_L[kJ][kPT]->Fill(sL_deta[i]);
-            h_peak_dphi_L[kJ][kPT]->Fill(sL_dphi[i]);
+            //h_peak_deta_L[kJ][kPT]->Fill(sL_deta[i]);
+            //h_peak_dphi_L[kJ][kPT]->Fill(sL_dphi[i]);
          }
 
          if ( (sL_im[i]>=kIM1[kPT] && sL_im[i]<kIM2[kPT]) || (sL_im[i]>=kIM5[kPT] && sL_im[i]<kIM6[kPT]) )
@@ -699,8 +699,8 @@ Bool_t fillHist::Process(Long64_t entry)
             h_bkg_crp_L[kJ][kPT]->Fill(sL_crp[i]);
 
             h_bkg_dr_L[kJ][kPT]->Fill(sL_dr[i]);
-            h_bkg_deta_L[kJ][kPT]->Fill(sL_deta[i]);
-            h_bkg_dphi_L[kJ][kPT]->Fill(sL_dphi[i]);
+            //h_bkg_deta_L[kJ][kPT]->Fill(sL_deta[i]);
+            //h_bkg_dphi_L[kJ][kPT]->Fill(sL_dphi[i]);
          }
       }
 
@@ -771,8 +771,8 @@ Bool_t fillHist::Process(Long64_t entry)
          h_crp_A[kJ][kPT]->Fill(sA_crp[i]);
          h_dr_A[kJ][kPT]->Fill(sA_dr[i]);
          cout << "Filling A_2 " << entry << endl;
-         h_deta_A[kJ][kPT]->Fill(sA_deta[i]);
-         h_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
+         //h_deta_A[kJ][kPT]->Fill(sA_deta[i]);
+         //h_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
          cout << "Filling A_3 " << entry << endl;
          h_cV_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosTv_yell[i]);
          h_cN_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosN_yell[i]);
@@ -812,8 +812,8 @@ Bool_t fillHist::Process(Long64_t entry)
             h_peak_crp_A[kJ][kPT]->Fill(sA_crp[i]);
 
             h_peak_dr_A[kJ][kPT]->Fill(sA_dr[i]);
-            h_peak_deta_A[kJ][kPT]->Fill(sA_deta[i]);
-            h_peak_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
+            //h_peak_deta_A[kJ][kPT]->Fill(sA_deta[i]);
+            //h_peak_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
          }
 
          if ( (sA_im[i]>=kIM1[kPT] && sA_im[i]<kIM2[kPT]) || (sA_im[i]>=kIM5[kPT] && sA_im[i]<kIM6[kPT]) )
@@ -845,8 +845,8 @@ Bool_t fillHist::Process(Long64_t entry)
             h_bkg_crp_A[kJ][kPT]->Fill(sA_crp[i]);
 
             h_bkg_dr_A[kJ][kPT]->Fill(sA_dr[i]);
-            h_bkg_deta_A[kJ][kPT]->Fill(sA_deta[i]);
-            h_bkg_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
+            //h_bkg_deta_A[kJ][kPT]->Fill(sA_deta[i]);
+            //h_bkg_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
          }
       }
 
@@ -912,8 +912,8 @@ Bool_t fillHist::Process(Long64_t entry)
          h_dcaV0_K[kJ][kPT]->Fill(sK_dcaV0[i]);
          h_crp_K[kJ][kPT]->Fill(sK_crp[i]);
          h_dr_K[kJ][kPT]->Fill(sK_dr[i]);
-         h_deta_K[kJ][kPT]->Fill(sK_deta[i]);
-         h_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
+         //h_deta_K[kJ][kPT]->Fill(sK_deta[i]);
+         //h_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
          h_cV_yell_K[kJ][kPT]->Fill(sK_im[i],sK_cosTv_yell[i]);
          h_cN_yell_K[kJ][kPT]->Fill(sK_im[i],sK_cosN_yell[i]);
          h_cY_yell_K[kJ][kPT]->Fill(sK_im[i],sK_cosY_yell[i]);
@@ -950,8 +950,8 @@ Bool_t fillHist::Process(Long64_t entry)
             h_peak_crp_K[kJ][kPT]->Fill(sK_crp[i]);
 
             h_peak_dr_K[kJ][kPT]->Fill(sK_dr[i]);
-            h_peak_deta_K[kJ][kPT]->Fill(sK_deta[i]);
-            h_peak_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
+            //h_peak_deta_K[kJ][kPT]->Fill(sK_deta[i]);
+            //h_peak_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
          }
 
          if ( (sK_im[i]>=kIMK1[kPT] && sK_im[i]<kIMK2[kPT]) || (sK_im[i]>=kIMK5[kPT] && sK_im[i]<kIMK6[kPT]) )
@@ -983,8 +983,8 @@ Bool_t fillHist::Process(Long64_t entry)
             h_bkg_crp_K[kJ][kPT]->Fill(sK_crp[i]);
 
             h_bkg_dr_K[kJ][kPT]->Fill(sK_dr[i]);
-            h_bkg_deta_K[kJ][kPT]->Fill(sK_deta[i]);
-            h_bkg_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
+            //h_bkg_deta_K[kJ][kPT]->Fill(sK_deta[i]);
+            //h_bkg_dphi_K[kJ][kPT]->Fill(sK_dphi[i]);
          }
       }      
    }
