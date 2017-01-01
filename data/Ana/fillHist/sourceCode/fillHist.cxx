@@ -505,6 +505,7 @@ void fillHist::Begin(TTree * /*tree*/)
          h_bkg_crp_K[kJ][kPT] = new TH1D(hn.Data(),hn.Data(),500,0.95,1.0);
       }
    }
+   cout << "histograms declare over" << endl;
 }
 
 void fillHist::SlaveBegin(TTree * /*tree*/)
@@ -711,7 +712,7 @@ Bool_t fillHist::Process(Long64_t entry)
          {
             continue;
          }
-
+         cout << "Filling A_0 " << entry << endl;
          if (kJ)
          {
             if( sA_index[i]<0 ) continue;
@@ -748,6 +749,7 @@ Bool_t fillHist::Process(Long64_t entry)
             h_cJ_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosTj_yell[i]);
             h_cJ_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosTj_blue[i]);
          }
+         cout << "Filling A_1 " << entry << endl;
          h_pt_Ap[kJ][kPT]->Fill(sAp_pt[i]);
          h_eta_Ap[kJ][kPT]->Fill(sAp_eta[i]); 
          h_phi_Ap[kJ][kPT]->Fill(sAp_phi[i]); 
@@ -768,14 +770,17 @@ Bool_t fillHist::Process(Long64_t entry)
          h_dcaV0_A[kJ][kPT]->Fill(sA_dcaV0[i]);
          h_crp_A[kJ][kPT]->Fill(sA_crp[i]);
          h_dr_A[kJ][kPT]->Fill(sA_dr[i]);
+         cout << "Filling A_2 " << entry << endl;
          h_deta_A[kJ][kPT]->Fill(sA_deta[i]);
          h_dphi_A[kJ][kPT]->Fill(sA_dphi[i]);
+         cout << "Filling A_3 " << entry << endl;
          h_cV_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosTv_yell[i]);
          h_cN_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosN_yell[i]);
          h_cY_yell_A[kJ][kPT]->Fill(sA_im[i],sA_cosY_yell[i]);
          h_cV_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosTv_blue[i]);
          h_cN_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosN_blue[i]);
          h_cY_blue_A[kJ][kPT]->Fill(sA_im[i],sA_cosY_blue[i]);
+         cout << "Filling A_4 " << entry << endl;
 
 
          if (sA_im[i]>=kIM3[kPT] && sA_im[i]<kIM4[kPT])
@@ -865,9 +870,9 @@ Bool_t fillHist::Process(Long64_t entry)
          if( sKp_dca[i] < K_c_dca_min_pion ) continue;
          if( sKpi_dca[i] < K_c_dca_min_pion ) continue;
          if( sK_dca2[i] > K_c_dca2_max ) continue;
-         if( sK_dcaV0[i] > c_dcaV0_max ) continue;
-         if( sK_crp[i] < c_crp_min ) continue;
-         if( sK_dl[i] < c_dl_min ) continue;
+         if( sK_dcaV0[i] > K_c_dcaV0_max ) continue;
+         if( sK_crp[i] < K_c_crp_min ) continue;
+         if( sK_dl[i] < K_c_dl_min ) continue;
          if( fabs(sKp_nSigmaP[i]) > c_nSigma_proton ) continue;
          if( fabs(sKpi_nSigmaPi[i]) > c_nSigma_pion ) continue;
          if( (fabs(sKp_nSigmaPi[i]) > c_nSigma_protect) && (fabs(sKp_nSigmaPi[i])>fabs(sKp_nSigmaP[i])) ) continue;
@@ -984,7 +989,7 @@ Bool_t fillHist::Process(Long64_t entry)
       }      
    }
 
-   //if (entry%100000==0) cout << "Filling histograms over for entry: " << entry << endl;
+   if (entry%10000==0) cout << "Filling histograms over for entry: " << entry << endl;
 
    return kTRUE;
 }
