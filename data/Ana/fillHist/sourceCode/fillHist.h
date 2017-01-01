@@ -41,6 +41,7 @@ private :
    double        K_c_dca_min_pion;
    double        K_c_crp_min;
    double        K_c_dcaV0_max;
+   double        K_c_dca2_max;
    double        K_c_dl_min;
 
    // Declaration of leaf types
