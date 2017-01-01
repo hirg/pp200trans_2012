@@ -25,6 +25,24 @@ class fillHist : public TSelector {
 private :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 
+   // Cut Variables
+   double        c_nSigma_protect;
+   double        c_nSigma_proton;
+   double        c_nSigma_pion;
+   double        c_dca_min_proton;
+   double        c_dca_min_pion;
+   double        c_crp_min;
+   double        c_dca2_max;
+   double        c_dcaV0_max;
+   double        c_dl_min;
+   double        c_dl_max;
+   double        c_P_min_pion;
+
+   double        K_c_dca_min_pion;
+   double        K_c_crp_min;
+   double        K_c_dcaV0_max;
+   double        K_c_dl_min;
+
    // Declaration of leaf types
    int           runID;
    int           eventID;
@@ -436,6 +454,7 @@ public:
            bool    checkSpin();
            bool    checkTrig();
            int     getPTbin(double apt);
+           void    ReadCutTable(int apt);
 
    // Declare histograms
    TH1D           *h_pvz0;
@@ -453,19 +472,103 @@ public:
    TH1D           *h_charge_J;
 
    TH1D           *h_im_L[2][6];
-   TH1D           *h_im_A[2][6];
-   TH1D           *h_im_K[2][6];
+   TH1D           *h_pt_Lp[2][6];
+   TH1D           *h_eta_Lp[2][6];  
+   TH1D           *h_phi_Lp[2][6];   
+   TH1D           *h_pt_Lpi[2][6];  
+   TH1D           *h_eta_Lpi[2][6]; 
+   TH1D           *h_phi_Lpi[2][6]; 
+   TH1D           *h_pt_L[2][6];   
+   TH1D           *h_eta_L[2][6];   
+   TH1D           *h_phi_L[2][6];   
+   TH1D           *h_dca_Lp[2][6];   
+   TH1D           *h_dca_Lpi[2][6];   
+   TH1D           *h_nFit_Lp[2][6];   
+   TH1D           *h_nFit_Lpi[2][6];  
+   TH1D           *h_nSigP_Lp[2][6];
+   TH1D           *h_nSigPi_Lpi[2][6];
+   TH1D           *h_dl_L[2][6];   
+   TH1D           *h_dca2_L[2][6];   
+   TH1D           *h_dcaV0_L[2][6];   
+   TH1D           *h_crp_L[2][6];
+   TH1D           *h_dr_L[2][6];   
+   TH1D           *h_deta_L[2][6]; 
+   TH1D           *h_dphi_L[2][6];
+   TH2D           *h_cV_yell_L[2][6];
+   TH2D           *h_cJ_yell_L[2][6];
+   TH2D           *h_cN_yell_L[2][6];
+   TH2D           *h_cY_yell_L[2][6];
+   TH2D           *h_cV_blue_L[2][6];
+   TH2D           *h_cJ_blue_L[2][6];
+   TH2D           *h_cN_blue_L[2][6];
+   TH2D           *h_cY_blue_L[2][6];
+   TH1D           *h_fz_L[6];
 
-   /*
-   TH2D           *h_cosTv_yell_A[2][6];
-   TH2D           *h_cosTv_blue_A[2][6];
-   TH2D           *h_cosTj_yell_A[2][6];
-   TH2D           *h_cosTj_blue_A[2][6];
-   TH2D           *h_cosN_yell_A[2][6]; 
-   TH2D           *h_cosN_blue_A[2][6]; 
-   TH2D           *h_cosY_yell_A[2][6]; 
-   TH2D           *h_cosY_blue_A[2][6]; 
-   */
+   TH1D           *h_im_A[2][6];
+   TH1D           *h_pt_Ap[2][6];
+   TH1D           *h_eta_Ap[2][6];  
+   TH1D           *h_phi_Ap[2][6];   
+   TH1D           *h_pt_Api[2][6];  
+   TH1D           *h_eta_Api[2][6]; 
+   TH1D           *h_phi_Api[2][6]; 
+   TH1D           *h_pt_A[2][6];   
+   TH1D           *h_eta_A[2][6];   
+   TH1D           *h_phi_A[2][6];   
+   TH1D           *h_dca_Ap[2][6];   
+   TH1D           *h_dca_Api[2][6];   
+   TH1D           *h_nFit_Ap[2][6];   
+   TH1D           *h_nFit_Api[2][6];  
+   TH1D           *h_nSigP_Ap[2][6];
+   TH1D           *h_nSigPi_Api[2][6];
+   TH1D           *h_dl_A[2][6];   
+   TH1D           *h_dca2_A[2][6];   
+   TH1D           *h_dcaV0_A[2][6];   
+   TH1D           *h_crp_A[2][6];
+   TH1D           *h_dr_A[2][6];   
+   TH1D           *h_deta_A[2][6]; 
+   TH1D           *h_dphi_A[2][6];
+   TH2D           *h_cV_yell_A[2][6];
+   TH2D           *h_cJ_yell_A[2][6];
+   TH2D           *h_cN_yell_A[2][6];
+   TH2D           *h_cY_yell_A[2][6];
+   TH2D           *h_cV_blue_A[2][6];
+   TH2D           *h_cJ_blue_A[2][6];
+   TH2D           *h_cN_blue_A[2][6];
+   TH2D           *h_cY_blue_A[2][6];
+   TH1D           *h_fz_A[6];
+
+   TH1D           *h_im_K[2][6];
+   TH1D           *h_pt_Kp[2][6];
+   TH1D           *h_eta_Kp[2][6];  
+   TH1D           *h_phi_Kp[2][6];   
+   TH1D           *h_pt_Kpi[2][6];  
+   TH1D           *h_eta_Kpi[2][6]; 
+   TH1D           *h_phi_Kpi[2][6]; 
+   TH1D           *h_pt_K[2][6];   
+   TH1D           *h_eta_K[2][6];   
+   TH1D           *h_phi_K[2][6];   
+   TH1D           *h_dca_Kp[2][6];   
+   TH1D           *h_dca_Kpi[2][6];   
+   TH1D           *h_nFit_Kp[2][6];   
+   TH1D           *h_nFit_Kpi[2][6];  
+   TH1D           *h_nSigP_Kp[2][6];
+   TH1D           *h_nSigPi_Kpi[2][6];
+   TH1D           *h_dl_K[2][6];   
+   TH1D           *h_dca2_K[2][6];   
+   TH1D           *h_dcaV0_K[2][6];   
+   TH1D           *h_crp_K[2][6];
+   TH1D           *h_dr_K[2][6];   
+   TH1D           *h_deta_K[2][6]; 
+   TH1D           *h_dphi_K[2][6];
+   TH2D           *h_cV_yell_K[2][6];
+   TH2D           *h_cJ_yell_K[2][6];
+   TH2D           *h_cN_yell_K[2][6];
+   TH2D           *h_cY_yell_K[2][6];
+   TH2D           *h_cV_blue_K[2][6];
+   TH2D           *h_cJ_blue_K[2][6];
+   TH2D           *h_cN_blue_K[2][6];
+   TH2D           *h_cY_blue_K[2][6];
+   TH1D           *h_fz_K[6];
 
    TH1D           *h_peak_pt_Lp[2][6];
    TH1D           *h_peak_eta_Lp[2][6];  
@@ -475,8 +578,7 @@ public:
    TH1D           *h_peak_phi_Lpi[2][6]; 
    TH1D           *h_peak_pt_L[2][6];   
    TH1D           *h_peak_eta_L[2][6];   
-   TH1D           *h_peak_phi_L[2][6];   
-   
+   TH1D           *h_peak_phi_L[2][6];      
    TH1D           *h_peak_dca_Lp[2][6];   
    TH1D           *h_peak_dca_Lpi[2][6];   
    TH1D           *h_peak_nFit_Lp[2][6];   
@@ -487,22 +589,9 @@ public:
    TH1D           *h_peak_dca2_L[2][6];   
    TH1D           *h_peak_dcaV0_L[2][6];   
    TH1D           *h_peak_crp_L[2][6];
-
-   //TH1D           *h_peak_type_L[2][6]; 
    TH1D           *h_peak_dr_L[2][6];   
    TH1D           *h_peak_deta_L[2][6]; 
    TH1D           *h_peak_dphi_L[2][6];
-
-   /*
-   TH1D           *h_peak_cosTv_yell_L[2][6];
-   TH1D           *h_peak_cosTv_blue_L[2][6];
-   TH1D           *h_peak_cosTj_yell_L[2][6];
-   TH1D           *h_peak_cosTj_blue_L[2][6];
-   TH1D           *h_peak_cosN_yell_L[2][6]; 
-   TH1D           *h_peak_cosN_blue_L[2][6]; 
-   TH1D           *h_peak_cosY_yell_L[2][6]; 
-   TH1D           *h_peak_cosY_blue_L[2][6];
-   */
    TH1D           *h_peak_fz_L[6];
 
    TH1D           *h_peak_pt_Ap[2][6];
@@ -517,7 +606,6 @@ public:
    TH1D           *h_peak_pt_A[2][6];   
    TH1D           *h_peak_eta_A[2][6];   
    TH1D           *h_peak_phi_A[2][6];   
-
    TH1D           *h_peak_dca_Ap[2][6];   
    TH1D           *h_peak_dca_Api[2][6];   
    TH1D           *h_peak_nFit_Ap[2][6];   
@@ -528,25 +616,23 @@ public:
    TH1D           *h_peak_dca2_A[2][6];   
    TH1D           *h_peak_dcaV0_A[2][6];   
    TH1D           *h_peak_crp_A[2][6];
-
-   TH1D           *h_peak_index_A[2][6];   
-   TH1D           *h_peak_type_A[2][6]; 
    TH1D           *h_peak_dr_A[2][6];   
    TH1D           *h_peak_deta_A[2][6]; 
    TH1D           *h_peak_dphi_A[2][6];
-
    TH1D           *h_peak_fz_A[6];
 
    TH1D           *h_peak_pt_Kp[2][6];
    TH1D           *h_peak_eta_Kp[2][6];  
-   TH1D           *h_peak_phi_Kp[2][6];   
+   TH1D           *h_peak_phi_Kp[2][6];    
    TH1D           *h_peak_pt_Kpi[2][6];  
    TH1D           *h_peak_eta_Kpi[2][6]; 
    TH1D           *h_peak_phi_Kpi[2][6]; 
+   TH1D           *h_peak_x_stop_K[2][6];
+   TH1D           *h_peak_y_stop_K[2][6];
+   TH1D           *h_peak_z_stop_K[2][6];
    TH1D           *h_peak_pt_K[2][6];   
    TH1D           *h_peak_eta_K[2][6];   
    TH1D           *h_peak_phi_K[2][6];   
-   
    TH1D           *h_peak_dca_Kp[2][6];   
    TH1D           *h_peak_dca_Kpi[2][6];   
    TH1D           *h_peak_nFit_Kp[2][6];   
@@ -557,37 +643,20 @@ public:
    TH1D           *h_peak_dca2_K[2][6];   
    TH1D           *h_peak_dcaV0_K[2][6];   
    TH1D           *h_peak_crp_K[2][6];
-
-   //TH1D           *h_peak_type_K[2][6]; 
    TH1D           *h_peak_dr_K[2][6];   
    TH1D           *h_peak_deta_K[2][6]; 
    TH1D           *h_peak_dphi_K[2][6];
-
-   /*
-   TH1D           *h_peak_cosTv_yell_A[2][6];
-   TH1D           *h_peak_cosTv_blue_A[2][6];
-   TH1D           *h_peak_cosTj_yell_A[2][6];
-   TH1D           *h_peak_cosTj_blue_A[2][6];
-   TH1D           *h_peak_cosN_yell_A[2][6]; 
-   TH1D           *h_peak_cosN_blue_A[2][6]; 
-   TH1D           *h_peak_cosY_yell_A[2][6]; 
-   TH1D           *h_peak_cosY_blue_A[2][6]; 
-   */
    TH1D           *h_peak_fz_K[6];
-
+ 
    TH1D           *h_bkg_pt_Lp[2][6];
    TH1D           *h_bkg_eta_Lp[2][6];  
    TH1D           *h_bkg_phi_Lp[2][6];   
    TH1D           *h_bkg_pt_Lpi[2][6];  
    TH1D           *h_bkg_eta_Lpi[2][6]; 
-   TH1D           *h_bkg_phi_Lpi[2][6];  
-   TH1D           *h_bkg_x_stop_L[2][6];
-   TH1D           *h_bkg_y_stop_L[2][6];
-   TH1D           *h_bkg_z_stop_L[2][6];
+   TH1D           *h_bkg_phi_Lpi[2][6]; 
    TH1D           *h_bkg_pt_L[2][6];   
    TH1D           *h_bkg_eta_L[2][6];   
-   TH1D           *h_bkg_phi_L[2][6];    
-
+   TH1D           *h_bkg_phi_L[2][6];      
    TH1D           *h_bkg_dca_Lp[2][6];   
    TH1D           *h_bkg_dca_Lpi[2][6];   
    TH1D           *h_bkg_nFit_Lp[2][6];   
@@ -598,23 +667,9 @@ public:
    TH1D           *h_bkg_dca2_L[2][6];   
    TH1D           *h_bkg_dcaV0_L[2][6];   
    TH1D           *h_bkg_crp_L[2][6];
-
-   TH1D           *h_bkg_index_L[2][6];   
-   TH1D           *h_bkg_type_L[2][6]; 
    TH1D           *h_bkg_dr_L[2][6];   
    TH1D           *h_bkg_deta_L[2][6]; 
    TH1D           *h_bkg_dphi_L[2][6];
-
-   /*
-   TH1D           *h_bkg_cosTv_yell_L[2][6];
-   TH1D           *h_bkg_cosTv_blue_L[2][6];
-   TH1D           *h_bkg_cosTj_yell_L[2][6];
-   TH1D           *h_bkg_cosTj_blue_L[2][6];
-   TH1D           *h_bkg_cosN_yell_L[2][6]; 
-   TH1D           *h_bkg_cosN_blue_L[2][6]; 
-   TH1D           *h_bkg_cosY_yell_L[2][6]; 
-   TH1D           *h_bkg_cosY_blue_L[2][6];
-   */
    TH1D           *h_bkg_fz_L[6];
 
    TH1D           *h_bkg_pt_Ap[2][6];
@@ -622,14 +677,13 @@ public:
    TH1D           *h_bkg_phi_Ap[2][6];    
    TH1D           *h_bkg_pt_Api[2][6];  
    TH1D           *h_bkg_eta_Api[2][6]; 
-   TH1D           *h_bkg_phi_Api[2][6];   
+   TH1D           *h_bkg_phi_Api[2][6]; 
    TH1D           *h_bkg_x_stop_A[2][6];
    TH1D           *h_bkg_y_stop_A[2][6];
    TH1D           *h_bkg_z_stop_A[2][6];
    TH1D           *h_bkg_pt_A[2][6];   
    TH1D           *h_bkg_eta_A[2][6];   
-   TH1D           *h_bkg_phi_A[2][6];    
-
+   TH1D           *h_bkg_phi_A[2][6];   
    TH1D           *h_bkg_dca_Ap[2][6];   
    TH1D           *h_bkg_dca_Api[2][6];   
    TH1D           *h_bkg_nFit_Ap[2][6];   
@@ -640,38 +694,23 @@ public:
    TH1D           *h_bkg_dca2_A[2][6];   
    TH1D           *h_bkg_dcaV0_A[2][6];   
    TH1D           *h_bkg_crp_A[2][6];
-
-   TH1D           *h_bkg_index_A[2][6];   
-   TH1D           *h_bkg_type_A[2][6]; 
    TH1D           *h_bkg_dr_A[2][6];   
    TH1D           *h_bkg_deta_A[2][6]; 
    TH1D           *h_bkg_dphi_A[2][6];
-
-   /*
-   TH1D           *h_bkg_cosTv_yell_A[2][6];
-   TH1D           *h_bkg_cosTv_blue_A[2][6];
-   TH1D           *h_bkg_cosTj_yell_A[2][6];
-   TH1D           *h_bkg_cosTj_blue_A[2][6];
-   TH1D           *h_bkg_cosN_yell_A[2][6]; 
-   TH1D           *h_bkg_cosN_blue_A[2][6]; 
-   TH1D           *h_bkg_cosY_yell_A[2][6]; 
-   TH1D           *h_bkg_cosY_blue_A[2][6]; 
-   */
    TH1D           *h_bkg_fz_A[6];
 
    TH1D           *h_bkg_pt_Kp[2][6];
    TH1D           *h_bkg_eta_Kp[2][6];  
-   TH1D           *h_bkg_phi_Kp[2][6];   
+   TH1D           *h_bkg_phi_Kp[2][6];    
    TH1D           *h_bkg_pt_Kpi[2][6];  
    TH1D           *h_bkg_eta_Kpi[2][6]; 
-   TH1D           *h_bkg_phi_Kpi[2][6];  
+   TH1D           *h_bkg_phi_Kpi[2][6]; 
    TH1D           *h_bkg_x_stop_K[2][6];
    TH1D           *h_bkg_y_stop_K[2][6];
    TH1D           *h_bkg_z_stop_K[2][6];
    TH1D           *h_bkg_pt_K[2][6];   
    TH1D           *h_bkg_eta_K[2][6];   
-   TH1D           *h_bkg_phi_K[2][6];    
-
+   TH1D           *h_bkg_phi_K[2][6];   
    TH1D           *h_bkg_dca_Kp[2][6];   
    TH1D           *h_bkg_dca_Kpi[2][6];   
    TH1D           *h_bkg_nFit_Kp[2][6];   
@@ -682,13 +721,9 @@ public:
    TH1D           *h_bkg_dca2_K[2][6];   
    TH1D           *h_bkg_dcaV0_K[2][6];   
    TH1D           *h_bkg_crp_K[2][6];
-
-   TH1D           *h_bkg_index_K[2][6];   
-   TH1D           *h_bkg_type_K[2][6]; 
-   TH1D           *h_bkg_dr_K[2][6];   
+   TH1D           *h_bkg_dr_K[2][6];
    TH1D           *h_bkg_deta_K[2][6]; 
    TH1D           *h_bkg_dphi_K[2][6];
-
    TH1D           *h_bkg_fz_K[6];
 
    ClassDef(fillHist,0);
@@ -960,6 +995,47 @@ int fillHist::getPTbin(double apt)
    if (PTbin==6) PTbin=5;
 
    return PTbin; 
+}
+
+void ReadCutTable(int pT)
+{
+   // new
+   const double cut_nSigma_protect[6]   = { 0.50, 0.50, 0.60, 0.80, 1.00, 1.00 };
+   const double cut_nSigma_proton[6]    = { 3.00, 3.00, 3.00, 3.00, 3.00, 3.00 };
+   const double cut_nSigma_pion[6]      = { 3.00, 3.00, 3.00, 3.00, 3.00, 3.00 };
+   const double cut_dca_min_pion[6]     = { 0.60, 0.55, 0.50, 0.50, 0.50, 0.50 };
+   const double cut_dca_min_proton[6]   = { 0.25, 0.20, 0.10, 0.05, 0.05, 0.05 };
+   const double cut_crp_min[6]          = { 0.95, 0.95, 0.95, 0.95, 0.95, 0.95 };
+   const double cut_dca2_max[6]         = { 0.80, 0.70, 0.60, 0.50, 0.45, 0.45 };
+   const double cut_dcaV0_max[6]        = { 1.00, 1.00, 1.00, 1.00, 1.00, 1.00 };
+   const double cut_dl_min[6]           = { 3.50, 4.00, 4.00, 4.50, 5.00, 5.50 };
+   const double cut_dl_max[6]           = { 1.3e02, 1.4e02, 1.5e02, 1.6e02, 1.7e02, 1.8e02 };
+   const double cut_P_min_pion[6]       = { 0.15, 0.15, 0.20, 0.25, 0.30, 0.40 };
+
+   const double K_cut_dca_min_pion[6]    = { 0.60, 0.55, 0.50, 0.45, 0.40, 0.35 };
+   const double K_cut_dca_min_proton[6]  = { 0.60, 0.55, 0.50, 0.45, 0.40, 0.35 };
+   const double K_cut_crp_min[6]         = { 0.99, 0.99, 0.99, 0.99, 0.99, 0.99 };
+   const double K_cut_dca2_max[6]        = { 0.70, 0.65, 0.55, 0.45, 0.40, 0.35 };
+   const double K_cut_dcaV0_max[6]       = { 0.60, 0.70, 0.80, 0.80, 0.80, 0.80 };
+   const double K_cut_dl_min[6]          = { 1.20, 1.40, 1.50, 1.60, 1.80, 2.00 };
+
+   c_nSigma_protect   = cut_nSigma_protect[pT];
+   c_nSigma_proton    = cut_nSigma_proton[pT];
+   c_nSigma_pion      = cut_nSigma_pion[pT];
+   c_dca_min_proton   = cut_dca_min_proton[pT];
+   c_dca_min_pion     = cut_dca_min_pion[pT];
+   c_crp_min          = cut_crp_min[pT];
+   c_dca2_max         = cut_dca2_max[pT];
+   c_dcaV0_max        = cut_dcaV0_max[pT];
+   c_dl_min           = cut_dl_min[pT];
+   c_dl_max           = cut_dl_max[pT];
+   c_P_min_pion       = cut_P_min_pion[pT];
+
+   K_c_dca_min_pion   = K_cut_dca_min_pion[pT];
+   K_c_crp_min        = K_cut_crp_min[pT];
+   K_c_dca2_max       = K_cut_dca2_max[pT];
+   K_c_dcaV0_max      = K_cut_dcaV0_max[pT];
+   K_c_dl_min         = K_cut_dl_min[pT];
 }
 
 #endif // #ifdef fillHist_cxx
